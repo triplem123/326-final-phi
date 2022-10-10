@@ -5,7 +5,7 @@
 # Team Members
 Mac Barlow - triplem123  
 Aryun Gupta - AryunGupta  
-Afsaana Bhatt - 
+Afsaana Bhatt - Afsaanabhatt
 
 # Idea
 A platform for users that are in the process of either moving or renovating their homes. The platform will allow users to decide on how they would like to arrange things in their room such as furniture, lamps, plants, etc. The users will create an account in order to save all of their data for later use and to give them the ability to use other features that will be detailed later. Once their account is created, a user can create their room with specific dimensions and other features. Once their room's size and shape has been set up, they can add any pieces of furniture and other things that occupy their room from a given list of shapes and rearrange everything until they find a desired layout. After finalizing a layout, users can save thelayout for later, save an image of their desired setup, or share it for other users to use as an example. 
