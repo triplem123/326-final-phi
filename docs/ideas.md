@@ -3,8 +3,8 @@
 # Application: Roomio
 
 # Team Members
-Mac Barlow - triplem123\n
-Aryun Gupta - AryunGupta\n
+Mac Barlow - triplem123  
+Aryun Gupta - AryunGupta  
 Afsaana Bhatt - 
 
 # Idea
