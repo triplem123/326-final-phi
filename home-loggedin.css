@@ -1,0 +1,15 @@
+* {
+    background-color: pink;
+}
+
+.heading {
+    text-align: center;
+    padding-top: 50px;
+}
+
+a:link {
+    text-decoration: none;
+    color: black;
+}
+
+/* maybe zoom in on the buttons a little when hovering */

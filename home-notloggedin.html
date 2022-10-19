@@ -3,8 +3,37 @@
     <head>
         <meta charset="UTF-8">
         <title>Home Page - Not Logged In</title>
+        <link rel="stylesheet" href="home-notloggedin.css">
     </head>
     <body>
-        
+        <h1 class="heading">
+            <a href="./home-notloggedin.html">
+                Welcome to Room.io
+            </a>
+        </h1>
+        <form class="login">
+            <label class="label-username">Username</label>
+            <input type="text" class="input-username"><br>
+            <label class="label-password">Password</label>
+            <input type="password" class="input-password"><br>
+            <button class="button-login">
+                <a href="./home-loggedin.html">Login</a>
+            </button>
+            <button class="button-guest">
+                <a href="./my-rooms.html">
+                    or proceed as Guest
+                </a>
+            </button><br>
+            <label class="label-no-account">Don't have an account?</label><br>
+            <button class="button-signup">
+                <a href="./create-account.html">Sign up</a>
+            </button><br>
+            <!-- delete this later -->
+            <button>
+                <a href="./home-loggedin.html">
+                    go to logged in home page (delete later)
+                </a>
+            </button>
+        </form>
     </body>
 </html>
