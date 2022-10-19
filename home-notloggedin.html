@@ -48,18 +48,22 @@
             </label>
             <br>
             <button
-                class="button-signup">
-                    <a href="./create-account.html">
+                class="button-signup"
+                onclick="openForm()">
                     Sign up
-                    </a>
             </button>
+            <!-- style the popup form here -->
+            <!-- https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_popup_form -->
+
             <br>
-            <!-- delete this later -->
-            <button>
-                <a href="./home-loggedin.html">
-                    go to logged in home page (delete later)
-                </a>
-            </button>
         </form>
+        <script>
+            function openForm() {
+                document.getElementById("myForm").style.display = "block";
+            }
+            function closeForm() {
+                document.getElementById("myForm").style.display = "none";
+            }
+        </script>
     </body>
 </html>
