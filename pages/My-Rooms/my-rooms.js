@@ -1,4 +1,4 @@
-const room_types = ["Bedroom", "Living Room", "Den", "Kitchen"];
+const room_types = ["Bedroom", "Living-Room", "Den", "Kitchen"];
 const grid = document.getElementById("room-layout-board");
 
 
@@ -6,15 +6,21 @@ const grid = document.getElementById("room-layout-board");
 
 room_types.forEach((room) => {
     const c = document.createElement("div");
-    // c.classList.add(room);
+    c.classList.add(room);
     c.classList.add("grid-item");
-    c.innerText = room;
+    const b = document.createElement("button");
+    b.type = "button";
+    b.classList.add(room);
+    b.classList.add("button");
+    b.innerText = room;
+
+    c.appendChild(b);
     grid.appendChild(c);
 });
 
 const c = document.createElement("div");
 c.classList.add("grid-item");
-const b = document.createElement("button"); // change type to button if necessary
+const b = document.createElement("button");
 b.type = "button";
 b.classList.add("create-new-room");
 b.classList.add("button");
