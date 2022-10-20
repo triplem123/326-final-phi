@@ -6,7 +6,7 @@
     text-align: center;
     padding-top: 50px;
     font-size: 500%;
-    font-family: cursive;
+    font-family: 'Courier New', Courier, monospace;
 }
 
 .login{
@@ -34,7 +34,6 @@ button {
     margin-bottom: 50px;
     margin-left: 7px;
     margin-right: 7px;
-    font-family: cursive;
 }
 
 button:hover{

@@ -1,0 +1,38 @@
+*{
+    background-color: pink;
+}
+
+.page-content {
+    background-color: pink;
+}
+
+.heading {
+    text-align: left;
+    font-family: 'Courier New', Courier, monospace;
+    text-transform: uppercase;
+}
+
+.grid-container {
+    width: 90%;
+    display: grid;
+    grid-template-columns: repeat(3, 33%);
+}
+
+.grid-item {
+    background-color: grey;
+    width: 95%;
+    height: 200px;
+    vertical-align: center;
+    margin: 10px;
+    border: 2px solid black;
+}
+
+.create-new-room {
+    background-color: grey;
+    border: 0px;
+    margin: 30%;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    font-size: 25px;
+}
