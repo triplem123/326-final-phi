@@ -51,7 +51,9 @@ a:link{
     text-decoration: none;
     color: black;
 }
-/* maybe zoom in on the buttons a little when hovering */
-.or-guest{
-    font-size: 20px;
+
+.form-popup {
+    display: none;
+    position: static;
+    border: 5px solid #f1f1f1;
 }
