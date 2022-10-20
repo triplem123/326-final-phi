@@ -5,14 +5,45 @@
 .heading{
     text-align: center;
     padding-top: 50px;
+    font-size: 500%;
 }
 
 .login{
     text-align: center;
 }
 
-.label-no-account{
+input {
+    margin: 7px;
+    border-radius: 10px;
+    border: 2px solid black;
+    height: 50px;
+    width: 400px;
+    text-align: center;
+    font-size: 150%;
+}
+
+button {
+    border-radius: 5px;
+    border: 0px;
+
+    height: 50px;
+    width: fit-content;
+    font-size: 23px;
+    margin-top: 15px;
+    margin-bottom: 50px;
+    margin-left: 7px;
+    margin-right: 7px;
+}
+
+button:hover{
+    transition: 0.5s;
+    filter: brightness(85%);
+}
+
+.label-no-account {
+    margin: 20px;
     padding-top: 0px;
+    font-size: 20px;
 }
 
 a:link{
@@ -20,3 +51,6 @@ a:link{
     color: black;
 }
 /* maybe zoom in on the buttons a little when hovering */
+.or-guest{
+    font-size: 20px;
+}
