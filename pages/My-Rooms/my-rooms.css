@@ -2,37 +2,53 @@
     background-color: pink;
 }
 
-.page-content {
-    background-color: pink;
-}
-
-.heading {
+.logo {
     text-align: left;
     font-family: 'Courier New', Courier, monospace;
+    font-size: 30px;
     text-transform: uppercase;
+    padding: 10px;
+}
+
+.page-name {
+    padding-left: 20px;
+    font-size: 50px;
+    font-family: 'Courier New', Courier, monospace;
 }
 
 .grid-container {
-    width: 90%;
+    width: 900px;
     display: grid;
-    grid-template-columns: repeat(3, 33%);
+    grid-template-columns: repeat(3, 300px);
 }
 
 .grid-item {
-    background-color: grey;
-    width: 95%;
+    width: 270px;
     height: 200px;
     vertical-align: center;
-    margin: 10px;
-    border: 2px solid black;
+    margin: 15px;
+    /* border: 2px solid black; */
+    text-align: center;
+    vertical-align: center;
+    font-size: 25px;
+    border-radius: 15px;
+}
+
+.grid-item:hover {
+    transition: 0.5s;
+    filter: brightness(85%);
 }
 
 .create-new-room {
     background-color: grey;
     border: 0px;
-    margin: 30%;
-    top: 50%;
-    -ms-transform: translateY(-50%);
-    transform: translateY(-50%);
+    border-radius: 15px;
+    padding: 30px 30px 30px 30px;
+    padding-bottom: 95px;
     font-size: 25px;
+}
+
+button:hover{
+    transition: 0.5s;
+    filter: brightness(85%);
 }

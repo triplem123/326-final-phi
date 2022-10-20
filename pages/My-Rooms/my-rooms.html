@@ -3,22 +3,23 @@
     <head>
         <meta charset="UTF-8">
         <title>My Rooms</title>
+        <script type="module" src="my-rooms.js" defer></script>
         <link rel="stylesheet" href="my-rooms.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     </head>
     <body>
-        <h1 class="logo">
+        <div class="logo">
             <a href="../Home-LoggedIn/home-loggedin.html">
                 Room.io
             </a>
-        </h1>
+        </div>
+        <div class="page-name">
+            <a href="./my-rooms.html">
+                My Rooms
+            </a>
+        </div>
         <div class="page-content">
-            <div class="grid-container">
-                <div class="grid-item">  
-                    <button type="button" class="create-new-room">
-                        Create a New Room
-                    </button>
-                </div>
+            <div class="grid-container" id="room-layout-board">
             </div>
         </div>
     </body>
