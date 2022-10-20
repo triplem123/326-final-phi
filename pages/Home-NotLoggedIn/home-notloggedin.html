@@ -4,6 +4,7 @@
         <meta charset="UTF-8">
         <title>Home Page - Not Logged In</title>
         <link rel="stylesheet" href="home-notloggedin.css">
+        <script src="signup-popup.js"></script>
     </head>
     <body>
         <h1 class="heading">
@@ -50,17 +51,21 @@
                     Sign up!
             </button>
             <!-- style the popup form here -->
-            <!-- https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_popup_form -->
-
+            <div class="form-popup" id="myForm">
+                <form action="/action_page.php" class="form-signup">
+                    <h1>Login</h1>
+            
+                    <label><b>Email</b></label>
+                    <input type="text" placeholder="Enter Email" required>
+            
+                    <label><b>Password</b></label>
+                    <input type="password" placeholder="Enter Password" required>
+            
+                    <button type="submit" class="login-button">Login</button>
+                    <button type="button" class="cancel-button" onclick="closeForm()">Close</button>
+                </form>
+            </div>
             <br>
         </form>
-        <script>
-            function openForm() {
-                document.getElementById("myForm").style.display = "block";
-            }
-            function closeForm() {
-                document.getElementById("myForm").style.display = "none";
-            }
-        </script>
     </body>
 </html>
