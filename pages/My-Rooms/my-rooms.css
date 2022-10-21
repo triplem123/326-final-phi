@@ -18,6 +18,10 @@
     text-decoration: none;
 }
 
+#profile:hover{
+    text-decoration: none;
+}
+
 .logo {
     width: 200px;
     text-align: left;
