@@ -30,16 +30,16 @@
 
 .page-content {
     width: 100%;
-    margin: 50px;
     color: grey;
     font-size: 35px;
     font-weight: bold;
+    padding: 50px;
+    padding-left: 100px;
 }
 
 .account-info {
     display: grid;
-    width: 450px;
-    grid-template-columns: 450px 450px;
+    grid-template-columns: 400px 450px 60px;
     color: lightgray;
     font-size: 20px;
     font-weight: initial;
@@ -48,6 +48,11 @@
 .account-info-item {
     width: 100%;
     padding: 10px;
-    border: 1px solid lightgray;
-    /* Maybe change the width of these items to include the information in the same grid item */
+    /* border: 1px solid lightgray; */
+    margin-bottom: 50px;
+    text-align: left;
+}
+
+button {
+    border: 0px;
 }

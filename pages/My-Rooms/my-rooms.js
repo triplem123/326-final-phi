@@ -19,7 +19,7 @@ room_types.forEach((room) => {
     b.appendChild(i);
 
     b.append(document.createElement("br"));
-    b.append(room.replace("-", " "));
+    b.append(room.replaceAll("-", " "));
 
     c.appendChild(b);
     grid.appendChild(c);
