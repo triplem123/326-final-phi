@@ -1,0 +1,53 @@
+*{
+    background-color: #121212;
+}
+
+.header{
+    width: 100%;
+    display: grid;
+    background-color: #0A0A0A;
+    border-bottom: 1px solid lightgray;
+    grid-template-columns: 50% 50%;
+    /* Need to figure out why the header colors aren't reaching the edges */
+}
+
+.logo {
+    width: 200px;
+    text-align: left;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 30px;
+    text-transform: uppercase;
+    padding: 10px;
+    background-color: #0A0A0A;
+}
+
+.profile {
+    text-align: right;
+    font-size: 30px;
+    padding: 10px;
+    background-color: #0A0A0A;
+}
+
+.page-content {
+    width: 100%;
+    margin: 50px;
+    color: grey;
+    font-size: 35px;
+    font-weight: bold;
+}
+
+.account-info {
+    display: grid;
+    width: 450px;
+    grid-template-columns: 450px 450px;
+    color: lightgray;
+    font-size: 20px;
+    font-weight: initial;
+}
+
+.account-info-item {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid lightgray;
+    /* Maybe change the width of these items to include the information in the same grid item */
+}
