@@ -52,7 +52,7 @@ button {
 
 button:hover{
     transition: 0.5s;
-    filter: brightness(85%);
+    filter: brightness(75%);
     cursor: pointer;
     color: aliceblue;
 }
