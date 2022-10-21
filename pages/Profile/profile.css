@@ -56,3 +56,7 @@
 button {
     border: 0px;
 }
+
+#profile:hover{
+    text-decoration: none;
+}
