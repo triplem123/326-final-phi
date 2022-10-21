@@ -1,5 +1,5 @@
 *{
-    background-color: pink;
+    background-color: #121212;
 }
 
 .logo {
@@ -10,23 +10,52 @@
     padding: 10px;
 }
 
-.page-name {
-    padding-left: 20px;
-    font-size: 50px;
-    font-weight: bold;
-    font-family: 'Courier New', Courier, monospace;
+.page-content{
+    padding-left: 5%;
+    margin: auto;
+    width: 100%;
+    justify-content: center;
 }
 
-.grid-container {
+.second-header{
+    width: 1080px;
+}
+
+.page-name {
+    float: left;
+    padding-left: 20px;
+    width: 420px;
+    font-size: 50px;
+    font-family: fantasy;
+}
+
+.select-rooms {
+    margin: 12px;
+    margin-left: 200px;
+    width: 180px;
+    padding: 10px;
+    font-size: 20px;
+    color: lightgray;
+    border-color: lightgray;
+    border-radius: 10px;
+}
+
+.main-grid-containment {
+    width: 1080px;
+
+}
+
+.room-type-grid-container {
+    float: left;
     width: 900px;
     display: grid;
     grid-template-columns: repeat(3, 300px);
+    position: absolute;
 }
 
-.grid-item {
+.room-type-grid-item {
     width: 270px;
     height: 200px;
-    vertical-align: center;
     margin: 15px;
     text-align: center;
     vertical-align: center;
@@ -34,17 +63,54 @@
     border-radius: 15px;
 }
 
-button {
-    background-color: grey;
+.option-grid-container {
+    float: right;
+    margin-top: 100px;
+    margin-right: 50px;
+    width: 60px;
+}
+
+.option-selector {
+    font-size: 50px;
+    border: 0px;
+    border-radius: 5px;
+    margin-bottom: 40px;
+    padding-top: 10px;
+    padding-left: 10px;
+
+
+    /* Next need to add functionality (possible with JS) to brighten the icons
+    when one or more rooms is selected, as well as enabling the icons' intended
+    functionality. When no rooms are selected, the icons should be darkened as 
+    they are currently and should not have any functionality if pressed. */
+}
+
+.folder-button {
     border: 0px;
     border-radius: 15px;
     font-size: 25px;
-
+    color: gray;
     width: 100%;
     height: 100%;
 }
 
+.glyphicon-folder-open {
+    color: gray;
+    font-size: 100px;
+}
+
+.create-new-room {
+    border: 2px solid grey;
+}
+
 button:hover{
     transition: 0.5s;
-    filter: brightness(85%);
+    filter: brightness(135%);
+}
+
+a:hover {
+    /* Get it to stop adding underline to ROOMIO and My Rooms when hovering */
+
+
+    /* unrelated but the whole page should still be centered, need to figure that out */
 }
