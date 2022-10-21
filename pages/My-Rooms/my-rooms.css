@@ -10,6 +10,14 @@
     grid-template-columns: 50% 50%;
 }
 
+#header:hover{
+    text-decoration: none;
+}
+
+#myrooms:hover{
+    text-decoration: none;
+}
+
 .logo {
     width: 200px;
     text-align: left;
@@ -128,7 +136,6 @@ button:hover{
 
 a:hover {
     /* Get it to stop adding underline to ROOMIO and My Rooms when hovering */
-
-
+    text-decoration: none;
     /* unrelated but the whole page should still be centered, need to figure that out */
 }

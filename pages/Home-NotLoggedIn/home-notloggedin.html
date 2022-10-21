@@ -8,7 +8,7 @@
     </head>
     <body>
         <h1 class="heading">
-            <a href="./home-notloggedin.html">
+            <a href="./home-notloggedin.html" id="header">
                 Welcome to Room.io!
             </a>
         </h1>
@@ -25,7 +25,8 @@
             <br>
             <button 
                 class="button-login">
-                    <a href="../Home-LoggedIn/home-loggedin.html">
+                    <!-- <a href="../Home-LoggedIn/home-loggedin.html"> -->
+                    <a href="../My-Rooms/my-rooms.html" id="button-login-button">
                     Login
                     </a>
             </button>
@@ -35,7 +36,7 @@
             </label>
             <button
                 class="button-guest">
-                    <a href="../Room-Builder/room-builder.html">
+                    <a href="../Room-Builder/room-builder.html" id="button-guest-button">
                     Proceed as Guest
                     </a>
             </button>
@@ -51,15 +52,15 @@
                     Sign up!
             </button>
             <!-- style the popup form here -->
-            <div class="form-popup" id="myForm">
+            <div id="myForm">
                 <form action="/action_page.php" class="form-signup">
                     <h1>Login</h1>
             
                     <label><b>Email</b></label>
-                    <input type="text" placeholder="Enter Email" required>
+                    <input type="text" placeholder="Enter Email" id="signup-username" required>
             
                     <label><b>Password</b></label>
-                    <input type="password" placeholder="Enter Password" required>
+                    <input type="password" placeholder="Enter Password" id="signup-password" required>
             
                     <button type="submit" class="login-button">Login</button>
                     <button type="button" class="cancel-button" onclick="closeForm()">Close</button>

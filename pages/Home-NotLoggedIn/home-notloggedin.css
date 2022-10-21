@@ -1,5 +1,7 @@
 *{
-    background-color: pink;
+    /* background-color: pink; */
+    background-color: #121212;
+    color: aliceblue;
 }
 
 .heading{
@@ -7,6 +9,10 @@
     padding-top: 50px;
     font-size: 500%;
     font-family: 'Courier New', Courier, monospace;
+}
+
+#header{
+    color: aliceblue;
 }
 
 .login{
@@ -36,9 +42,19 @@ button {
     margin-right: 7px;
 }
 
+#button-login-button{
+    color: aliceblue;
+}
+
+#button-guest-button{
+    color: aliceblue;
+}
+
 button:hover{
     transition: 0.5s;
     filter: brightness(85%);
+    cursor: pointer;
+    color: aliceblue;
 }
 
 .label-no-account {
@@ -52,7 +68,7 @@ a:link{
     color: black;
 }
 
-.form-popup {
+#myForm {
     display: none;
     position: static;
     border: 5px solid #f1f1f1;
