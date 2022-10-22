@@ -1,15 +1,74 @@
-* {
-    background-color: pink;
+*{
+    background-color: #121212;
+    color: aliceblue;
 }
 
-.heading {
+.heading{
     text-align: center;
     padding-top: 50px;
+    font-size: 500%;
+    font-family: 'Courier New', Courier, monospace;
 }
 
-a:link {
+#header{
+    color: aliceblue;
+}
+
+.login{
+    text-align: center;
+}
+
+input {
+    margin: 7px;
+    border-radius: 10px;
+    border: 2px solid black;
+    height: 50px;
+    width: 400px;
+    text-align: center;
+    font-size: 150%;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+button {
+    border-radius: 5px;
+    border: 0px;
+    height: 50px;
+    width: fit-content;
+    font-size: 23px;
+    margin-top: 15px;
+    margin-bottom: 50px;
+    margin-left: 7px;
+    margin-right: 7px;
+}
+
+#button-login-button{
+    color: aliceblue;
+}
+
+#button-guest-button{
+    color: aliceblue;
+}
+
+button:hover{
+    transition: 0.5s;
+    filter: brightness(75%);
+    cursor: pointer;
+    color: aliceblue;
+}
+
+.label-no-account {
+    margin: 20px;
+    padding-top: 0px;
+    font-size: 20px;
+}
+
+a:link{
     text-decoration: none;
     color: black;
 }
 
-/* maybe zoom in on the buttons a little when hovering */
+#myForm {
+    display: none;
+    position: static;
+    border: 5px solid #f1f1f1;
+}
