@@ -91,6 +91,7 @@ a:link{
     padding: 10px;
     border: 5px solid gray;
     margin: 0;
+    margin-right: 10px;
 }
 
 .about-box{
@@ -102,4 +103,5 @@ a:link{
     padding: 10px;
     border: 5px solid gray;
     margin: 0;
+    margin-left: 10px;
 }
