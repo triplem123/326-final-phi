@@ -2,16 +2,66 @@
     background-color: #121212;
 }
 
+.header{
+    width: 100%;
+    /* display: grid; */
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    background-color: #0A0A0A;
+    border-bottom: 1px solid lightgray;
+    grid-template-columns: 50% 50%;
+}
+
+#logout{
+    font-size: 30px;
+    padding-right: 20px;
+    background-color: #0A0A0A;
+}
+
+#profile {
+    text-align: right;
+    font-size: 30px;
+    padding-right: 10px;
+    background-color: #0A0A0A;
+}
+
+#header:hover{
+    text-decoration: none;
+}
+
+#myrooms:hover{
+    text-decoration: none;
+}
+
+#profile:hover{
+    text-decoration: none;
+}
+
 .logo {
+    width: 200px;
     text-align: left;
     font-family: 'Courier New', Courier, monospace;
     font-size: 30px;
     text-transform: uppercase;
+    background-color: #0A0A0A;
+    padding-left: 10px;
+}
+
+.profile {
+    text-align: right;
+    font-size: 30px;
     padding: 10px;
+    background-color: #0A0A0A;
 }
 
 .page-content {
     width: 100%;
-    height: 100%;
-    margin: 5px;
+
+}
+
+.furniture-grid-container {
+    float: left;
+    width: 200px;
+    border: 2px solid grey;
 }

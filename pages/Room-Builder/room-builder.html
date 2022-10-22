@@ -5,17 +5,38 @@
         <title>Room Builder</title>
 
         <link rel="stylesheet" href="room-builder.css">
+        <link rel="stylesheet" href="../../assets/node_modules/bootstrap/dist/css/bootstrap.css">
+        <script src="../../assets/node_modules/jquery/dist/jquery.js"></script>
+        <script src="../../assets/node_modules/bootstrap/dist/js/bootstrap.js"></script>
     </head>
     <body>
-        <div class="logo">
-            <!-- Should be the not logged in homepage if the user isn't authenticated -->
-            <a href="../Home-LoggedIn/home-loggedin.html">
-                Roomio
-            </a>
+        <div class="header">
+            <div class="logo">
+                <a href="../My-Rooms/my-rooms.html" id="header">
+                    Roomio
+                </a>
+            </div>
+            <div>
+                <a href="../Home-NotLoggedIn/home-notloggedin.html" id="logout">
+                    Logout
+                </a>
+                <a href="../Profile/profile.html" id="profile">
+                    Profile
+                </a>
+            </div>
         </div>
         <div class="page-content">
-            <div class="grid-container">
-                
+            <div class="furniture-grid-container">
+                <div class="btn-group">
+                    <button class="chairs-and-couches btn dropdown-toggle" type="button" data-toggle="dropdown" data-target="#">
+                        Chairs and Couches
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="chairs-and-couches dropdown-menu">
+                        <li><a href="#">Test</a></li>
+                        <li><a href="#">Second Test</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
     </body>
