@@ -72,3 +72,53 @@ a:link{
     position: static;
     border: 5px solid #f1f1f1;
 }
+
+.stuff-boxes{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+    padding-left: 50px;
+}
+
+.tutorial-box{
+    border-radius: 20px;
+    width: 250px;
+    text-align: center;
+    font-size: 150%;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    padding: 10px;
+    border: 5px solid gray;
+    margin: 0;
+    margin-right: 10px;
+}
+
+.about-box{
+    border-radius: 20px;
+    width: 250px;
+    text-align: center;
+    font-size: 150%;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    padding: 10px;
+    border: 5px solid gray;
+    margin: 0;
+    margin-left: 10px;
+}
+
+.back-to-myrooms-box{
+    border-radius: 20px;
+    width: 250px;
+    text-align: center;
+    font-size: 150%;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    padding: 10px;
+    border: 5px solid gray;
+    /* margin: 0; */
+    margin: auto;
+    padding: 10px;
+    margin-top: 20px;
+}
+
+#back-to-myrooms-box{
+    color: aliceblue;
+}

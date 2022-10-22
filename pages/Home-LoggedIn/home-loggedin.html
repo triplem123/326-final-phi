@@ -9,64 +9,21 @@
     <body>
         <h1 class="heading">
             <a href="./home-notloggedin.html" id="header">
-                Welcome to logged in Room.io!
+                Welcome to Room.io!
             </a>
         </h1>
-        <form class="login">
-            <input 
-                type="text" 
-                class="input-username"
-                placeholder="Enter Username">
-            <br>
-            <input 
-                type="password" 
-                class="input-password"
-                placeholder="Enter Password">
-            <br>
-            <button 
-                class="button-login">
-                    <!-- <a href="../Home-LoggedIn/home-loggedin.html"> -->
-                    <a href="../My-Rooms/my-rooms.html" id="button-login-button">
-                    Login
-                    </a>
-            </button>
-            <label
-                class="or-guest">
-                or
-            </label>
-            <button
-                class="button-guest">
-                    <a href="../Room-Builder/room-builder.html" id="button-guest-button">
-                    Proceed as Guest
-                    </a>
-            </button>
-            <br>
-            <label
-                class="label-no-account">
-            Don't have an account?
-            </label>
-            <br>
-            <button
-                class="button-signup"
-                onclick="openForm()">
-                    Sign up!
-            </button>
-            <!-- style the popup form here -->
-            <div id="myForm">
-                <form action="/action_page.php" class="form-signup">
-                    <h1>Login</h1>
-            
-                    <label><b>Email</b></label>
-                    <input type="text" placeholder="Enter Email" id="signup-username" required>
-            
-                    <label><b>Password</b></label>
-                    <input type="password" placeholder="Enter Password" id="signup-password" required>
-            
-                    <button type="submit" class="login-button">Login</button>
-                    <button type="button" class="cancel-button" onclick="closeForm()">Close</button>
-                </form>
-            </div>
-            <br>
-        </form>
+        <div class="stuff-boxes">
+                <a href="" class="tutorial-box">
+                    Click here for a Tutorial of Room.io
+                </a>
+                <a href="" class="about-box">
+                    Click here to learn about Room.io
+                </a>
+        </div>
+        <div class="back-to-myrooms-box">
+            <a href="../My-Rooms/my-rooms.html" id="back-to-myrooms-box">
+                Head back to MyRooms
+            </a>
+        </div>
     </body>
 </html>
