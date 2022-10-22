@@ -4,13 +4,16 @@
 
 .header{
     width: 100%;
-    /* display: grid; */
     padding: 10px;
     display: flex;
     justify-content: space-between;
     background-color: #0A0A0A;
     border-bottom: 1px solid lightgray;
     grid-template-columns: 50% 50%;
+}
+
+.side-buttons {
+    background-color: #0A0A0A;
 }
 
 #logout{
@@ -22,7 +25,6 @@
 #profile {
     text-align: right;
     font-size: 30px;
-    /* padding:     10px; */
     padding-right: 10px;
     background-color: #0A0A0A;
 }
@@ -39,15 +41,9 @@
     text-decoration: none;
 }
 
-/* .logo {
-    width: 200px;
-    text-align: left;
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 30px;
-    text-transform: uppercase;
-    padding: 10px;
-    background-color: #0A0A0A;
-} */
+#logout:hover{
+    text-decoration: none;
+}
 
 .logo {
     width: 200px;
@@ -99,7 +95,6 @@
 
 .main-grid-containment {
     width: 1080px;
-
 }
 
 .room-type-grid-container {
