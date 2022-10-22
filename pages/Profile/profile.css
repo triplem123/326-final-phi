@@ -4,7 +4,10 @@
 
 .header{
     width: 100%;
-    display: grid;
+    /* display: grid; */
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
     background-color: #0A0A0A;
     border-bottom: 1px solid lightgray;
     grid-template-columns: 50% 50%;
@@ -17,14 +20,20 @@
     font-family: 'Courier New', Courier, monospace;
     font-size: 30px;
     text-transform: uppercase;
-    padding: 10px;
     background-color: #0A0A0A;
 }
 
-.profile {
+#logout{
+    font-size: 30px;
+    padding-right: 20px;
+    background-color: #0A0A0A;
+}
+
+#profile {
     text-align: right;
     font-size: 30px;
-    padding: 10px;
+    /* padding:     10px; */
+    padding-right: 10px;
     background-color: #0A0A0A;
 }
 
@@ -56,10 +65,15 @@
 button {
     border: 0px;
 }
+
 #logo:hover{
     text-decoration: none;
 }
 
 #profile:hover{
+    text-decoration: none;
+}
+
+#logout:hover{
     text-decoration: none;
 }
