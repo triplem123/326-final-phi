@@ -4,10 +4,27 @@
 
 .header{
     width: 100%;
-    display: grid;
+    /* display: grid; */
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
     background-color: #0A0A0A;
     border-bottom: 1px solid lightgray;
     grid-template-columns: 50% 50%;
+}
+
+#logout{
+    font-size: 30px;
+    padding-right: 20px;
+    background-color: #0A0A0A;
+}
+
+#profile {
+    text-align: right;
+    font-size: 30px;
+    /* padding:     10px; */
+    padding-right: 10px;
+    background-color: #0A0A0A;
 }
 
 #header:hover{
@@ -22,7 +39,7 @@
     text-decoration: none;
 }
 
-.logo {
+/* .logo {
     width: 200px;
     text-align: left;
     font-family: 'Courier New', Courier, monospace;
@@ -30,6 +47,16 @@
     text-transform: uppercase;
     padding: 10px;
     background-color: #0A0A0A;
+} */
+
+.logo {
+    width: 200px;
+    text-align: left;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 30px;
+    text-transform: uppercase;
+    background-color: #0A0A0A;
+    padding-left: 10px;
 }
 
 .profile {
