@@ -41,5 +41,9 @@ b.classList.add("create-new-room");
 b.classList.add("folder-button");
 b.innerText = "Create New Room";
 
-c.appendChild(b);
+const d = document.createElement('a');
+d.href = "../Room-Builder/room-builder.html";
+d.appendChild(b);
+
+c.appendChild(d);
 grid.appendChild(c);
