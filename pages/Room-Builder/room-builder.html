@@ -5,18 +5,17 @@
         <title>Room Builder</title>
 
         <link rel="stylesheet" href="room-builder.css">
-        <link rel="stylesheet" href="../../assets/node_modules/bootstrap/dist/css/bootstrap.css">
-        <script src="../../assets/node_modules/jquery/dist/jquery.js"></script>
-        <script src="../../assets/node_modules/bootstrap/dist/js/bootstrap.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script type="module" src="room-builder.js" defer></script>
     </head>
     <body>
         <div class="header">
             <div class="logo">
-                <a href="../My-Rooms/my-rooms.html" id="header">
+                <a href="../Home-LoggedIn/home-loggedin.html" id="header">
                     Roomio
                 </a>
             </div>
-            <div>
+            <div class="side-buttons">
                 <a href="../Home-NotLoggedIn/home-notloggedin.html" id="logout">
                     Logout
                 </a>
@@ -26,17 +25,8 @@
             </div>
         </div>
         <div class="page-content">
-            <div class="furniture-grid-container">
-                <div class="btn-group">
-                    <button class="chairs-and-couches btn dropdown-toggle" type="button" data-toggle="dropdown" data-target="#">
-                        Chairs and Couches
-                        <span class="caret"></span>
-                    </button>
-                    <ul class="chairs-and-couches dropdown-menu">
-                        <li><a href="#">Test</a></li>
-                        <li><a href="#">Second Test</a></li>
-                    </ul>
-                </div>
+            <div class="furniture-grid-container" id="furniture-grid-container">
+                
             </div>
         </div>
     </body>

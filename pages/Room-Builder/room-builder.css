@@ -4,13 +4,16 @@
 
 .header{
     width: 100%;
-    /* display: grid; */
     padding: 10px;
     display: flex;
     justify-content: space-between;
     background-color: #0A0A0A;
     border-bottom: 1px solid lightgray;
     grid-template-columns: 50% 50%;
+}
+
+.side-buttons {
+    background-color: #0A0A0A;
 }
 
 #logout{
@@ -30,11 +33,11 @@
     text-decoration: none;
 }
 
-#myrooms:hover{
+#profile:hover{
     text-decoration: none;
 }
 
-#profile:hover{
+#logout:hover{
     text-decoration: none;
 }
 
@@ -57,11 +60,48 @@
 
 .page-content {
     width: 100%;
-
 }
 
 .furniture-grid-container {
     float: left;
-    width: 200px;
-    border: 2px solid grey;
+    width: 301px;
+    padding-left: 5px;
+    /* padding-bottom: ; */
+    background-color: lightgray;
+    /* border-right: 2px solid grey; */
+}
+
+.category-button {
+    width: 300px;
+    height: 50px;
+    border: 0px;
+    border-bottom: 1px solid grey;
+    background-color: lightgray;
+    color: #496279;
+    font-weight: bold;
+}
+
+.container-for-new-draggable-ui-items {
+    display: grid;
+    width: 290px;
+    height: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+    text-align: left;
+    background-color: lightgray;
+}
+
+/* .--active {
+    display: block;
+} */
+
+.--inactive {
+    transition: 1s;
+    display: none;
+}
+
+.draggable-item {
+    width: 290px;
+    height: 30px;
+    background-color: lightgray;
 }

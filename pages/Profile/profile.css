@@ -4,14 +4,41 @@
 
 .header{
     width: 100%;
-    /* display: grid; */
     padding: 10px;
     display: flex;
     justify-content: space-between;
     background-color: #0A0A0A;
     border-bottom: 1px solid lightgray;
     grid-template-columns: 50% 50%;
-    /* Need to figure out why the header colors aren't reaching the edges */
+}
+
+.side-buttons {
+    background-color: #0A0A0A;
+}
+
+#logout{
+    font-size: 30px;
+    padding-right: 20px;
+    background-color: #0A0A0A;
+}
+
+#profile {
+    text-align: right;
+    font-size: 30px;
+    padding-right: 10px;
+    background-color: #0A0A0A;
+}
+
+#header:hover{
+    text-decoration: none;
+}
+
+#profile:hover{
+    text-decoration: none;
+}
+
+#logout:hover{
+    text-decoration: none;
 }
 
 .logo {
@@ -24,17 +51,10 @@
     padding-left: 10px;
 }
 
-#logout{
-    font-size: 30px;
-    padding-right: 20px;
-    background-color: #0A0A0A;
-}
-
-#profile {
+.profile {
     text-align: right;
     font-size: 30px;
-    /* padding:     10px; */
-    padding-right: 10px;
+    padding: 10px;
     background-color: #0A0A0A;
 }
 

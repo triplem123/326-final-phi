@@ -1,6 +1,14 @@
 const grid = document.getElementById("room-layout-board");
 
-const room_types = ["Master-Bedroom", "Living-Room", "Den", "Kitchen", "Downstairs-Bedroom", "Basement", "TV-Room"];
+const room_types = [
+    "Master-Bedroom", 
+    "Living-Room", 
+    "Den", 
+    "Kitchen", 
+    "Downstairs-Bedroom", 
+    "Basement", 
+    "TV-Room"
+];
 //Generating sample data
 
 room_types.forEach((room) => {
