@@ -8,22 +8,22 @@
     cursor: grab;
 }
 
-.one{
-    top: 100px;
-    left: 100px;
+.corner-1{
+    top: 350px;
+    left: 500px;
 }
 
-.two{
-    top: 100px;
-    left: 400px;
+.corner-2{
+    top: 350px;
+    left: 1100px;
 }
 
-.three{
-    top: 400px;
-    left: 400px;
+.corner-3{
+    top: 750px;
+    left: 1100px;
 }
 
-.four{
-    top: 400px;
-    left: 100px;
+.corner-4{
+    top: 750px;
+    left: 500px;
 }

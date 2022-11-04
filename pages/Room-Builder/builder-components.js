@@ -60,13 +60,12 @@ function connect(div1, div2, color, thickness) { // draw a line connecting eleme
     let x2 = div2.offsetLeft + 15;
     let y2 = div2.offsetTop + 15;
     // distance
-    let length = Math.sqrt(((x2-x1) * (x2-x1)) + ((y2-y1) * (y2-y1))) - 20;
+    let length = Math.sqrt(((x2-x1) * (x2-x1)) + ((y2-y1) * (y2-y1)));
     // center
     let cx = ((x1 + x2) / 2) - (length / 2);
     let cy = ((y1 + y2) / 2) - (thickness / 2);
     // angle
     let angle = Math.atan2((y1-y2),(x1-x2))*(180/Math.PI);
-    // make hr
 
     let elem = document.createElement("div");
     elem.id = 'diag';
@@ -74,8 +73,7 @@ function connect(div1, div2, color, thickness) { // draw a line connecting eleme
     elem.style.cssText = 'padding:0px; margin:0px; height:" + thickness + "px; line-height:1px; position:absolute; background-color: ' + color + ';';
     styleElem(elem, cx, cy, length, angle);
 
-    // document.body.appendChild(elem);
-    document.getElementById('container').appendChild(elem);
+    document.getElementById('diagonal-list').appendChild(elem);
 }
 
 function styleElem(elem, left, top, wid, angle) {
