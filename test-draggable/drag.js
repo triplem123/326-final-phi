@@ -19,6 +19,9 @@ function dragElement(elmnt) {
   function dragMouseDown(e) {
     e = e || window.event;
     e.preventDefault();
+
+    elmnt.style.cursor = 'grabbing';
+
     // get the mouse cursor position at startup:
     pos3 = e.clientX;
     pos4 = e.clientY;
@@ -45,7 +48,7 @@ function dragElement(elmnt) {
     // stop moving when mouse button is released:
     document.onmouseup = null;
     document.onmousemove = null;
-    // makeConnections();
+    elmnt.style.cursor = 'grab';
   }
 }
 
