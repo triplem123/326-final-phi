@@ -1,0 +1,29 @@
+#draggable {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    border-radius: 50%;
+    border: 2px solid black;
+    background-color: gray;
+    cursor: grab;
+}
+
+.one{
+    top: 100px;
+    left: 100px;
+}
+
+.two{
+    top: 100px;
+    left: 400px;
+}
+
+.three{
+    top: 400px;
+    left: 400px;
+}
+
+.four{
+    top: 400px;
+    left: 100px;
+}
