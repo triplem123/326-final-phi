@@ -47,11 +47,11 @@ function dragElement(elem) { // sets properties for dragging corners
     } else if (elem.offsetTop - pos2 < 217) {
       elem.style.top = 217 + "px";
       return;
-    } else if (elem.offsetTop - pos1 > 900) {
-      elem.style.top = 900 + "px";
+    } else if (elem.offsetTop - pos1 > window.innerHeight - 32) {
+      elem.style.top = (window.innerHeight - 32) + "px";
       return;
-    } else if (elem.offsetLeft - pos2 > 1870) {
-      elem.style.left = 1870 + "px";
+    } else if (elem.offsetLeft - pos2 > window.outerWidth - 50) {
+      elem.style.left = (window.outerWidth - 50) + "px";
       return;
     }
 
