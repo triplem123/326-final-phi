@@ -1,6 +1,19 @@
-[...document.getElementsByClassName("ui-widget-content")].forEach(elem => dragElement(elem));
-makeConnections();
-let nextCornerId = 5; // for identifying specific corners in the builder
+let nextCornerId = 1; // for identifying specific corners in the builder
+window.localStorage.length > 0 ? restoreFromCache() : init();
+document.getElementsByClassName("reset-design-button")[0].onclick = clearDesign;
+
+function init() { // initialization
+  const board = document.getElementsByClassName("room-builder-board")[0];
+  while (nextCornerId < 5) {
+    const corner = document.createElement("div");
+    corner.id = "draggable";
+    corner.classList.add("ui-widget-content");
+    corner.classList.add("corner-" + nextCornerId++);
+    dragElement(corner);
+    board.appendChild(corner);
+  }
+  makeConnections();
+}
 
 function makeConnections() {  // removes the lines and recalculates them whenever a corner is added/moved/removed
     let arr = [...document.getElementsByClassName("ui-widget-content")];
@@ -10,6 +23,7 @@ function makeConnections() {  // removes the lines and recalculates them wheneve
         const div2 = i == arr.length-1 ? arr[0] : arr[i+1];
         connect(div1, div2, "black", "5");
     }
+    cache();
 }
 
 function dragElement(elem) { // sets properties for dragging corners
@@ -61,6 +75,7 @@ function dragElement(elem) { // sets properties for dragging corners
     document.onmouseup = null;
     document.onmousemove = null;
     elem.style.cursor = 'grab';
+    cache();
   }
 
   function removeElem(e) {
@@ -70,6 +85,7 @@ function dragElement(elem) { // sets properties for dragging corners
       elem.remove();
       makeConnections();
     }
+    cache();
   }
 }
 
@@ -112,6 +128,7 @@ function connect(div1, div2, color, thickness) { // creates a line between two d
       prevDiv.after(newDiv);
       dragElement(newDiv);
       makeConnections();
+      cache();
     }
 }
 
@@ -126,4 +143,44 @@ function styleElem(elem, left, top, wid, angle) { // adds style elements to the 
     elem.style.OTransform = 'rotate(' + angle + 'deg)';
     elem.style.msTransform = 'rotate(' + angle + 'deg)';
     elem.style.transform = 'rotate(' + angle + 'deg)';
+}
+
+function cache() { // saves the current design in local storage, gets called after most types of edits
+  const storage = window.localStorage;
+  let corners = {};
+  let cornerNum = 1;
+  storage.setItem("corners", JSON.stringify([...document.getElementsByClassName("ui-widget-content")].reduce((a, c) => {
+    a["corner-" + cornerNum++] = c.outerHTML;
+    return a;
+  }, {})));
+}
+
+function restoreFromCache() { // restores from the cached data if there is any
+  const storage = window.localStorage;
+  if (storage.length > 0) {
+    const corners = JSON.parse(storage.corners);
+    [...document.getElementsByClassName("ui-widget-content")].forEach(elem => elem.remove());
+    const board = document.getElementsByClassName("room-builder-board")[0];
+    for (const [key, value] of Object.entries(corners)) {
+      const elem = htmlToElement(value);
+      dragElement(elem);
+      board.appendChild(elem);
+    }
+    nextCornerId = Object.keys(corners).length + 1;
+    makeConnections();
+  }
+}
+
+function htmlToElement(html) { // converts a stringified HTML element into an actual HTML element
+  var template = document.createElement('template');
+  html = html.trim();
+  template.innerHTML = html;
+  return template.content.firstChild;
+}
+
+function clearDesign() { // resets the design to the default and clears cache to prevent it from going back to the cached setup upon reload
+  window.localStorage.clear();
+  nextCornerId = 1;
+  [...document.getElementsByClassName("ui-widget-content")].forEach(elem => elem.remove());
+  init();
 }

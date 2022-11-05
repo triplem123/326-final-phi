@@ -114,6 +114,18 @@ button {
     filter: brightness(125%);
 }
 
+.reset-design {
+    float: right;
+    margin-right: 30px;
+    font-size: 20px;
+    color: #337AB7;
+}
+
+.reset-design:hover {
+    transition: 0.5s;
+    filter: brightness(125%);
+}
+
 .builder {
     width: 100%;
     border-top: 2px solid grey;
