@@ -2,7 +2,7 @@
 makeConnections();
 let nextCornerId = 5; // for identifying specific corners in the builder
 
-function makeConnections() {
+function makeConnections() {  // removes the lines and recalculates them whenever a corner is added/moved/removed
     let arr = [...document.getElementsByClassName("ui-widget-content")];
     [...document.getElementsByClassName("diagonal")].forEach(elem => elem.remove());
     for (let i = 0; i < arr.length; ++i) {
@@ -12,19 +12,18 @@ function makeConnections() {
     }
 }
 
-function dragElement(elem) {
+function dragElement(elem) { // sets properties for dragging corners
   let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
   elem.onmousedown = dragMouseDown;
-
-  // right click
+  elem.oncontextmenu = removeElem; // right click
 
   function dragMouseDown(e) {
     e = e || window.event;
     e.preventDefault();
     elem.style.cursor = 'grabbing';
 
-    pos3 = e.clientX;
-    pos4 = e.clientY;
+    pos3 = e.pageX;
+    pos4 = e.pageY;
     document.onmouseup = closeDragElement;
     document.onmousemove = elementDrag;
   }
@@ -33,10 +32,25 @@ function dragElement(elem) {
     e = e || window.event;
     e.preventDefault();
     
-    pos1 = pos3 - e.clientX;
-    pos2 = pos4 - e.clientY;
-    pos3 = e.clientX;
-    pos4 = e.clientY;
+    pos1 = pos3 - e.pageX;
+    pos2 = pos4 - e.pageY;
+    pos3 = e.pageX;
+    pos4 = e.pageY;
+
+    // stop from dragging a corner off of the builder
+    if (elem.offsetLeft - pos1 < 303) {
+      elem.style.left = 303 + "px";
+      return;
+    } else if (elem.offsetTop - pos2 < 217) {
+      elem.style.top = 217 + "px";
+      return;
+    } else if (elem.offsetTop - pos1 > 900) {
+      elem.style.top = 900 + "px";
+      return;
+    } else if (elem.offsetLeft - pos2 > 1870) {
+      elem.style.left = 1870 + "px";
+      return;
+    }
     
     elem.style.top = (elem.offsetTop - pos2) + "px";
     elem.style.left = (elem.offsetLeft - pos1) + "px";
@@ -48,15 +62,24 @@ function dragElement(elem) {
     document.onmousemove = null;
     elem.style.cursor = 'grab';
   }
+
+  function removeElem(e) {
+    e = e || window.event;
+    e.preventDefault();
+    if (document.getElementsByClassName('ui-widget-content').length > 2) {
+      elem.remove();
+      makeConnections();
+    }
+  }
 }
 
-function connect(div1, div2, color, thickness) { 
+function connect(div1, div2, color, thickness) { // creates a line between two divs
   
     let x1 = div1.offsetLeft + 15;
-    let y1 = div1.offsetTop + 15;
+    let y1 = div1.offsetTop + 10;
     
     let x2 = div2.offsetLeft + 15;
-    let y2 = div2.offsetTop + 15;
+    let y2 = div2.offsetTop + 10;
     
     let length = Math.sqrt(((x2-x1) * (x2-x1)) + ((y2-y1) * (y2-y1)));
     
@@ -69,16 +92,15 @@ function connect(div1, div2, color, thickness) {
     elem.id = 'diag';
     elem.classList.add("diagonal");
     elem.firstDiv = div1.className; // going to use this for adding new corners
-    elem.secondDiv = div2.className;
-    elem.style.cssText = 'padding:0px; margin:0px; height:" + thickness + "px; line-height:1px; position:absolute; background-color: ' + color + ';';
+    elem.secondDiv = div2.className; // this saves the ui-widget-content divs (corners) on either side of the line
+    elem.style.cssText = 'padding:0px; margin:0px; line-height:1px; position:absolute; background-color: ' + color + ';';
     styleElem(elem, cx, cy, length, angle);
 
     elem.ondblclick = createCorner;
 
     document.getElementById('diagonal-list').appendChild(elem);
 
-    function createCorner(e) {
-      console.log(e);
+    function createCorner(e) {  // creates a new corner when the user double clicks on a line
       const prevDiv = document.getElementsByClassName(elem.firstDiv)[0];
       const newDiv = document.createElement("div");
       newDiv.id = "draggable";
@@ -93,7 +115,7 @@ function connect(div1, div2, color, thickness) {
     }
 }
 
-function styleElem(elem, left, top, wid, angle) {
+function styleElem(elem, left, top, wid, angle) { // adds style elements to the line between divs that can't seem to be done properly through style.cssText
     elem.style.background = 'black';
     elem.style.height = '15px';
     elem.style.left = left + 'px';
