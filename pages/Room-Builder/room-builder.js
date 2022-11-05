@@ -71,7 +71,6 @@ furniture_types.forEach(obj => {
     const furniture_container = document.createElement("div");
     furniture_container.classList.add(type);
     furniture_container.classList.add("container-for-new-draggable-ui-items");
-    // console.log(cate.innerText);
     if (category.innerText !== "Living Room") {
         furniture_container.classList.add("--inactive");
     } 
