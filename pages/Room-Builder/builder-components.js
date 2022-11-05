@@ -164,7 +164,7 @@ function restoreFromCache() { // restores from the cached data if there is any
   }
 
   const storage = window.localStorage;
-  if (storage.length > 0) {
+  if (Object.keys(storage).includes("corners")) {
     const corners = JSON.parse(storage.corners);
     [...document.getElementsByClassName("ui-widget-content")].forEach(elem => elem.remove());
     const board = document.getElementsByClassName("room-builder-board")[0];
@@ -175,11 +175,13 @@ function restoreFromCache() { // restores from the cached data if there is any
     }
     nextCornerId = Object.keys(corners).length + 1;
     makeConnections();
+  } else {
+    init();
   }
 }
 
 function clearDesign() { // resets the design to the default and clears cache to prevent it from going back to the cached setup upon reload
-  window.localStorage.clear();
+  delete window.localStorage["corners"];
   nextCornerId = 1;
   [...document.getElementsByClassName("ui-widget-content")].forEach(elem => elem.remove());
   init();
