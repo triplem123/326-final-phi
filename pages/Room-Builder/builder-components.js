@@ -15,17 +15,6 @@ function init() { // initialization
   makeConnections();
 }
 
-function makeConnections() {  // removes the lines and recalculates them whenever a corner is added/moved/removed
-    let arr = [...document.getElementsByClassName("ui-widget-content")];
-    [...document.getElementsByClassName("diagonal")].forEach(elem => elem.remove());
-    for (let i = 0; i < arr.length; ++i) {
-        const div1 = arr[i];
-        const div2 = i == arr.length-1 ? arr[0] : arr[i+1];
-        connect(div1, div2, "black", "5");
-    }
-    cache();
-}
-
 function dragElement(elem) { // sets properties for dragging corners
   let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
   elem.onmousedown = dragMouseDown;
@@ -45,7 +34,7 @@ function dragElement(elem) { // sets properties for dragging corners
   function elementDrag(e) {
     e = e || window.event;
     e.preventDefault();
-    
+
     pos1 = pos3 - e.pageX;
     pos2 = pos4 - e.pageY;
     pos3 = e.pageX;
@@ -65,7 +54,7 @@ function dragElement(elem) { // sets properties for dragging corners
       elem.style.left = 1870 + "px";
       return;
     }
-    
+
     elem.style.top = (elem.offsetTop - pos2) + "px";
     elem.style.left = (elem.offsetLeft - pos1) + "px";
     makeConnections();
@@ -89,20 +78,30 @@ function dragElement(elem) { // sets properties for dragging corners
   }
 }
 
-function connect(div1, div2, color, thickness) { // creates a line between two divs
-  
+function makeConnections() {  // removes the lines and recalculates them whenever a corner is added/moved/removed
+  let arr = [...document.getElementsByClassName("ui-widget-content")];
+  [...document.getElementsByClassName("diagonal")].forEach(elem => elem.remove());
+  for (let i = 0; i < arr.length; ++i) {
+    const div1 = arr[i];
+    const div2 = i == arr.length - 1 ? arr[0] : arr[i + 1];
+    connect(div1, div2, "black", "5");
+  }
+  cache();
+
+  function connect(div1, div2, color, thickness) { // creates a line between two divs
+
     let x1 = div1.offsetLeft + 15;
     let y1 = div1.offsetTop + 10;
-    
+
     let x2 = div2.offsetLeft + 15;
     let y2 = div2.offsetTop + 10;
-    
-    let length = Math.sqrt(((x2-x1) * (x2-x1)) + ((y2-y1) * (y2-y1)));
-    
+
+    let length = Math.sqrt(((x2 - x1) * (x2 - x1)) + ((y2 - y1) * (y2 - y1)));
+
     let cx = ((x1 + x2) / 2) - (length / 2);
     let cy = ((y1 + y2) / 2) - (thickness / 2);
-    
-    let angle = Math.atan2((y1-y2),(x1-x2))*(180/Math.PI);
+
+    let angle = Math.atan2((y1 - y2), (x1 - x2)) * (180 / Math.PI);
 
     let elem = document.createElement("div");
     elem.id = 'diag';
@@ -115,6 +114,19 @@ function connect(div1, div2, color, thickness) { // creates a line between two d
     elem.ondblclick = createCorner;
 
     document.getElementById('diagonal-list').appendChild(elem);
+
+    function styleElem(elem, left, top, wid, angle) { // adds style elements to the line between divs that can't seem to be done properly through style.cssText
+      elem.style.background = 'black';
+      elem.style.height = '15px';
+      elem.style.left = left + 'px';
+      elem.style.top = top + 'px';
+      elem.style.width = wid + 'px';
+      elem.style.MozTransform = 'rotate(' + angle + 'deg)';
+      elem.style.WebkitTransform = 'rotate(' + angle + 'deg)';
+      elem.style.OTransform = 'rotate(' + angle + 'deg)';
+      elem.style.msTransform = 'rotate(' + angle + 'deg)';
+      elem.style.transform = 'rotate(' + angle + 'deg)';
+    }
 
     function createCorner(e) {  // creates a new corner when the user double clicks on a line
       const prevDiv = document.getElementsByClassName(elem.firstDiv)[0];
@@ -130,19 +142,7 @@ function connect(div1, div2, color, thickness) { // creates a line between two d
       makeConnections();
       cache();
     }
-}
-
-function styleElem(elem, left, top, wid, angle) { // adds style elements to the line between divs that can't seem to be done properly through style.cssText
-    elem.style.background = 'black';
-    elem.style.height = '15px';
-    elem.style.left = left + 'px';
-    elem.style.top = top + 'px';
-    elem.style.width = wid + 'px';
-    elem.style.MozTransform = 'rotate(' + angle + 'deg)';
-    elem.style.WebkitTransform = 'rotate(' + angle + 'deg)';
-    elem.style.OTransform = 'rotate(' + angle + 'deg)';
-    elem.style.msTransform = 'rotate(' + angle + 'deg)';
-    elem.style.transform = 'rotate(' + angle + 'deg)';
+  }
 }
 
 function cache() { // saves the current design in local storage, gets called after most types of edits
@@ -156,6 +156,13 @@ function cache() { // saves the current design in local storage, gets called aft
 }
 
 function restoreFromCache() { // restores from the cached data if there is any
+  function htmlToElement(html) { // converts a stringified HTML element into an actual HTML element
+    var template = document.createElement('template');
+    html = html.trim();
+    template.innerHTML = html;
+    return template.content.firstChild;
+  }
+
   const storage = window.localStorage;
   if (storage.length > 0) {
     const corners = JSON.parse(storage.corners);
@@ -169,13 +176,6 @@ function restoreFromCache() { // restores from the cached data if there is any
     nextCornerId = Object.keys(corners).length + 1;
     makeConnections();
   }
-}
-
-function htmlToElement(html) { // converts a stringified HTML element into an actual HTML element
-  var template = document.createElement('template');
-  html = html.trim();
-  template.innerHTML = html;
-  return template.content.firstChild;
 }
 
 function clearDesign() { // resets the design to the default and clears cache to prevent it from going back to the cached setup upon reload

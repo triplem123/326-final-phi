@@ -178,11 +178,16 @@ button {
     width: 278px;
     height: 30px;
     background-color: lightgray;
-    /* border: 2px solid #333333;
+    border: 2px solid #333333;
     border-radius: 10px;
-    cursor: grab;
     margin-top: 2px;
-    text-align: center; */
+    text-align: center;
+    cursor: pointer;
+}
+
+.draggable-item:hover {
+    transition: 0.25s;
+    filter: brightness(90%);
 }
 
 .room-builder-board {
