@@ -1,6 +1,5 @@
 *{
     background-color: #121212;
-    /* background-color: gray; */
 }
 
 .header{
@@ -68,7 +67,6 @@
 .page-heading{
     padding-top: 30px;
     padding-left: 5%;
-    /* padding-right: 5%; */
     width: 100%;
     height: 130px;
     background-color: #121212;
@@ -133,20 +131,17 @@ button {
 
 .furniture-grid-container {
     float: left;
-    width: 302px;
+    width: 319px;
     height: 77vh;
-    /* padding-left: 5px;
-    padding-right: 15px; */
-    /* padding-bottom: ; */
     background-color: lightgray;
     border-right: 2px solid grey;
-    overflow-y: auto;
 }
 
 .category-button {
-    width: 300px;
+    width: 317px;
     height: 50px;
     border: 0px;
+    border-radius: 0px;
     font-size: 15px;
     border-bottom: 1px solid grey;
     background-color: lightgray;
@@ -161,12 +156,15 @@ button {
 
 .container-for-new-draggable-ui-items {
     display: grid;
-    width: 300px;
-    /* height: 100%; */
+    width: 317px;
+    height: 416px;
     padding-left: 10px;
     padding-right: 10px;
+    padding-bottom: 2px;
     text-align: left;
     background-color: lightgray;
+    border-bottom: 1px solid grey;
+    overflow-y: scroll;
 }
 
 .--inactive {
@@ -176,13 +174,18 @@ button {
 
 .draggable-item {
     width: 278px;
-    height: 30px;
+    height: 80px;
     background-color: lightgray;
-    /* border: 2px solid #333333;
+    border: 2px solid gray;
     border-radius: 10px;
-    cursor: grab;
     margin-top: 2px;
-    text-align: center; */
+    text-align: center;
+    cursor: pointer;
+}
+
+.draggable-item:hover {
+    transition: 0.25s;
+    filter: brightness(90%);
 }
 
 .room-builder-board {
@@ -210,4 +213,40 @@ button {
         80px 80px,
         80px 80px,
         80px 80px;
+}
+
+#draggable {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    border-radius: 50%;
+    border: 2px solid black;
+    background-color: gray;
+    cursor: grab;
+}
+
+.corner-1{
+    top: 350px;
+    left: 500px;
+}
+
+.corner-2{
+    top: 350px;
+    left: 1100px;
+}
+
+.corner-3{
+    top: 750px;
+    left: 1100px;
+}
+
+.corner-4{
+    top: 750px;
+    left: 500px;
+}
+
+img {
+    width: 50px;
+    height: 50px;
+    background-color: transparent;
 }
