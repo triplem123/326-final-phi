@@ -2,8 +2,11 @@ const grid = document.getElementById("furniture-grid-container");
 
 const living_room = [
     "One-Seat-Sofa",
-    "Two-Seat-Sofa",
+    "Two-Sofa-Sofa",
     "Three-Seat-Sofa",
+    "Sectional-Sofa",
+    "Left-Asymmetrical-Sectional-Sofa",
+    "Right-Asymmetrical-Sectional-Sofa",
     "Large-Chair",
     "Small-Chair",
     "Coffee-Table",
@@ -16,7 +19,8 @@ const living_room = [
 const bedroom = [
     "One-Person-Bed",
     "Two-Person-Bed",
-    "Night-Stand",
+    "Square-Night-Stand",
+    "Rectangular-Night-Stand",
     "Drawer-Chest",
     "Wardrobe"
 ];
@@ -76,22 +80,15 @@ furniture_types.forEach(obj => {
         n.classList.add(ftype);
         n.classList.add("draggable-item");
         n.innerText = ftype.replaceAll("-", " ");
-
-        const i = document.createElement("img");
-        i.id = (ftype + "-image");
-        i.classList.add(ftype + "-image");
-        i.src = "../../assets/furniture-images/" + ftype + ".png";
-        n.appendChild(document.createElement("br"));
-        n.appendChild(i);
-
         furniture_container.appendChild(n);
     });
 
     grid.appendChild(category);
     grid.appendChild(furniture_container);
+});
 
-    // event listener function for making ui items visible/invisible
-    function changeVisibility(target) {
+// event listener function for making ui items visible/invisible
+function changeVisibility(target) {
     let classList = document.getElementsByClassName(target.classList[0] + " container-for-new-draggable-ui-items")[0].classList;
     if (classList.contains("--inactive")) {
         const documents = document.getElementsByClassName("container-for-new-draggable-ui-items");
@@ -104,5 +101,4 @@ furniture_types.forEach(obj => {
 
         classList.remove("--inactive");
     }
-    }
-});
+}
