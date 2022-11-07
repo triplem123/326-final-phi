@@ -186,3 +186,4 @@ function clearDesign() { // resets the design to the default and clears cache to
   [...document.getElementsByClassName("ui-widget-content")].forEach(elem => elem.remove());
   init();
 }
+

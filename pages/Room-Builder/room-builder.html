@@ -3,10 +3,11 @@
     <head>
         <meta charset="UTF-8">
         <title>Room Builder</title>
-        
+
         <link rel="stylesheet" href="room-builder.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <script type="module" src="room-builder.js" defer></script>
+        <script type="module" src="builder-components.js" defer></script>
     </head>
     <body>
         <div class="header">
@@ -33,11 +34,15 @@
                 <div class="select-layout">
                     <button type="button" class="select-layout-button">Pre-Made Layouts</button>
                 </div>
+                <div class="reset-design">
+                    <button type="button" class="reset-design-button">Reset Design</button>
+                </div>
             </div>
             <br>
             <div class="builder">
                 <div class="furniture-grid-container" id="furniture-grid-container"></div>
                 <div class="room-builder-board">
+                    <div id="diagonal-list" class="diagonal-list"></div>
                 </div>
             </div>
         </div>
