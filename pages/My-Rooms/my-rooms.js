@@ -47,3 +47,8 @@ d.appendChild(b);
 
 c.appendChild(d);
 grid.appendChild(c);
+
+// Trying to select grid items now
+document.getElementById("select-rooms").addEventListener("click", ()=>{
+    
+});

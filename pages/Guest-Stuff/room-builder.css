@@ -1,0 +1,252 @@
+*{
+    background-color: #121212;
+}
+
+.header{
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    background-color: #0A0A0A;
+    border-bottom: 1px solid lightgray;
+    grid-template-columns: 50% 50%;
+}
+
+.side-buttons {
+    background-color: #0A0A0A;
+}
+
+#logout{
+    font-size: 30px;
+    padding-right: 20px;
+    background-color: #0A0A0A;
+}
+
+#profile {
+    text-align: right;
+    font-size: 30px;
+    padding-right: 10px;
+    background-color: #0A0A0A;
+}
+
+#header:hover{
+    text-decoration: none;
+}
+
+#profile:hover{
+    text-decoration: none;
+}
+
+#logout:hover{
+    text-decoration: none;
+}
+
+.logo {
+    width: 200px;
+    text-align: left;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 30px;
+    text-transform: uppercase;
+    background-color: #0A0A0A;
+    padding-left: 10px;
+}
+
+.profile {
+    text-align: right;
+    font-size: 30px;
+    padding: 10px;
+    background-color: #0A0A0A;
+}
+
+.page-content {
+    width: 100%;
+    height: 100%;
+    background-color: gray;
+}
+
+.page-heading{
+    padding-top: 30px;
+    padding-left: 5%;
+    width: 100%;
+    height: 130px;
+    background-color: #121212;
+    border-bottom: 2px solid gray;
+}
+
+.page-name {
+    float: left;
+    padding-left: 20px;
+    width: 420px;
+    font-size: 50px;
+    font-family: fantasy;
+    color: #337AB7;
+}
+
+button {
+    float: right;
+    border-radius: 15px;
+    padding: 30px;
+}
+
+.save-design {
+    float: right;
+    margin-right: 10px;
+    font-size: 20px;
+    color: #337AB7;
+}
+
+.save-design:hover {
+    transition: 0.5s;
+    filter: brightness(115%);
+}
+
+.select-layout-button {
+    float: right;
+    margin-right: 30px;
+    font-size: 20px;
+    color: #337AB7;
+}
+
+.select-layout-button:hover {
+    transition: 0.5s;
+    filter: brightness(125%);
+}
+
+.reset-design {
+    float: right;
+    margin-right: 30px;
+    font-size: 20px;
+    color: #337AB7;
+}
+
+.reset-design:hover {
+    transition: 0.5s;
+    filter: brightness(125%);
+}
+
+.builder {
+    width: 100%;
+    border-top: 2px solid grey;
+}
+
+.furniture-grid-container {
+    float: left;
+    width: 319px;
+    height: 77vh;
+    background-color: lightgray;
+    border-right: 2px solid grey;
+}
+
+.category-button {
+    width: 317px;
+    height: 50px;
+    border: 0px;
+    border-radius: 0px;
+    font-size: 15px;
+    border-bottom: 1px solid grey;
+    background-color: lightgray;
+    color: #496279;
+    font-weight: bold;
+}
+
+.category-button:hover {
+    transition: 0.5s;
+    filter: brightness(90%);
+}
+
+.container-for-new-draggable-ui-items {
+    display: grid;
+    width: 317px;
+    height: 416px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 2px;
+    text-align: left;
+    background-color: lightgray;
+    border-bottom: 1px solid grey;
+    overflow-y: scroll;
+}
+
+.--inactive {
+    transition: 1s;
+    display: none;
+}
+
+.draggable-item {
+    width: 278px;
+    height: 80px;
+    background-color: lightgray;
+    border: 2px solid gray;
+    border-radius: 10px;
+    margin-top: 2px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.draggable-item:hover {
+    transition: 0.25s;
+    filter: brightness(90%);
+}
+
+.room-builder-board {
+    display: flex;
+    height: 77vh;
+    float: none;
+    overflow: hidden;
+
+    background:
+        linear-gradient(-90deg, rgba(0,0,0,.05) 1px, transparent 1px),
+        linear-gradient(rgba(0,0,0,.05) 1px, transparent 1px), 
+        linear-gradient(-90deg, rgba(0, 0, 0, .04) 1px, transparent 1px),
+        linear-gradient(rgba(0,0,0,.04) 1px, transparent 1px),
+        linear-gradient(transparent 3px, #f2f2f2 3px, #f2f2f2 78px, transparent 78px),
+        linear-gradient(-90deg, #aaa 1px, transparent 1px),
+        linear-gradient(-90deg, transparent 3px, #f2f2f2 3px, #f2f2f2 78px, transparent 78px),
+        linear-gradient(#aaa 1px, transparent 1px),
+        #f2f2f2;
+    background-size:
+        16px 16px,
+        16px 16px,
+        80px 80px,
+        80px 80px,
+        80px 80px,
+        80px 80px,
+        80px 80px,
+        80px 80px;
+}
+
+#draggable {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    border-radius: 50%;
+    border: 2px solid black;
+    background-color: gray;
+    cursor: grab;
+}
+
+.corner-1{
+    top: 350px;
+    left: 500px;
+}
+
+.corner-2{
+    top: 350px;
+    left: 1100px;
+}
+
+.corner-3{
+    top: 750px;
+    left: 1100px;
+}
+
+.corner-4{
+    top: 750px;
+    left: 500px;
+}
+
+img {
+    width: 50px;
+    height: 50px;
+    background-color: transparent;
+}

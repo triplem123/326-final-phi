@@ -107,7 +107,7 @@ a:link{
 
 .back-to-myrooms-box{
     border-radius: 20px;
-    width: 250px;
+    width: 300px;
     text-align: center;
     font-size: 150%;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
@@ -120,5 +120,40 @@ a:link{
 }
 
 #back-to-myrooms-box{
+    color: aliceblue;
+}
+
+.manage-profile{
+    border-radius: 20px;
+    width: 250px;
+    text-align: center;
+    font-size: 150%;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    padding: 10px;
+    border: 5px solid gray;
+    /* margin: 0; */
+    margin: auto;
+    padding: 10px;
+    margin-top: 20px;
+}
+
+#manage-profile{
+    color: aliceblue;
+}
+.logout{
+    border-radius: 20px;
+    width: 250px;
+    text-align: center;
+    font-size: 150%;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    padding: 10px;
+    border: 5px solid gray;
+    /* margin: 0; */
+    margin: auto;
+    padding: 10px;
+    margin-top: 20px;
+}
+
+#logout{
     color: aliceblue;
 }
