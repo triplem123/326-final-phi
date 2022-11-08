@@ -105,7 +105,15 @@ a:link{
     margin-left: 10px;
 }
 
-.back-to-myrooms-box{
+.back-to-myrooms-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+    padding-left: 50px;
+}
+
+#back-to-myrooms-box{
     border-radius: 20px;
     width: 300px;
     text-align: center;
@@ -113,34 +121,20 @@ a:link{
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     padding: 10px;
     border: 5px solid gray;
-    /* margin: 0; */
-    margin: auto;
+    margin: 0;
     padding: 10px;
     margin-top: 20px;
-}
-
-#back-to-myrooms-box{
     color: aliceblue;
 }
 
 .manage-profile{
-    border-radius: 20px;
-    width: 250px;
-    text-align: center;
-    font-size: 150%;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    padding: 10px;
-    border: 5px solid gray;
-    /* margin: 0; */
-    margin: auto;
-    padding: 10px;
-    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 50px;
 }
 
 #manage-profile{
-    color: aliceblue;
-}
-.logout{
     border-radius: 20px;
     width: 250px;
     text-align: center;
@@ -148,12 +142,29 @@ a:link{
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     padding: 10px;
     border: 5px solid gray;
-    /* margin: 0; */
     margin: auto;
     padding: 10px;
     margin-top: 20px;
+    color: aliceblue;
+}
+
+.logout{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 50px;
 }
 
 #logout{
+    border-radius: 20px;
+    width: 250px;
+    text-align: center;
+    font-size: 150%;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    padding: 10px;
+    border: 5px solid gray;
+    margin: auto;
+    padding: 10px;
+    margin-top: 20px;
     color: aliceblue;
 }
