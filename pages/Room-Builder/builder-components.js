@@ -41,11 +41,11 @@ function dragElement(elem) { // sets properties for dragging corners
     pos4 = e.pageY;
 
     // stop from dragging a corner off of the builder
-    if (elem.offsetLeft - pos1 < 303) {
-      elem.style.left = 303 + "px";
+    if (elem.offsetLeft - pos1 < 320) {
+      elem.style.left = 320 + "px";
       return;
-    } else if (elem.offsetTop - pos2 < 217) {
-      elem.style.top = 217 + "px";
+    } else if (elem.offsetTop - pos2 < 239) {
+      elem.style.top = 239 + "px";
       return;
     } else if (elem.offsetTop - pos1 > window.innerHeight - 32) {
       elem.style.top = (window.innerHeight - 32) + "px";
