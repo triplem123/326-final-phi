@@ -103,14 +103,14 @@ button {
     filter: brightness(115%);
 }
 
-.select-layout-button {
+.select-layout {
     float: right;
     margin-right: 30px;
     font-size: 20px;
     color: #337AB7;
 }
 
-.select-layout-button:hover {
+.select-layout:hover {
     transition: 0.5s;
     filter: brightness(125%);
 }
