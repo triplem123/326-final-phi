@@ -79,6 +79,7 @@ a:link{
     align-items: center;
     padding-top: 20px;
     padding-left: 50px;
+    padding-right: 50px;
 }
 
 .tutorial-box{
@@ -111,6 +112,7 @@ a:link{
     align-items: center;
     padding-top: 20px;
     padding-left: 50px;
+    padding-right: 50px;
 }
 
 #back-to-myrooms-box{
@@ -132,6 +134,7 @@ a:link{
     justify-content: center;
     align-items: center;
     padding-left: 50px;
+    padding-right: 50px;
 }
 
 #manage-profile{
@@ -153,6 +156,7 @@ a:link{
     justify-content: center;
     align-items: center;
     padding-left: 50px;
+    padding-right: 50px;
 }
 
 #logout{
