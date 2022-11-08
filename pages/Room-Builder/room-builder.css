@@ -90,7 +90,8 @@ button {
     float: right;
     border-radius: 15px;
     padding: 30px;
-    height: 80%;
+    height: 90px;
+    /* height: 80%; */
 }
 
 .save-design {
