@@ -166,3 +166,11 @@ a:hover {
     text-decoration: none;
     /* unrelated but the whole page should still be centered, need to figure that out */
 }
+
+.selected{
+    filter: brightness(200%);
+}
+
+.selected:hover{
+    filter: brightness(215%);
+}

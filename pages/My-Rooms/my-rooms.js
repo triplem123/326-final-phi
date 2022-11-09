@@ -53,7 +53,28 @@ document.getElementById("select-rooms").addEventListener("click", ()=>{
     // selectable: "multiple"
     // isSelected(): true
     // rowSelection: "multiple"
-    document.getElementsByClassName("folder-button").addEventListener("click", () =>{
-        window.localStorage.setItem("selected", "true")
-    })
+    console.log("here");
+    window.localStorage.setItem("selecting-rooms", true);
+    [...document.getElementsByClassName("folder-button")].forEach(elem =>{
+        elem.addEventListener("click", () =>{
+            console.log("here too");
+            let cur_room = elem.className.split(" ")[0] + "-room-selected"
+            window.localStorage.setItem(cur_room, true);
+            elem.classList.add("selected");
+        });
+    });
+});
+
+[...document.getElementsByClassName("selected")].forEach(elem =>{
+    document.getElementById("select-rooms").addEventListener("click", ()=>{
+        elem.classList.remove("selected");
+    });
+});
+
+document.getElementsByClassName("delete-rooms").addEventListener("click", () =>{
+    for (let item in window.localStorage.getItem()){
+        let room = item.split("-")[0];
+        // delete that room here
+        $("grid").jsGrid("deleteItem", ); 
+    }
 });
