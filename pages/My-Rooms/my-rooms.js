@@ -53,6 +53,7 @@ document.getElementById("select-rooms").addEventListener("click", ()=>{
     // selectable: "multiple"
     // isSelected(): true
     // rowSelection: "multiple"
-    let selectedRows = document.getElementById("select-rooms").ariaPosInSet.getSelectedRows();
-    
+    document.getElementsByClassName("folder-button").addEventListener("click", () =>{
+        window.localStorage.setItem("selected", "true")
+    })
 });

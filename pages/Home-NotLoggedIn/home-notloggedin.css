@@ -153,4 +153,6 @@ a:link{
 .customize-text{
     display: inline-block;
     text-align: left;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+
 }
