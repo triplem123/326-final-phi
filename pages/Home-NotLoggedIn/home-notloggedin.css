@@ -106,3 +106,51 @@ a:link{
     margin: 0;
     margin-left: 10px;
 }
+
+.writeup{
+    text-align: center;
+}
+
+.about{
+    text-align: center;
+    /* padding-left: 25%; */
+    /* padding-top: 50px; */
+    font-size: 200%;
+    font-family: 'Courier New', Courier, monospace;
+    color: aliceblue;
+}
+
+.about-text{
+    display: inline-block;
+    text-align: left;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+}
+
+.loading{
+    text-align: center;
+    /* padding-left: 25%; */
+    /* padding-top: 50px; */
+    font-size: 200%;
+    font-family: 'Courier New', Courier, monospace;
+    color: aliceblue;
+}
+
+.loading-text{
+    display: inline-block;
+    text-align: left;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+}
+
+.customize{
+    text-align: center;
+    /* padding-left: 25%; */
+    /* padding-top: 50px; */
+    font-size: 200%;
+    font-family: 'Courier New', Courier, monospace;
+    color: aliceblue;
+}
+
+.customize-text{
+    display: inline-block;
+    text-align: left;
+}

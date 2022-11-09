@@ -50,5 +50,9 @@ grid.appendChild(c);
 
 // Trying to select grid items now
 document.getElementById("select-rooms").addEventListener("click", ()=>{
+    // selectable: "multiple"
+    // isSelected(): true
+    // rowSelection: "multiple"
+    let selectedRows = document.getElementById("select-rooms").ariaPosInSet.getSelectedRows();
     
 });
