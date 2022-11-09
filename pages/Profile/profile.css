@@ -22,7 +22,7 @@
     background-color: #0A0A0A;
 }
 
-#profile {
+#my-rooms {
     text-align: right;
     font-size: 30px;
     padding-right: 10px;
@@ -33,7 +33,7 @@
     text-decoration: none;
 }
 
-#profile:hover{
+#my-rooms:hover{
     text-decoration: none;
 }
 
@@ -51,7 +51,7 @@
     padding-left: 10px;
 }
 
-.profile {
+.my-rooms {
     text-align: right;
     font-size: 30px;
     padding: 10px;
@@ -78,7 +78,13 @@
 .account-info-item {
     width: 100%;
     padding: 10px;
-    /* border: 1px solid lightgray; */
+    margin-bottom: 50px;
+    text-align: left;
+}
+
+.account-text-item {
+    width: 100%;
+    padding: 10px;
     margin-bottom: 50px;
     text-align: left;
 }
@@ -91,7 +97,7 @@ button {
     text-decoration: none;
 }
 
-#profile:hover{
+#my-rooms:hover{
     text-decoration: none;
 }
 
