@@ -9,17 +9,28 @@ fields.forEach(field => {
     field_name.append(field.replaceAll("-", " "));
     field_name.classList.add("account-info-item");
 
-    const field_info = document.createElement("div");
-    field_info.classList.add(field + "-display");
-    field_info.append("sample info");
-    field_info.classList.add("account-info-item");
+    let field_info = {};
+
+    if (field === "Username" || field === "Password") {
+        field_info = document.createElement("input");
+        field_info.type = "text";
+        field_info.readOnly = true;
+        field_info.classList.add(field + "-display");
+        field_info.classList.add("account-text-item");
+        field_info.value = "sample info";
+    } else {
+        field_info = document.createElement("div");
+        field_info.classList.add(field + "-display");
+        field_info.classList.add("account-info-item");
+        field_info.append("sample info");
+    }
 
     grid.appendChild(field_name);
     grid.appendChild(field_info);
 
     let editable = {};
 
-    if (field === "Username" || field === "Email-Address" || field === "Password") {
+    if (field === "Username" || field === "Password") {
         editable = document.createElement("button");
         editable.classList.add("edit-" + field);
         editable.classList.add("account-info-item");
@@ -30,6 +41,25 @@ fields.forEach(field => {
 
         editable.appendChild(icon);
         // add ability to edit the display field with this icon
+
+        // editable.onclick = allowEdit(field);
+        editable.addEventListener("click", () => {
+            const fieldToEdit = document.getElementsByClassName(field + "-display")[0];
+            if (fieldToEdit.readOnly) {
+                if ([...document.getElementsByClassName("account-text-item")].reduce((a, c) => a = c.readOnly === false ? a+1 : a, 0) > 0) {
+                    return;
+                }
+                fieldToEdit.readOnly = false;
+                icon.classList = "";
+                icon.classList.add("glyphicon");
+                icon.classList.add("glyphicon-floppy-disk");
+            } else {
+                fieldToEdit.readOnly = true;
+                icon.classList = "";
+                icon.classList.add("glyphicon");
+                icon.classList.add("glyphicon-pencil");
+            }
+        });
     } else {
         editable = document.createElement("div");
     }

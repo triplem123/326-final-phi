@@ -78,7 +78,13 @@
 .account-info-item {
     width: 100%;
     padding: 10px;
-    /* border: 1px solid lightgray; */
+    margin-bottom: 50px;
+    text-align: left;
+}
+
+.account-text-item {
+    width: 100%;
+    padding: 10px;
     margin-bottom: 50px;
     text-align: left;
 }
