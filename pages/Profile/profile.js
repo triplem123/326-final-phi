@@ -1,9 +1,18 @@
-const fields = ["Username", "Email-Address", "Password", "Number-of-Rooms-Created", "Number-of-Room-Layouts-Created"];
+import { getAccountDetails, saveAccountDetails } from "../server/server.js";
+
+// document.getElementById("header").addEventListener("click", saveCurrentInfo);
+// document.getElementById("my-rooms").addEventListener("click", saveCurrentInfo);
+// document.getElementById("logout").addEventListener("click", saveCurrentInfo);
+
 // Double check later if these are the only fields that we want, but this should work for more fields too
+const values = getAccountDetails("abc123");
+let parsed_values = JSON.parse(values);
+window.localStorage.setItem("account_info", values);
 
 const grid = document.getElementById("account-info");
 
-fields.forEach(field => {
+
+for (const [field, value] of Object.entries(parsed_values)) {
     const field_name = document.createElement("div");
     field_name.classList.add(field + "-field");
     field_name.append(field.replaceAll("-", " "));
@@ -17,12 +26,12 @@ fields.forEach(field => {
         field_info.readOnly = true;
         field_info.classList.add(field + "-display");
         field_info.classList.add("account-text-item");
-        field_info.value = "sample info";
+        field_info.value = value;
     } else {
         field_info = document.createElement("div");
         field_info.classList.add(field + "-display");
         field_info.classList.add("account-info-item");
-        field_info.append("sample info");
+        field_info.append(value);
     }
 
     grid.appendChild(field_name);
@@ -40,9 +49,7 @@ fields.forEach(field => {
         icon.classList.add("glyphicon-pencil");
 
         editable.appendChild(icon);
-        // add ability to edit the display field with this icon
 
-        // editable.onclick = allowEdit(field);
         editable.addEventListener("click", () => {
             const fieldToEdit = document.getElementsByClassName(field + "-display")[0];
             if (fieldToEdit.readOnly) {
@@ -58,10 +65,18 @@ fields.forEach(field => {
                 icon.classList = "";
                 icon.classList.add("glyphicon");
                 icon.classList.add("glyphicon-pencil");
+                parsed_values[fieldToEdit.classList[0].split("-")[0]] = fieldToEdit.value;
+                saveCurrentInfo();
             }
         });
     } else {
         editable = document.createElement("div");
     }
     grid.appendChild(editable);
-});
+}
+
+function saveCurrentInfo() {
+    console.log(parsed_values);
+    saveAccountDetails("abc123", JSON.stringify(parsed_values));
+    window.localStorage.setItem("account_info", JSON.stringify(parsed_values));
+}

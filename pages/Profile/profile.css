@@ -22,7 +22,7 @@
     background-color: #0A0A0A;
 }
 
-#profile {
+#my-rooms {
     text-align: right;
     font-size: 30px;
     padding-right: 10px;
@@ -33,7 +33,7 @@
     text-decoration: none;
 }
 
-#profile:hover{
+#my-rooms:hover{
     text-decoration: none;
 }
 
@@ -51,7 +51,7 @@
     padding-left: 10px;
 }
 
-.profile {
+.my-rooms {
     text-align: right;
     font-size: 30px;
     padding: 10px;
@@ -97,7 +97,7 @@ button {
     text-decoration: none;
 }
 
-#profile:hover{
+#my-rooms:hover{
     text-decoration: none;
 }
 
