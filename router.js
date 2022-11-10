@@ -89,8 +89,9 @@ router.get('/database.js', (req, res) => {
     res.sendFile(__dirname + '/server/database.js');
 });
 
-router.get('/assets/furniture-images', (req, res) => {
-    express.static(__dirname + '/assets/furniture-images');
+router.get('/assets/furniture-images/*', (req, res) => {
+    // express.static(__dirname + req.url);
+    res.sendFile(__dirname + req.url);
 });
 
 
