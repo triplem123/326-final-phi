@@ -50,19 +50,16 @@ grid.appendChild(c);
 
 // Trying to select grid items now
 document.getElementById("select-rooms").addEventListener("click", ()=>{
-    // selectable: "multiple"
-    // isSelected(): true
-    // rowSelection: "multiple"
-    console.log("here");
-    window.localStorage.setItem("selecting-rooms", true);
+    document.getElementById("select-rooms").classList.contains("selector-selected") ? 
+    document.getElementById("select-rooms").classList.remove("selector-selected") : 
+    document.getElementById("select-rooms").classList.add("selector-selected");
+    
     [...document.getElementsByClassName("folder-button")].forEach(elem =>{
         elem.addEventListener("click", () =>{
             if (elem.classList.contains("selected")){
                 elem.classList.remove("selected");
             } else{
-                console.log("here too");
                 let cur_room = elem.className.split(" ")[0] + "-room-selected"
-                window.localStorage.setItem(cur_room, true);
                 elem.classList.add("selected");
             }
         });
