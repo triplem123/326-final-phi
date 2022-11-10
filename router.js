@@ -1,8 +1,7 @@
 const express = require('express');
 const router = express.Router();
-console.log("directory: " + __dirname);
+
 router.get('/', (req, res) => {
-    console.log("           getting root");
     res.sendFile(__dirname + '/pages/html/home-notloggedin.html');
 });
 
@@ -91,7 +90,7 @@ router.get('/database.js', (req, res) => {
 });
 
 router.get('/assets/furniture-images', (req, res) => {
-    express.static('/assets/furniture-images');
+    express.static(__dirname + '/assets/furniture-images');
 });
 
 
