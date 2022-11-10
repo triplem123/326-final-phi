@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-
+console.log(__dirname);
 router.get('/', (req, res) => {
     res.sendFile(__dirname + '/pages/html/home-notloggedin.html');
 });
