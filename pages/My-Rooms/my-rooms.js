@@ -53,7 +53,7 @@ document.getElementById("select-rooms").addEventListener("click", ()=>{
     document.getElementById("select-rooms").classList.contains("selector-selected") ? 
     document.getElementById("select-rooms").classList.remove("selector-selected") : 
     document.getElementById("select-rooms").classList.add("selector-selected");
-    
+
     [...document.getElementsByClassName("folder-button")].forEach(elem =>{
         elem.addEventListener("click", () =>{
             if (elem.classList.contains("selected")){
@@ -68,9 +68,7 @@ document.getElementById("select-rooms").addEventListener("click", ()=>{
 
 // delete button
 document.getElementsByClassName("delete-rooms").addEventListener("click", () =>{
-    for (let item in window.localStorage.getItem()){
-        let room = item.split("-")[0];
-        // delete that room here
-        $("grid").jsGrid("deleteItem", ); 
-    }
+    [...document.getElementsByClassName("selected").forEach(elem =>{
+        elem.remove();
+    })]
 });
