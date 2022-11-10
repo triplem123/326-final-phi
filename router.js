@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 router.get('/', (req, res) => {
-    res.post(__dirname + '/pages/html/home-notloggedin.html');
+    res.sendFile(__dirname + '/pages/html/home-notloggedin.html');
 });
 
 router.get('/home-notloggedin.html', (req, res) => {
