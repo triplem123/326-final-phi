@@ -64,7 +64,7 @@ button:hover{
 
 a:link{
     text-decoration: none;
-    color: black;
+    /* color: black; */
 }
 
 #myForm {
@@ -171,4 +171,54 @@ a:link{
     padding: 10px;
     margin-top: 20px;
     color: aliceblue;
+}
+
+.writeup{
+    text-align: center;
+}
+
+.about{
+    text-align: center;
+    /* padding-left: 25%; */
+    padding-top: 10%;
+    font-size: 200%;
+    font-family: 'Courier New', Courier, monospace;
+    color: aliceblue;
+}
+
+.about-text{
+    display: inline-block;
+    text-align: left;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+}
+
+.loading{
+    text-align: center;
+    /* padding-left: 25%; */
+    /* padding-top: 50px; */
+    font-size: 200%;
+    font-family: 'Courier New', Courier, monospace;
+    color: aliceblue;
+}
+
+.loading-text{
+    display: inline-block;
+    text-align: left;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+}
+
+.customize{
+    text-align: center;
+    /* padding-left: 25%; */
+    /* padding-top: 50px; */
+    font-size: 200%;
+    font-family: 'Courier New', Courier, monospace;
+    color: aliceblue;
+}
+
+.customize-text{
+    display: inline-block;
+    text-align: left;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+
 }
