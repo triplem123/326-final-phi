@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 console.log("directory: " + __dirname);
 router.get('/', (req, res) => {
-    console.log("getting root");
+    console.log("           getting root");
     res.sendFile(__dirname + '/pages/html/home-notloggedin.html');
 });
 
