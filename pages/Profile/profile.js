@@ -1,4 +1,4 @@
-import { getAccountDetails, saveAccountDetails } from "../server/server.js";
+import { getAccountDetails, saveAccountDetails } from "../../server/server.js";
 
 // document.getElementById("header").addEventListener("click", saveCurrentInfo);
 // document.getElementById("my-rooms").addEventListener("click", saveCurrentInfo);
@@ -76,7 +76,6 @@ for (const [field, value] of Object.entries(parsed_values)) {
 }
 
 function saveCurrentInfo() {
-    console.log(parsed_values);
     saveAccountDetails("abc123", JSON.stringify(parsed_values));
     window.localStorage.setItem("account_info", JSON.stringify(parsed_values));
 }
