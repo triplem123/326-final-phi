@@ -30,6 +30,13 @@ room_types.forEach((room) => {
     b.append(room.replaceAll("-", " "));
 
     c.appendChild(b);
+
+    c.addEventListener("click", () => {
+        if (document.getElementById("select-rooms").classList.contains("selector-selected")) {
+            c.classList.add("selected");
+        }
+    });
+
     grid.appendChild(c);
 });
 
@@ -50,25 +57,20 @@ grid.appendChild(c);
 
 // Trying to select grid items now
 document.getElementById("select-rooms").addEventListener("click", ()=>{
-    document.getElementById("select-rooms").classList.contains("selector-selected") ? 
-    document.getElementById("select-rooms").classList.remove("selector-selected") : 
-    document.getElementById("select-rooms").classList.add("selector-selected");
-
-    [...document.getElementsByClassName("folder-button")].forEach(elem =>{
-        elem.addEventListener("click", () =>{
-            if (elem.classList.contains("selected")){
-                elem.classList.remove("selected");
-            } else{
-                let cur_room = elem.className.split(" ")[0] + "-room-selected"
-                elem.classList.add("selected");
-            }
+    if (document.getElementById("select-rooms").classList.contains("selector-selected")) {
+        document.getElementById("select-rooms").classList.remove("selector-selected");
+        [...document.getElementsByClassName("selected")].forEach(elem => {
+            elem.classList.remove("selected");
         });
-    });
+    } else {
+        document.getElementById("select-rooms").classList.add("selector-selected");
+    }
 });
 
 // delete button
-document.getElementsByClassName("delete-rooms").addEventListener("click", () =>{
-    [...document.getElementsByClassName("selected").forEach(elem =>{
+document.getElementsByClassName("delete-rooms")[0].addEventListener("click", () =>{
+    document.getElementById("select-rooms").classList.remove("selector-selected");
+    [...document.getElementsByClassName("selected")].forEach(elem =>{
         elem.remove();
-    })]
+    });
 });
