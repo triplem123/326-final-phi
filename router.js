@@ -85,10 +85,14 @@ router.get('/signup-popup.js', (req, res) => {
 router.get('/server_demo.js', (req, res) => {
     res.sendFile(__dirname + '/server/server_demo.js');
 });
+
 router.get('/database.js', (req, res) => {
     res.sendFile(__dirname + '/server/database.js');
 });
 
+router.get('/assets/furniture-images', (req, res) => {
+    express.static('/assets/furniture-images');
+});
 
 
 module.exports = router;
