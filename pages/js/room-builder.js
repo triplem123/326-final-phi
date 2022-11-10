@@ -80,7 +80,7 @@ furniture_types.forEach(obj => {
         const i = document.createElement("img");
         i.id = (ftype + "-image");
         i.classList.add(ftype + "-image");
-        i.src = "../../assets/furniture-images/" + ftype + ".png";
+        i.src = "/assets/furniture-images/" + ftype + ".png";
         n.appendChild(document.createElement("br"));
         n.appendChild(i);
 
