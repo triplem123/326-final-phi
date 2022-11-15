@@ -1,3 +1,5 @@
+import { setFurnitureProperty } from "./guest-builder-components.js";
+
 const grid = document.getElementById("furniture-grid-container");
 
 const living_room = [
@@ -83,6 +85,7 @@ furniture_types.forEach(obj => {
         i.src = "/assets/furniture-images/" + ftype + ".png";
         n.appendChild(document.createElement("br"));
         n.appendChild(i);
+        setFurnitureProperty(n, i, ftype);
 
         furniture_container.appendChild(n);
     });

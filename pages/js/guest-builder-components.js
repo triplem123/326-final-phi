@@ -9,13 +9,13 @@ function init() { // initialization
     corner.id = "draggable";
     corner.classList.add("ui-widget-content");
     corner.classList.add("corner-" + nextCornerId++);
-    dragElement(corner);
+    dragCorner(corner);
     board.appendChild(corner);
   }
   makeConnections();
 }
 
-function dragElement(elem) { // sets properties for dragging corners
+function dragCorner(elem) { // sets properties for dragging corners
   let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
   elem.onmousedown = dragMouseDown;
   elem.oncontextmenu = removeElem; // right click
@@ -138,12 +138,114 @@ function makeConnections() {  // removes the lines and recalculates them wheneve
       newDiv.style.left = (e.pageX - 15) + "px";
 
       prevDiv.after(newDiv);
-      dragElement(newDiv);
+      dragCorner(newDiv);
       makeConnections();
       cache();
     }
   }
 }
+
+
+
+
+export function setFurnitureProperty(div, img_link, type) {
+  div.onclick = createFurniture;
+  function createFurniture(event) {
+    const f = document.createElement("img");
+    f.id = (type + "-image-draggable");
+    f.classList.add(type + "-image");
+    f.classList.add("draggable-furniture");
+    f.src = "/assets/furniture-images/" + type + ".png";
+
+    const n = document.createElement("div");
+    n.id = (type + "-image-draggable-container");
+    n.classList.add(type + "-image-container");
+    n.classList.add("draggable-furniture-container");
+    n.appendChild(f);
+
+    document.getElementsByClassName("room-builder-board")[0].appendChild(n);
+    dragFurniture(n);
+
+    function dragFurniture(elem) { // sets properties for dragging furniture
+      let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+      elem.onmousedown = dragMouseDown;
+      elem.oncontextmenu = removeElem; // right click
+    
+      function dragMouseDown(e) {
+        e = e || window.event;
+        e.preventDefault();
+        elem.style.cursor = 'grabbing';
+    
+        pos3 = e.pageX;
+        pos4 = e.pageY;
+        document.onmouseup = closeDragElement;
+        document.onmousemove = elementDrag;
+      }
+    
+      function elementDrag(e) {
+        e = e || window.event;
+        e.preventDefault();
+        
+        console.log("dragging");
+
+        pos1 = pos3 - e.pageX;
+        pos2 = pos4 - e.pageY;
+        pos3 = e.pageX;
+        pos4 = e.pageY;
+    
+        // stop from dragging furniture off of the builder
+        // if (elem.offsetLeft - pos1 < 303) {
+        //   elem.style.left = 303 + "px";
+        //   return;
+        // } else if (elem.offsetTop - pos2 < 217) {
+        //   elem.style.top = 217 + "px";
+        //   return;
+        // } else if (elem.offsetTop - pos1 > window.innerHeight - 32) {
+        //   elem.style.top = (window.innerHeight - 32) + "px";
+        //   return;
+        // } else if (elem.offsetLeft - pos2 > window.outerWidth - 50) {
+        //   elem.style.left = (window.outerWidth - 50) + "px";
+        //   return;
+        // }
+
+        // elem.style.top = (elem.offsetTop - pos2) + "px";
+        // elem.style.left = (elem.offsetLeft - pos1) + "px";
+
+        elem.style.top = e.pageY + "px";
+        elem.style.left = e.pageX + "px";
+      }
+    
+      function closeDragElement() {
+        document.onmouseup = null;
+        document.onmousemove = null;
+        elem.style.cursor = 'grab';
+        cache();
+      }
+    
+      function removeElem(e) {
+        e = e || window.event;
+        e.preventDefault();
+        elem.remove();
+        cache();
+      }
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 function cache() { // saves the current design in local storage, gets called after most types of edits
   const storage = window.localStorage;
@@ -170,7 +272,7 @@ function restoreFromCache() { // restores from the cached data if there is any
     const board = document.getElementsByClassName("room-builder-board")[0];
     for (const [key, value] of Object.entries(corners)) {
       const elem = htmlToElement(value);
-      dragElement(elem);
+      dragCorner(elem);
       board.appendChild(elem);
     }
     nextCornerId = Object.keys(corners).length + 1;
@@ -185,5 +287,7 @@ function clearDesign() { // resets the design to the default and clears cache to
   nextCornerId = 1;
   [...document.getElementsByClassName("ui-widget-content")].forEach(elem => elem.remove());
   init();
+
+  // update to remove furniture from the builder as well
 }
 

@@ -225,22 +225,22 @@ button {
     cursor: grab;
 }
 
-.corner-1{
+.corner-1 {
     top: 350px;
     left: 500px;
 }
 
-.corner-2{
+.corner-2 {
     top: 350px;
     left: 1100px;
 }
 
-.corner-3{
+.corner-3 {
     top: 750px;
     left: 1100px;
 }
 
-.corner-4{
+.corner-4 {
     top: 750px;
     left: 500px;
 }
@@ -249,4 +249,20 @@ img {
     width: 50px;
     height: 50px;
     background-color: transparent;
+}
+
+.draggable-furniture-container {
+    width: 100px;
+    height: 100px;
+    top: 350px;
+    left: 350px;
+    position: absolute;
+    cursor: grab;
+    background-color: transparent;
+}
+
+.draggable-furniture {
+    width: 100%;
+    height: 100%;
+    cursor: grab;
 }
