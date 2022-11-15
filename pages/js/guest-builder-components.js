@@ -185,8 +185,6 @@ export function setFurnitureProperty(div, img_link, type) {
       function elementDrag(e) {
         e = e || window.event;
         e.preventDefault();
-        
-        console.log("dragging");
 
         pos1 = pos3 - e.pageX;
         pos2 = pos4 - e.pageY;
@@ -194,25 +192,22 @@ export function setFurnitureProperty(div, img_link, type) {
         pos4 = e.pageY;
     
         // stop from dragging furniture off of the builder
-        // if (elem.offsetLeft - pos1 < 303) {
-        //   elem.style.left = 303 + "px";
-        //   return;
-        // } else if (elem.offsetTop - pos2 < 217) {
-        //   elem.style.top = 217 + "px";
-        //   return;
-        // } else if (elem.offsetTop - pos1 > window.innerHeight - 32) {
-        //   elem.style.top = (window.innerHeight - 32) + "px";
-        //   return;
-        // } else if (elem.offsetLeft - pos2 > window.outerWidth - 50) {
-        //   elem.style.left = (window.outerWidth - 50) + "px";
-        //   return;
-        // }
+        if (elem.offsetLeft - pos1 < 303) {
+          elem.style.left = 303 + "px";
+          return;
+        } else if (elem.offsetTop - pos2 < 217) {
+          elem.style.top = 217 + "px";
+          return;
+        } else if (elem.offsetTop - pos1 > window.innerHeight - 32) {
+          elem.style.top = (window.innerHeight - 32) + "px";
+          return;
+        } else if (elem.offsetLeft - pos2 > window.outerWidth - 50) {
+          elem.style.left = (window.outerWidth - 50) + "px";
+          return;
+        }
 
-        // elem.style.top = (elem.offsetTop - pos2) + "px";
-        // elem.style.left = (elem.offsetLeft - pos1) + "px";
-
-        elem.style.top = e.pageY + "px";
-        elem.style.left = e.pageX + "px";
+        elem.style.top = (elem.offsetTop - pos2) + "px";
+        elem.style.left = (elem.offsetLeft - pos1) + "px";
       }
     
       function closeDragElement() {
