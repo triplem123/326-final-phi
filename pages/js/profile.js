@@ -6,11 +6,11 @@ window.localStorage.setItem("account_info", JSON.stringify(a));
 
 // heroku usage
 
-await fetch('https://roomio-room-builder.herokuapp.com//getAccInfo').then(response => response.json()).then(v => {
+await fetch('https://roomio-room-builder.herokuapp.com/getAccInfo').then(response => response.json()).then(v => {
     if (Object.entries(v).length !== 5) {
         console.log(JSON.stringify(a));
         values = a;
-        return fetch ('https://roomio-room-builder.herokuapp.com//saveAccInfo', {
+        return fetch ('https://roomio-room-builder.herokuapp.com/saveAccInfo', {
             method: 'POST',
             headers: {
                 'Content-type': 'application/json'
@@ -120,7 +120,7 @@ async function saveCurrentInfo() {
 
     //heroku usage
 
-    return fetch ('https://roomio-room-builder.herokuapp.com//saveAccInfo', {
+    return fetch ('https://roomio-room-builder.herokuapp.com/saveAccInfo', {
         method: 'POST',
         headers: {
             'Content-type': 'application/json'
