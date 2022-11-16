@@ -85,7 +85,7 @@ furniture_types.forEach(obj => {
         i.src = "/assets/furniture-images/" + ftype + ".png";
         n.appendChild(document.createElement("br"));
         n.appendChild(i);
-        setFurnitureProperty(n, i, ftype);
+        setFurnitureProperty(n, ftype);
 
         furniture_container.appendChild(n);
     });

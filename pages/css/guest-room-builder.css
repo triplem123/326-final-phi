@@ -4,6 +4,7 @@
 
 .header{
     width: 100%;
+    min-width: 1140px;
     padding: 10px;
     display: flex;
     justify-content: space-between;
@@ -60,6 +61,7 @@
 
 .page-content {
     width: 100%;
+    min-width: 1140px;
     height: 100%;
     background-color: gray;
 }
@@ -89,14 +91,14 @@ button {
     padding: 30px;
 }
 
-.save-design {
+.save-design-button {
     float: right;
     margin-right: 10px;
     font-size: 20px;
     color: #337AB7;
 }
 
-.save-design:hover {
+.save-design-button:hover {
     transition: 0.5s;
     filter: brightness(115%);
 }
@@ -113,14 +115,14 @@ button {
     filter: brightness(125%);
 }
 
-.reset-design {
+.reset-design-button {
     float: right;
     margin-right: 30px;
     font-size: 20px;
     color: #337AB7;
 }
 
-.reset-design:hover {
+.reset-design-button:hover {
     transition: 0.5s;
     filter: brightness(125%);
 }
@@ -258,12 +260,15 @@ img {
     top: 350px;
     left: 350px;
     position: absolute;
+    padding: 5px;
     cursor: grab;
+    display: flex;
+    overflow: hidden;
+    resize: both;
     background-color: transparent;
 }
 
 .draggable-furniture {
     width: 100%;
     height: 100%;
-    /* cursor: grab; */
 }

@@ -41,8 +41,8 @@ function dragCorner(elem) { // sets properties for dragging corners
     pos4 = e.pageY;
 
     // stop from dragging a corner off of the builder
-    if (elem.offsetLeft - pos1 < 303) {
-      elem.style.left = 303 + "px";
+    if (elem.offsetLeft - pos1 < 319) {
+      elem.style.left = 319 + "px";
       return;
     } else if (elem.offsetTop - pos2 < 217) {
       elem.style.top = 217 + "px";
@@ -145,10 +145,7 @@ function makeConnections() {  // removes the lines and recalculates them wheneve
   }
 }
 
-
-
-
-export function setFurnitureProperty(div, img_link, type) {
+export function setFurnitureProperty(div, type) {
   div.onclick = createFurniture;
   function createFurniture(event) {
     const f = document.createElement("img");
@@ -164,12 +161,13 @@ export function setFurnitureProperty(div, img_link, type) {
     n.appendChild(f);
 
     document.getElementsByClassName("room-builder-board")[0].appendChild(n);
-    dragFurniture(n);
+    dragFurniture(f);
 
     function dragFurniture(elem) { // sets properties for dragging furniture
       let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
       elem.onmousedown = dragMouseDown;
       elem.oncontextmenu = removeElem; // right click
+      elem = n;
     
       function dragMouseDown(e) {
         e = e || window.event;
@@ -192,8 +190,8 @@ export function setFurnitureProperty(div, img_link, type) {
         pos4 = e.pageY;
     
         // stop from dragging furniture off of the builder
-        if (elem.offsetLeft - pos1 < 303) {
-          elem.style.left = 303 + "px";
+        if (elem.offsetLeft - pos1 < 319) {
+          elem.style.left = 319 + "px";
           return;
         } else if (elem.offsetTop - pos2 < 217) {
           elem.style.top = 217 + "px";
@@ -226,21 +224,6 @@ export function setFurnitureProperty(div, img_link, type) {
     }
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 function cache() { // saves the current design in local storage, gets called after most types of edits
   const storage = window.localStorage;
@@ -281,8 +264,7 @@ function clearDesign() { // resets the design to the default and clears cache to
   delete window.localStorage["corners"];
   nextCornerId = 1;
   [...document.getElementsByClassName("ui-widget-content")].forEach(elem => elem.remove());
+  [...document.getElementsByClassName("draggable-furniture-container")].forEach(elem => elem.remove());
   init();
-
-  // update to remove furniture from the builder as well
 }
 
