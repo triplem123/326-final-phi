@@ -6,25 +6,20 @@ router.get('/', (req, res) => {
 });
 
 router.get('/*.html', (req, res) => {
-    // express.static(__dirname + req.url);
     res.sendFile(__dirname + '/pages/html' + req.url);
 });
 
 router.get('/*.css', (req, res) => {
-    // express.static(__dirname + req.url);
     res.sendFile(__dirname + '/pages/css' + req.url);
 });
 
 router.get('/*.js', (req, res) => {
-    // express.static(__dirname + req.url);
     res.sendFile(__dirname + '/pages/js' + req.url);
 });
 
 router.get('/assets/furniture-images/*', (req, res) => {
-    // express.static(__dirname + req.url);
     res.sendFile(__dirname + req.url);
 });
-
 
 module.exports = router;
 
