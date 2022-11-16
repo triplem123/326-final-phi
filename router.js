@@ -5,9 +5,8 @@ router.get('/', (req, res) => {
     res.sendFile(__dirname + '/pages/html/home-notloggedin.html');
 });
 
-router.get('/home-notloggedin.html', (req, res) => {
-    res.sendFile(__dirname + '/pages/html/home-notloggedin.html');
-});
+//redo these routes so that anything routing to a html file goes automatically to the html folder
+//and same for css and js files
 
 router.get('/home-loggedin.html', (req, res) => {
     res.sendFile(__dirname + '/pages/html/home-loggedin.html');

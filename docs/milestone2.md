@@ -10,7 +10,7 @@ My rooms page for logged in users:
 Room builder for logged in users:
 ![image](roombuilder-page.png)
 
-URL: https://roomio-room-builder.herokuapp.com/ (not currently functional)
+URL: https://roomio-room-builder.herokuapp.com/
 
 Workload breakdown:
 Mac: Adding remaining functionality for room builder, polishing the room builder UI, server.js and deployment

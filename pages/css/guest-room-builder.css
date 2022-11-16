@@ -4,6 +4,7 @@
 
 .header{
     width: 100%;
+    min-width: 1140px;
     padding: 10px;
     display: flex;
     justify-content: space-between;
@@ -60,6 +61,7 @@
 
 .page-content {
     width: 100%;
+    min-width: 1140px;
     height: 100%;
     background-color: gray;
 }
@@ -68,6 +70,7 @@
     padding-top: 30px;
     padding-left: 5%;
     width: 100%;
+    min-width: 1136px;
     height: 130px;
     background-color: #121212;
     border-bottom: 2px solid gray;
@@ -88,14 +91,14 @@ button {
     padding: 30px;
 }
 
-.save-design {
+.save-design-button {
     float: right;
     margin-right: 10px;
     font-size: 20px;
     color: #337AB7;
 }
 
-.save-design:hover {
+.save-design-button:hover {
     transition: 0.5s;
     filter: brightness(115%);
 }
@@ -112,14 +115,14 @@ button {
     filter: brightness(125%);
 }
 
-.reset-design {
+.reset-design-button {
     float: right;
     margin-right: 30px;
     font-size: 20px;
     color: #337AB7;
 }
 
-.reset-design:hover {
+.reset-design-button:hover {
     transition: 0.5s;
     filter: brightness(125%);
 }
@@ -142,7 +145,7 @@ button {
     height: 50px;
     border: 0px;
     border-radius: 0px;
-    font-size: 15px;
+    font-size: 17px;
     border-bottom: 1px solid grey;
     background-color: lightgray;
     color: #496279;
@@ -225,22 +228,22 @@ button {
     cursor: grab;
 }
 
-.corner-1{
+.corner-1 {
     top: 350px;
     left: 500px;
 }
 
-.corner-2{
+.corner-2 {
     top: 350px;
     left: 1100px;
 }
 
-.corner-3{
+.corner-3 {
     top: 750px;
     left: 1100px;
 }
 
-.corner-4{
+.corner-4 {
     top: 750px;
     left: 500px;
 }
@@ -249,4 +252,23 @@ img {
     width: 50px;
     height: 50px;
     background-color: transparent;
+}
+
+.draggable-furniture-container {
+    width: 100px;
+    height: 100px;
+    top: 350px;
+    left: 350px;
+    position: absolute;
+    padding: 5px;
+    cursor: grab;
+    display: flex;
+    overflow: hidden;
+    resize: both;
+    background-color: transparent;
+}
+
+.draggable-furniture {
+    width: 100%;
+    height: 100%;
 }

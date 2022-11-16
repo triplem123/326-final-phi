@@ -4,6 +4,7 @@
 
 .header{
     width: 100%;
+    min-width: 494px;
     padding: 10px;
     display: flex;
     justify-content: space-between;
