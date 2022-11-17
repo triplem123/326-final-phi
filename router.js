@@ -1,5 +1,16 @@
+'use strict';
+
+const fs = require('fs');
 const express = require('express');
 const router = express.Router();
+
+const fakeAccDB = 'fakeaccdb.json';
+
+fs.open(fakeAccDB, 'r', (err, fd) => {
+    if (err) {
+        fs.writeFileSync(fakeAccDB, '{}');
+    }
+});
 
 router.get('/', (req, res) => {
     res.sendFile(__dirname + '/pages/html/home-notloggedin.html');
@@ -19,6 +30,18 @@ router.get('/*.js', (req, res) => {
 
 router.get('/assets/furniture-images/*', (req, res) => {
     res.sendFile(__dirname + req.url);
+});
+
+router.get('/getAccInfo', async (req, res) => {
+    const data = JSON.parse(fs.readFileSync(fakeAccDB));
+    res.send(data);
+});
+
+router.post('/saveAccInfo', async (req, res) => {
+    const Username = req.body.Username, Email_Address = req.body.Email_Address, Password = req.body.Password, Number_of_Rooms_Created = req.body.Number_of_Rooms_Created, Number_of_Room_Layouts_Created = req.body.Number_of_Room_Layouts_Created;
+    const body = { Username, Email_Address, Password, Number_of_Rooms_Created, Number_of_Room_Layouts_Created };
+    fs.writeFileSync(fakeAccDB, JSON.stringify(body));
+    res.sendStatus(200);
 });
 
 module.exports = router;
