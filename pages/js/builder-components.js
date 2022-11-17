@@ -259,6 +259,11 @@ function restoreFromCache() { // restores from the cached data if there is any
   }
 
   const storage = window.localStorage;
+
+  // maybe change this to restoring from the database rather than localStorage
+
+
+
   if (Object.keys(storage).includes("corners")) {
     const corners = JSON.parse(storage.corners);
     [...document.getElementsByClassName("ui-widget-content")].forEach(elem => elem.remove());
