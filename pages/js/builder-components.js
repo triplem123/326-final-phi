@@ -303,8 +303,7 @@ function clearDesign() { // resets the design to the default and clears cache to
 }
 
 async function saveBuild() {
-  await fetch('http://localhost:3000/getBuild').then(data => {
-    console.log(data);
+  await fetch('http://localhost:3000/getBuild').then(data => data.json()).then (data => {
     data['corners'] = window.localStorage.corners;
     data['furniture'] = window.localStorage.furniture;
     fetch('http://localhost:3000/saveBuild', {
