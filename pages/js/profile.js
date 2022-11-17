@@ -1,36 +1,15 @@
 // Double check later if these are the only fields that we want, but this should work for more fields too
-const a = {'Username':'testuser','Email_Address':'testemail@fakeaddress.com','Password':'password123','Number_of_Rooms_Created':12,'Number_of_Room_Layouts_Created':7};
+const a = {'account_info':JSON.stringify({'Username':'testuser','Email_Address':'testemail@fakeaddress.com','Password':'password123','Number_of_Rooms_Created':12,'Number_of_Room_Layouts_Created':7})};
 let values = "";
 let parsed_values = "";
 window.localStorage.setItem("account_info", JSON.stringify(a));
 
-// heroku usage
+// heroku old URL usage
 
-await fetch('https://roomio-room-builder.herokuapp.com/getAccInfo').then(response => response.json()).then(v => {
-    if (Object.entries(v).length !== 5) {
-        console.log(JSON.stringify(a));
-        values = a;
-        return fetch ('https://roomio-room-builder.herokuapp.com/saveAccInfo', {
-            method: 'POST',
-            headers: {
-                'Content-type': 'application/json'
-            },
-            body: JSON.stringify(a),
-        });
-    } else {
-        values = v;
-    }
-}).then(r => build());
-
-
-
-// local usage
-
-// await fetch('http://localhost:3000/getAccInfo').then(response => response.json()).then(v => {
-//     if (Object.entries(v).length !== 5) {
-//         console.log(JSON.stringify(a));
-//         values = a;
-//         return fetch ('http://localhost:3000/saveAccInfo', {
+// await fetch('https://roomio-room-builder.herokuapp.com/getAccInfo').then(response => response.json()).then(v => {
+//     if (!Object.keys(v).includes('account_info')) {
+//         values = JSON.parse(a.account_info);
+//         return fetch ('https://roomio-room-builder.herokuapp.com/saveAccInfo', {
 //             method: 'POST',
 //             headers: {
 //                 'Content-type': 'application/json'
@@ -38,9 +17,28 @@ await fetch('https://roomio-room-builder.herokuapp.com/getAccInfo').then(respons
 //             body: JSON.stringify(a),
 //         });
 //     } else {
-//         values = v;
+//         values = JSON.parse(v.account_info);
 //     }
 // }).then(r => build());
+
+
+
+// local usage
+
+await fetch('http://localhost:3000/getAccInfo').then(response => response.json()).then(v => {
+    if (!Object.keys(v).includes('account_info')) {
+        values = JSON.parse(a.account_info);
+        return fetch ('http://localhost:3000/saveAccInfo', {
+            method: 'POST',
+            headers: {
+                'Content-type': 'application/json'
+            },
+            body: JSON.stringify(a),
+        });
+    } else {
+        values = JSON.parse(v.account_info);
+    }
+}).then(r => build());
 
 function build() {
     // console.log("values:");
@@ -118,25 +116,27 @@ function build() {
 async function saveCurrentInfo() {
     window.localStorage.setItem("account_info", JSON.stringify(parsed_values));
 
-    //heroku usage
+    let obj = {'account_info': JSON.stringify(parsed_values)};
 
-    return fetch ('https://roomio-room-builder.herokuapp.com/saveAccInfo', {
-        method: 'POST',
-        headers: {
-            'Content-type': 'application/json'
-        },
-        body: JSON.stringify(parsed_values),
-    });
+    //heroku old URL usage
+
+    // return fetch ('https://roomio-room-builder.herokuapp.com/saveAccInfo', {
+    //     method: 'POST',
+    //     headers: {
+    //         'Content-type': 'application/json'
+    //     },
+    //     body: JSON.stringify(obj),
+    // });
 
 
 
     // local usage
 
-    // return fetch ('http://localhost:3000/saveAccInfo', {
-    //     method: 'POST',
-    //     headers: {
-    //         'Content-type': 'application/json'
-    //     },
-    //     body: JSON.stringify(parsed_values),
-    // });
+    return fetch ('http://localhost:3000/saveAccInfo', {
+        method: 'POST',
+        headers: {
+            'Content-type': 'application/json'
+        },
+        body: JSON.stringify(obj),
+    });
 }

@@ -171,8 +171,6 @@ function dragFurniture(elem, n) { // sets properties for dragging furniture
   elem.oncontextmenu = removeElem; // right click
   elem = n;
 
-  new ResizeObserver(cache).observe(elem);
-
   function dragMouseDown(e) {
     e = e || window.event;
     e.preventDefault();
@@ -285,4 +283,3 @@ function clearDesign() { // resets the design to the default and clears cache to
   [...document.getElementsByClassName("draggable-furniture-container")].forEach(elem => elem.remove());
   init();
 }
-
