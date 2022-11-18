@@ -22,7 +22,7 @@ room_types.forEach((room) => {
 
     const i = document.createElement("span");
     i.classList.add("glyphicon"); 
-    i.classList.add("glyphicon-folder-open");
+    i.classList.add("glyphicon-file");
 
     b.appendChild(i);
 
