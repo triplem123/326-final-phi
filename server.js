@@ -15,11 +15,15 @@ app.listen(port, () => {
 
 const uri = process.env.MONGODB_URI;
 
+// schema.js begins here- editing that file for testing
+
 import { ObjectId } from "mongodb";
 import mongoose, { Promise, connect } from "mongoose";
 
 Promise = global.Promise;
-connect("mongodb://localhost:3000/team-phi");
+// connect("mongodb://localhost:3000/team-phi");
+mongoose.connect("mongodb://localhost:3000");
+// mongoose.connect("mongodb://localhost/team-phi");
 
 // creating the schema
 const userSchema = new mongoose.Schema({
