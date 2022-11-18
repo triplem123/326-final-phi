@@ -91,30 +91,6 @@ button {
     padding: 30px;
 }
 
-.save-design-button {
-    float: right;
-    margin-right: 10px;
-    font-size: 20px;
-    color: #337AB7;
-}
-
-.save-design-button:hover {
-    transition: 0.5s;
-    filter: brightness(115%);
-}
-
-.select-layout-button {
-    float: right;
-    margin-right: 30px;
-    font-size: 20px;
-    color: #337AB7;
-}
-
-.select-layout-button:hover {
-    transition: 0.5s;
-    filter: brightness(125%);
-}
-
 .reset-design-button {
     float: right;
     margin-right: 30px;
@@ -135,7 +111,7 @@ button {
 .furniture-grid-container {
     float: left;
     width: 319px;
-    height: 77vh;
+    max-height: 77vh;
     background-color: lightgray;
     border-right: 2px solid grey;
 }
@@ -160,7 +136,7 @@ button {
 .container-for-new-draggable-ui-items {
     display: grid;
     width: 317px;
-    height: 416px;
+    height: calc(77vh - 305px);
     padding-left: 10px;
     padding-right: 10px;
     padding-bottom: 2px;

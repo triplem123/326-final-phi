@@ -63,7 +63,7 @@
 .page-content {
     width: 100%;
     min-width: 1140px;
-    height: 850px;
+    height: 100%;
     background-color: gray;
 }
 
@@ -139,9 +139,7 @@ button {
 .furniture-grid-container {
     float: left;
     width: 319px;
-    height: 700px;
-    /* height: 77vh; */
-    /* height: 100%; */
+    height: 77vh;
     background-color: lightgray;
     border-right: 2px solid grey;
 }
@@ -166,7 +164,7 @@ button {
 .container-for-new-draggable-ui-items {
     display: grid;
     width: 317px;
-    height: 395px;
+    height: calc(77vh - 305px);
     padding-left: 10px;
     padding-right: 10px;
     padding-bottom: 2px;
@@ -199,9 +197,7 @@ button {
 
 .room-builder-board {
     display: flex;
-    height: 700px;
-    /* height: 77vh; */
-    /* height: 100%; */
+    height: 77vh;
     float: none;
     overflow: hidden;
 
