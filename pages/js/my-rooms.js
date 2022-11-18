@@ -40,6 +40,17 @@ room_types.forEach((room) => {
     grid.appendChild(c);
 });
 
+
+
+
+// change all of the above code
+// change to retrieve all rooms from the user's entry in the database 
+// and build out the entries in the grid from the names of the rooms in the database
+
+// add a function that will delete rooms from the user's database entry when they're deleted on the my rooms page
+
+
+
 const c = document.createElement("div");
 c.classList.add("room-type-grid-item");
 const b = document.createElement("button");

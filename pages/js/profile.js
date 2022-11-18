@@ -40,6 +40,12 @@ await fetch('http://localhost:3000/getAccInfo').then(response => response.json()
     }
 }).then(r => build());
 
+
+
+// change the code above to retrieve user info from the actual database and not the fake one
+
+
+
 function build() {
     // console.log("values:");
     // console.log(values);
@@ -139,4 +145,8 @@ async function saveCurrentInfo() {
         },
         body: JSON.stringify(obj),
     });
+
+
+
+    // change to save account info to the actual database after an edit has been committed 
 }

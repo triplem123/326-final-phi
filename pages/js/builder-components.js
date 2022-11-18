@@ -320,3 +320,6 @@ async function saveBuild() {
     }); 
   });
 }
+
+// make a function to save the build with a given name either in the database or the one in the room name field
+// this function should also clear local storage so that the current room build is only cached up until the room is saved 
