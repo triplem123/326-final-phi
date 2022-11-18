@@ -22,8 +22,9 @@ import mongoose, { Promise, connect } from "mongoose";
 
 Promise = global.Promise;
 // connect("mongodb://localhost:3000/team-phi");
-mongoose.connect("mongodb://localhost:3000");
+// mongoose.connect("mongodb://localhost:3000");
 // mongoose.connect("mongodb://localhost/team-phi");
+mongoose.connect("https://roomio-room-builder.herokuapp.com/");
 
 // creating the schema
 const userSchema = new mongoose.Schema({
