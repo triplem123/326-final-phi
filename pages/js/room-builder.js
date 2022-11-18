@@ -1,4 +1,4 @@
-import { setFurnitureProperty } from "./guest-builder-components.js";
+import { setFurnitureProperty } from "./builder-components.js";
 
 const grid = document.getElementById("furniture-grid-container");
 
@@ -109,3 +109,5 @@ furniture_types.forEach(obj => {
     }
     }
 });
+
+// add event listener to Save Design button so it saves the current build with the name in the room-name input field to the database

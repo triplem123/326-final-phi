@@ -20,7 +20,9 @@
   },
   "homepage": "https://github.com/triplem123/cs326-final-teamphi/tree/main#readme",
   "dependencies": {
+    "body-parser": "^1.20.1",
     "express": "^4.18.2",
+    "mongoose": "^6.7.2",
     "package-lock.json": "^1.0.0"
   }
 }

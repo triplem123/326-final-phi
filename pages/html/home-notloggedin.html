@@ -24,31 +24,18 @@
             <input 
                 type="text" 
                 class="input-username"
-                placeholder="Enter Username">
+                placeholder="Enter Email">
             <br>
             <input 
                 type="password" 
                 class="input-password"
                 placeholder="Enter Password">
             <br>
-            <button 
-                class="button-login">
-                    <!-- <a href="../Home-LoggedIn/home-loggedin.html"> -->
-                    <a href="/home-loggedin.html" id="button-login-button">
-                    Login
-                    </a>
-            </button>
-            <label
-                class="or-guest">
-                or
-            </label>
-            <button
-                class="button-guest">
-                    <a href="/guest-room-builder.html" id="button-guest-button">
-                    Proceed as Guest
-                    </a>
-            </button>
             <br>
+            <a href="/home-loggedin.html" id="button-login-button">Login</a>
+            <label class="or-guest">or</label>
+            <a href="/guest-room-builder.html" id="button-guest-button">Proceed as Guest</a>
+            <br><br><br>
             <label
                 class="label-no-account">
             Don't have an account?
@@ -62,7 +49,7 @@
             <!-- style the popup form here -->
             <div id="myForm">
                 <form action="/action_page.php" class="form-signup">
-                    <h1>Login</h1>
+                    <h1>Sign up</h1>
             
                     <label><b>Email</b></label>
                     <input type="text" placeholder="Enter Email" id="signup-username" required>
@@ -70,7 +57,7 @@
                     <label><b>Password</b></label>
                     <input type="password" placeholder="Enter Password" id="signup-password" required>
             
-                    <button type="submit" class="login-button">Login</button>
+                    <button type="submit" class="login-button">Sign up</button>
                     <button type="button" class="cancel-button" onclick="closeForm()">Close</button>
                 </form>
             </div>
@@ -110,7 +97,10 @@
                     Right click on the corner to get rid of it
                 </li>
                 <li>
-                    Drag and drop furniture on the left to customize your room
+                    Click on the pieces of furniture on the left to customize your room
+                </li>
+                <li>
+                    Resize by pulling from the bottom right or delete the piece by a right cl
                 </li>
             </ul>
         </div>
