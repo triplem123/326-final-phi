@@ -38,9 +38,19 @@ router.get('/getAccInfo', async (req, res) => {
 });
 
 router.post('/saveAccInfo', async (req, res) => {
-    const Username = req.body.Username, Email_Address = req.body.Email_Address, Password = req.body.Password, Number_of_Rooms_Created = req.body.Number_of_Rooms_Created, Number_of_Room_Layouts_Created = req.body.Number_of_Room_Layouts_Created;
-    const body = { Username, Email_Address, Password, Number_of_Rooms_Created, Number_of_Room_Layouts_Created };
-    fs.writeFileSync(fakeAccDB, JSON.stringify(body));
+    // const Username = req.body.Username, Email_Address = req.body.Email_Address, Password = req.body.Password, Number_of_Rooms_Created = req.body.Number_of_Rooms_Created, Number_of_Room_Layouts_Created = req.body.Number_of_Room_Layouts_Created;
+    // const body = { Username, Email_Address, Password, Number_of_Rooms_Created, Number_of_Room_Layouts_Created };
+    fs.writeFileSync(fakeAccDB, JSON.stringify(req.body));
+    res.sendStatus(200);
+});
+
+router.get('/getBuild', async (req, res) => {
+    const data = JSON.parse(fs.readFileSync(fakeAccDB));
+    res.send(data);
+});
+
+router.post('/saveBuild', async (req, res) => {
+    fs.writeFileSync(fakeAccDB, JSON.stringify(req.body));
     res.sendStatus(200);
 });
 

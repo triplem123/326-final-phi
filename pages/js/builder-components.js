@@ -65,6 +65,7 @@ function dragCorner(elem) { // sets properties for dragging corners
     document.onmousemove = null;
     elem.style.cursor = 'grab';
     cache();
+    saveBuild();
   }
 
   function removeElem(e) {
@@ -75,6 +76,7 @@ function dragCorner(elem) { // sets properties for dragging corners
       makeConnections();
     }
     cache();
+    saveBuild();
   }
 }
 
@@ -87,6 +89,7 @@ function makeConnections() {  // removes the lines and recalculates them wheneve
     connect(div1, div2, "black", "5");
   }
   cache();
+  saveBuild();
 
   function connect(div1, div2, color, thickness) { // creates a line between two divs
 
@@ -171,6 +174,11 @@ function dragFurniture(elem, n) { // sets properties for dragging furniture
   elem.oncontextmenu = removeElem; // right click
   elem = n;
 
+  new ResizeObserver(cache).observe(elem);
+
+  cache();
+  saveBuild();
+
   function dragMouseDown(e) {
     e = e || window.event;
     e.preventDefault();
@@ -217,6 +225,7 @@ function dragFurniture(elem, n) { // sets properties for dragging furniture
     document.onmousemove = null;
     elem.style.cursor = 'grab';
     cache();
+    saveBuild();
   }
 
   function removeElem(e) {
@@ -224,6 +233,7 @@ function dragFurniture(elem, n) { // sets properties for dragging furniture
     e.preventDefault();
     elem.remove();
     cache();
+    saveBuild();
   }
 }
 
@@ -249,6 +259,11 @@ function restoreFromCache() { // restores from the cached data if there is any
   }
 
   const storage = window.localStorage;
+
+  // maybe change this to restoring from the database rather than localStorage
+
+
+
   if (Object.keys(storage).includes("corners")) {
     const corners = JSON.parse(storage.corners);
     [...document.getElementsByClassName("ui-widget-content")].forEach(elem => elem.remove());
@@ -268,6 +283,13 @@ function restoreFromCache() { // restores from the cached data if there is any
         board.appendChild(elem);
       }
       nextFurnitureId = Object.keys(furniture).length + 1;
+      // restore corners and furniture
+
+
+    } else {
+      // restore just corners
+
+
     }
     makeConnections();
   } else {
@@ -277,6 +299,7 @@ function restoreFromCache() { // restores from the cached data if there is any
 
 function clearDesign() { // resets the design to the default and clears cache to prevent it from going back to the cached setup upon reload
   delete window.localStorage["corners"];
+  delete window.localStorage["furniture"];
   nextCornerId = 1;
   nextFurnitureId = 1;
   [...document.getElementsByClassName("ui-widget-content")].forEach(elem => elem.remove());
@@ -284,3 +307,16 @@ function clearDesign() { // resets the design to the default and clears cache to
   init();
 }
 
+async function saveBuild() {
+  await fetch('http://localhost:3000/getBuild').then(data => data.json()).then (data => {
+    data['corners'] = window.localStorage.corners;
+    data['furniture'] = window.localStorage.furniture;
+    fetch('http://localhost:3000/saveBuild', {
+      method: 'POST',
+      headers: {
+          'Content-type': 'application/json'
+      },
+      body: JSON.stringify(data),
+    }); 
+  });
+}

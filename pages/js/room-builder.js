@@ -1,4 +1,4 @@
-import { setFurnitureProperty } from "./guest-builder-components.js";
+import { setFurnitureProperty } from "./builder-components.js";
 
 const grid = document.getElementById("furniture-grid-container");
 
