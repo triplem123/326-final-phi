@@ -22,7 +22,7 @@ Promise = global.Promise;
 connect("mongodb://localhost:3000/team-phi");
 
 // creating the schema
-let userSchema = new mongoose.Schema({
+const userSchema = new mongoose.Schema({
     email: String,
     emailhash: ObjectId,
     password: String,
@@ -30,7 +30,9 @@ let userSchema = new mongoose.Schema({
     room_designs: ObjectId
 });
 // model from the schema
-let user = mongoose.model("user", userSchema);
+const User = mongoose.model("user", userSchema);
+
+module.exports = User;
 
 // building CRUD endpoint
 var bodyParser = require('body-parser');
@@ -39,7 +41,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // saving data to database
 app.post("/addname", (req, res) => {
-    var myData = new user(req.body);
+    var myData = new User(req.body);
     myData.save().then(item => {
         res.send("item saved to database");
     }).catch(err => {
