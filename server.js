@@ -13,6 +13,11 @@ app.use('/', router);
 const dbo = require('./conn.js');
 
 dbo.connectToServer(function (err) {
+    if (err) {
+        console.error(err);
+        process.exit();
+    }
+
     app.listen(port, () => {
         console.log("Listening on port " + port);
     });
