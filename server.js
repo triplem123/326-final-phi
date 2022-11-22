@@ -13,4 +13,4 @@ app.listen(port, () => {
     console.log("Listening on port " + port);
 });
 
-const uri = process.env.MONGODB_URI;
+const uri = "mongodb+srv://<username>:<password>@326-phi-project.l6dgjtn.mongodb.net/?retryWrites=true&w=majority";
