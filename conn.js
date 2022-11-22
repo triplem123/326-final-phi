@@ -1,7 +1,8 @@
 const { MongoClient } = require("mongodb");
-const connectionString = "mongodb+srv://phiproject:phiProject@326-phi-project.l6dgjtn.mongodb.net/?retryWrites=true&w=majority";
+const connectionString = process.env.ATLAS_URI || "mongodb+srv://phiproject:phiProject@326-phi-project.l6dgjtn.mongodb.net/?retryWrites=true&w=majority";;
 
-const client = new MongoClient(connectionString, {
+const client = MongoClient;
+client.connect(connectionString, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 });
