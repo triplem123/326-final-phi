@@ -1,4 +1,7 @@
-import User from "./server";
+// import User from "./server";
+import mocha from "mocha";
+import assert from "assert";
+import User from "./db-test";
 
 describe("saving records", ()=>{
 
