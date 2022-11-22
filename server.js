@@ -9,8 +9,11 @@ app.use(express.json());
 
 app.use('/', router);
 
-app.listen(port, () => {
-    console.log("Listening on port " + port);
-});
 
-const uri = process.env.MONGODB_URI;
+const dbo = require('./conn.js');
+
+dbo.connectToServer(function (err) {
+    app.listen(port, () => {
+        console.log("Listening on port " + port);
+    });
+}); 

@@ -40,7 +40,7 @@ await fetch('http://localhost:3000/getAccInfo').then(response => response.json()
     }
 }).then(r => build());
 
-
+await fetch('https://team-phi.herokuapp.com/db/test');
 
 // change the code above to retrieve user info from the actual database and not the fake one
 

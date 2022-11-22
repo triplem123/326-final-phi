@@ -76,6 +76,12 @@ router.delete('deleteAcc/*', async (req, res) => {
     
 
 
+const dbo = require('./conn.js');
 
+router.put('/db/test', async (req, res) => {
+    const dbConnect = dbo.getDb();
+    dbConnect.collection('phiproject').insertOne({'testkey': 'testvalue'});
+    res.sendStatus(200);
+});
 
 module.exports = router;
