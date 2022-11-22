@@ -1,8 +1,14 @@
 // schema.js begins here- editing that file for testing
 
+// NOT SURE IF THESE SHOULD BE USED
 // import { ObjectId } from "mongodb";
-let ObjectId = require("mongodb");
 // import mongoose, { Promise, connect } from "mongoose";
+// connect("mongodb://localhost:3000/team-phi");
+// mongoose.connect("mongodb://localhost:3000");
+
+
+let ObjectId = require("mongodb");
+
 let Promise = require("mongoose");
 let connect = require("mongoose");
 
@@ -10,9 +16,8 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 Promise = global.Promise;
-// connect("mongodb://localhost:3000/team-phi");
-mongoose.connect("mongodb://localhost:3000");
-// mongoose.connect("mongodb://localhost/team-phi");
+
+mongoose.connect("mongodb://localhost/team-phi");
 
 // creating the schema
 const userSchema = new Schema({
