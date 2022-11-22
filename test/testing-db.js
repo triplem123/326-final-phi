@@ -1,7 +1,10 @@
 // import User from "./server";
-import mocha from "mocha";
-import assert from "assert";
-import User from "./db-test";
+// import mocha from "mocha";
+const mocha = require("mocha");
+// import assert from "assert";
+const assert = require("assert");
+// import User from "./db-test";
+const User = require("./db-test")
 
 describe("saving records", ()=>{
 

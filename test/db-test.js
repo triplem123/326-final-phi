@@ -1,7 +1,10 @@
 // schema.js begins here- editing that file for testing
 
-import { ObjectId } from "mongodb";
-import mongoose, { Promise, connect } from "mongoose";
+// import { ObjectId } from "mongodb";
+let ObjectId = require("mongodb");
+// import mongoose, { Promise, connect } from "mongoose";
+let Promise = require("mongoose");
+let connect = require("mongoose");
 
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;

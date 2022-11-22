@@ -1,4 +1,8 @@
-import mocha from "mocha";
+// import mocha from "mocha";
+
+// this works
+
+const mocha = require("mocha");
 const assert = require("assert");
 
 describe("test test", ()=>{
