@@ -17,7 +17,7 @@ mongoose.connect("mongodb://localhost:3000");
 // creating the schema
 const userSchema = new Schema({
     email: String,
-    emailhash: ObjectId,
+    emailhash: String,
     password: String,
     num_room_layouts: Number,
     room_designs: ObjectId
