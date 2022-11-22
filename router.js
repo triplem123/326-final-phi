@@ -38,8 +38,6 @@ router.get('/getAccInfo', async (req, res) => {
 });
 
 router.post('/saveAccInfo', async (req, res) => {
-    // const Username = req.body.Username, Email_Address = req.body.Email_Address, Password = req.body.Password, Number_of_Rooms_Created = req.body.Number_of_Rooms_Created, Number_of_Room_Layouts_Created = req.body.Number_of_Room_Layouts_Created;
-    // const body = { Username, Email_Address, Password, Number_of_Rooms_Created, Number_of_Room_Layouts_Created };
     fs.writeFileSync(fakeAccDB, JSON.stringify(req.body));
     res.sendStatus(200);
 });
@@ -54,94 +52,30 @@ router.post('/saveBuild', async (req, res) => {
     res.sendStatus(200);
 });
 
+
+// NEW ROUTES THAT ARE NOT TESTED YET
+
+// get the user hash by doing req.url.split("/")[2]
+
+router.get('/getAccInfo/*', async (req, res) => {
+    // get data from mongodb for the user hash (*) and send it
+});
+
+// maybe change to post? idk yet, need to test
+router.put('/updateAcc/*', async (req, res) => {
+    // save req.body to mongodb for the given user hash in req.body
+});
+
+router.post('createAcc/*', async (req, res) => {
+    // create new entry in mongodb for the given user hash in req.body
+});
+
+router.delete('deleteAcc/*', async (req, res) => {
+    // delete the entry in mongodb with the given user hash
+});
+    
+
+
+
+
 module.exports = router;
-
-
-
-
-
-
-
-
-
-
-
-// router.get('/home-loggedin.html', (req, res) => {
-//     res.sendFile(__dirname + '/pages/html/home-loggedin.html');
-// });
-
-// router.get('/guest-room-builder.html', (req, res) => {
-//     res.sendFile(__dirname + '/pages/html/guest-room-builder.html');
-// });
-
-// router.get('/my-rooms.html', (req, res) => {
-//     res.sendFile(__dirname + '/pages/html/my-rooms.html');
-// });
-
-// router.get('/profile.html', (req, res) => {
-//     res.sendFile(__dirname + '/pages/html/profile.html');
-// });
-
-// router.get('/room-builder.html', (req, res) => {
-//     res.sendFile(__dirname + '/pages/html/room-builder.html');
-// });
-
-// router.get('/home-notloggedin.css', (req, res) => {
-//     res.sendFile(__dirname + '/pages/css/home-notloggedin.css');
-// });
-
-// router.get('/home-loggedin.css', (req, res) => {
-//     res.sendFile(__dirname + '/pages/css/home-loggedin.css');
-// });
-
-// router.get('/guest-room-builder.css', (req, res) => {
-//     res.sendFile(__dirname + '/pages/css/guest-room-builder.css');
-// });
-
-// router.get('/my-rooms.css', (req, res) => {
-//     res.sendFile(__dirname + '/pages/css/my-rooms.css');
-// });
-
-// router.get('/profile.css', (req, res) => {
-//     res.sendFile(__dirname + '/pages/css/profile.css');
-// });
-
-// router.get('/room-builder.css', (req, res) => {
-//     res.sendFile(__dirname + '/pages/css/room-builder.css');
-// });
-
-// router.get('/builder-components.js', (req, res) => {
-//     res.sendFile(__dirname + '/pages/js/builder-components.js');
-// });
-
-// router.get('/guest-builder-components.js', (req, res) => {
-//     res.sendFile(__dirname + '/pages/js/guest-builder-components.js');
-// });
-
-// router.get('/guest-room-builder.js', (req, res) => {
-//     res.sendFile(__dirname + '/pages/js/guest-room-builder.js');
-// });
-
-// router.get('/my-rooms.js', (req, res) => {
-//     res.sendFile(__dirname + '/pages/js/my-rooms.js');
-// });
-
-// router.get('/profile.js', (req, res) => {
-//     res.sendFile(__dirname + '/pages/js/profile.js');
-// });
-
-// router.get('/room-builder.js', (req, res) => {
-//     res.sendFile(__dirname + '/pages/js/room-builder.js');
-// });
-
-// router.get('/signup-popup.js', (req, res) => {
-//     res.sendFile(__dirname + '/pages/js/signup-popup.js');
-// });
-
-// router.get('/server_demo.js', (req, res) => {
-//     res.sendFile(__dirname + '/server/server_demo.js');
-// });
-
-// router.get('/database.js', (req, res) => {
-//     res.sendFile(__dirname + '/server/database.js');
-// });
