@@ -1,4 +1,4 @@
-const { MongoClient } = require("mongodb");
+const { MongoClient, ServerApiVersion } = require("mongodb");
 const connectionString = process.env.ATLAS_URI || "mongodb+srv://phiproject:phiProject@326-phi-project.l6dgjtn.mongodb.net/?retryWrites=true&w=majority";;
 
 // const client = MongoClient;
@@ -12,11 +12,12 @@ async function start() {
     const client = await MongoClient.connect(connectionString, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
+        serverApi: ServerApiVersion.v1,
     });
-    let testDb = await client.db("TestDb").collection('testcollection');
-    console.log(client);
-    dbConnection = client;
-    testDb.insertOne({'test': 'testvalue'});
+    // let testDb = await client.db("TestDb").collection('testcollection');
+    // console.log(client);
+    // dbConnection = client;
+    // testDb.insertOne({'test': 'testvalue'});
 }
 
 start();
