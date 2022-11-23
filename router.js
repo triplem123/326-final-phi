@@ -80,7 +80,7 @@ const dbo = require('./conn.js');
 
 router.put('/db/test', async (req, res) => {
     const dbConnect = dbo.getDb();
-    dbConnect.collection('phiproject').insertOne({'testkey': 'testvalue'}, function (err, result) {
+    dbConnect.collection('testcollection').insertOne({'testkey': 'testvalue'}, function (err, result) {
         if (err) {
           res.status(400).send('Error inserting matches!');
         } else {
