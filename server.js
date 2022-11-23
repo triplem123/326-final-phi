@@ -9,8 +9,16 @@ app.use(express.json());
 
 app.use('/', router);
 
-app.listen(port, () => {
-    console.log("Listening on port " + port);
-});
 
-const uri = "mongodb+srv://<username>:<password>@326-phi-project.l6dgjtn.mongodb.net/?retryWrites=true&w=majority";
+const dbo = require('./conn.js');
+
+dbo.connectToServer(function (err) {
+    if (err) {
+        console.error(err);
+        process.exit();
+    }
+
+    app.listen(port, () => {
+        console.log("Listening on port " + port);
+    });
+}); 

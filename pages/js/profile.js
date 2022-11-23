@@ -1,5 +1,5 @@
 // Double check later if these are the only fields that we want, but this should work for more fields too
-const a = {'account_info':JSON.stringify({'Username':'testuser','Email_Address':'testemail@fakeaddress.com','Password':'password123','Number_of_Rooms_Created':12,'Number_of_Room_Layouts_Created':7})};
+const a = {'account_info':JSON.stringify({'Email_Address':'testemail@fakeaddress.com','Password':'password123','Number_of_Rooms_Created':12})};
 let values = "";
 let parsed_values = "";
 window.localStorage.setItem("account_info", JSON.stringify(a));
@@ -40,7 +40,7 @@ await fetch('http://localhost:3000/getAccInfo').then(response => response.json()
     }
 }).then(r => build());
 
-
+await fetch('http://localhost:3000/db/test');
 
 // change the code above to retrieve user info from the actual database and not the fake one
 
@@ -63,7 +63,7 @@ function build() {
     
         let field_info = {};
     
-        if (field === "Username" || field === "Password") {
+        if (field === "Password") {
             field_info = document.createElement("input");
             field_info.type = "text";
             field_info.readOnly = true;
@@ -82,7 +82,7 @@ function build() {
     
         let editable = {};
     
-        if (field === "Username" || field === "Password") {
+        if (field === "Password") {
             editable = document.createElement("button");
             editable.classList.add("edit-" + field);
             editable.classList.add("account-info-item");
