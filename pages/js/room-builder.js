@@ -57,6 +57,10 @@ const structures = [
 
 const furniture_types = [{"Living-Room": living_room}, {"Bedroom": bedroom}, {"Dining-Room": dining_room}, {"Office": office}, {"Structures": structures}];
 
+if (window.localStorage.getItem("roomName") !== null) {
+    document.getElementById("room-name").value = window.localStorage.getItem("roomName").replaceAll("-", " ");
+}
+
 furniture_types.forEach(obj => {
     const type = Object.keys(obj)[0];
     const furniture_arr = obj[type];

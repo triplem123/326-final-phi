@@ -67,7 +67,7 @@ input {
 
 .page-content {
     width: 100%;
-    min-width: 1140px;
+    min-width: 1360px;
     height: 100%;
     background-color: gray;
 }
@@ -86,7 +86,7 @@ input {
 #room-name {
     float: left;
     padding-left: 20px;
-    width: 420px;
+    width: 620px;
     font-size: 50px;
     color: #337AB7;
 }

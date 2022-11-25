@@ -9,47 +9,18 @@ app.use(express.json());
 
 app.use('/', router);
 
-app.listen(port, () => {
-    console.log("Listening on port " + port);
-});
+const dbo = require('./conn.js');
+const { MongoClient, ServerApiVersion } = require("mongodb");
+const connectionString = process.env.ATLAS_URI || "mongodb+srv://phiproject:phinewpassword@326-phi-project.l6dgjtn.mongodb.net/?retryWrites=true&w=majority";
 
-// const uri = process.env.MONGODB_URI;
+dbo.connectToServer(function (err) {
+    if (err) {
+        console.error(err);
+        console.log("--- EXITING ---");
+        process.exit();
+    }
 
-// // schema.js begins here- editing that file for testing
-
-// import { ObjectId } from "mongodb";
-// import mongoose, { Promise, connect } from "mongoose";
-
-// Promise = global.Promise;
-// // connect("mongodb://localhost:3000/team-phi");
-// // mongoose.connect("mongodb://localhost:3000");
-// // mongoose.connect("mongodb://localhost/team-phi");
-// mongoose.connect("https://roomio-room-builder.herokuapp.com/");
-
-// // creating the schema
-// const userSchema = new mongoose.Schema({
-//     email: String,
-//     emailhash: ObjectId,
-//     password: String,
-//     num_room_layouts: Number,
-//     room_designs: ObjectId
-// });
-// // model from the schema
-// const User = mongoose.model("user", userSchema);
-
-// module.exports = User;
-
-// // building CRUD endpoint
-// var bodyParser = require('body-parser');
-// app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({ extended: true }));
-
-// // saving data to database
-// app.post("/addname", (req, res) => {
-//     var myData = new User(req.body);
-//     myData.save().then(item => {
-//         res.send("item saved to database");
-//     }).catch(err => {
-//         res.status(400).send("unable to save to database");
-//     });
-// });
+    app.listen(port, () => {
+        console.log("Listening on port " + port);
+    });
+}); 
