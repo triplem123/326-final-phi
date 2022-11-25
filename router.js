@@ -1,17 +1,8 @@
 'use strict';
 
-const fs = require('fs');
 const express = require('express');
 const router = express.Router();
 const dbo = require('./conn.js');
-
-// const fakeAccDB = 'fakeaccdb.json';
-
-// fs.open(fakeAccDB, 'r', (err, fd) => {
-//     if (err) {
-//         fs.writeFileSync(fakeAccDB, '{}');
-//     }
-// });
 
 router.get('/', (req, res) => {
     res.sendFile(__dirname + '/pages/html/home-notloggedin.html');
@@ -33,34 +24,9 @@ router.get('/assets/furniture-images/*', (req, res) => {
     res.sendFile(__dirname + req.url);
 });
 
-router.get('/getAccInfo', async (req, res) => {
-    const data = JSON.parse(fs.readFileSync(fakeAccDB));
-    res.send(data);
-});
-
-router.post('/saveAccInfo', async (req, res) => {
-    fs.writeFileSync(fakeAccDB, JSON.stringify(req.body));
-    res.sendStatus(200);
-});
-
-router.get('/getBuild', async (req, res) => {
-    const data = JSON.parse(fs.readFileSync(fakeAccDB));
-    res.send(data);
-});
-
-router.post('/saveBuild', async (req, res) => {
-    fs.writeFileSync(fakeAccDB, JSON.stringify(req.body));
-    res.sendStatus(200);
-});
-
-
-// NEW ROUTES THAT ARE NOT TESTED YET
-
-// get the user hash by doing req.url.split("/")[2]
-
 router.get('/getAccInfo/*', async (req, res) => {
     const db = await dbo.getDb().db("Users").collection("User_Data");
-    const data = await db.findOne({ userhash: "testhash" });
+    const data = await db.findOne({ userhash: req.url.split("/")[2] });
     res.send(data);
 });
 
@@ -76,13 +42,13 @@ router.post('/updateAcc/*', async (req, res) => {
         }
     }
     if (Object.keys(req.body).includes("password")) {
-        db.updateOne({ userhash: "testhash" }, { $set: { Password: req.body.password } }, errorfunc);
+        db.updateOne({ userhash: req.url.split("/")[2] }, { $set: { Password: req.body.password } }, errorfunc);
     }
     if (Object.keys(req.body).includes("Rooms_Created")) { // this isn't changing the value for some reason
-        db.updateOne({ userhash: "testhash" }, { $set: { Rooms_Created: req.body.Rooms_Created } }, errorfunc);
+        db.updateOne({ userhash: req.url.split("/")[2] }, { $set: { Rooms_Created: req.body.Rooms_Created } }, errorfunc);
     }
     if (Object.keys(req.body).includes("rooms")) {
-        db.updateOne({ userhash: "testhash" }, { $set: { rooms: req.body.rooms } }, errorfunc);
+        db.updateOne({ userhash: req.url.split("/")[2] }, { $set: { rooms: req.body.rooms } }, errorfunc);
     }
     res.sendStatus(200);
 });
@@ -122,19 +88,5 @@ router.delete('/deleteAcc/*', async (req, res) => {
         }
     });
 });
-    
-
-
-// router.post('/db/test', async (req, res) => {
-//     const db = await dbo.getDb().db("Users").collection("User_Data");
-//     db.insertOne({'testkey': 'testvalue'}, function (err, result) {
-//         if (err) {
-//           res.status(400).send('Error inserting entry');
-//         } else {
-//           console.log("Succesfully added a new entry");
-//         }
-//       });
-//     res.sendStatus(200);
-// });
 
 module.exports = router;
