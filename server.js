@@ -10,38 +10,18 @@ app.use(express.json());
 app.use('/', router);
 
 
-// const dbo = require('./conn.js');
+const dbo = require('./conn.js');
 const { MongoClient, ServerApiVersion } = require("mongodb");
 const connectionString = process.env.ATLAS_URI || "mongodb+srv://phiproject:phinewpassword@326-phi-project.l6dgjtn.mongodb.net/?retryWrites=true&w=majority";
 
-
-const connectDb = async () => {
-    try {
-        const client = await MongoClient.connect(connectionString, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-        serverApi: ServerApiVersion.v1,
-    });
-        let testDb = await client.db("phiproject").collection('phiproject');
-        console.log(client);
-        testDb.insertOne({'test': 'testvalue'});
-    } catch (err) {
-        console.log(err);
+dbo.connectToServer(function (err) {
+    if (err) {
+        console.error(err);
+        console.log("--- EXITING ---");
+        process.exit();
     }
-}
 
-connectDb();
-
-// dbo.connectToServer(function (err) {
-//     if (err) {
-//         console.error(err);
-//         process.exit();
-//     }
-
-//     app.listen(port, () => {
-//         console.log("Listening on port " + port);
-//     });
-// }); 
-app.listen(port, () => {
-    console.log("Listening on port " + port);
-});
+    app.listen(port, () => {
+        console.log("Listening on port " + port);
+    });
+}); 

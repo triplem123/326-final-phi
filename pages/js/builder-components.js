@@ -1,6 +1,7 @@
 let nextCornerId = 1, nextFurnitureId = 1; // for identifying specific corners and furniture in the builder
 window.localStorage.length > 0 ? restoreFromCache() : init();
 document.getElementsByClassName("reset-design-button")[0].onclick = clearDesign;
+document.getElementsByClassName("save-design-button")[0].onclick = saveDesign;
 
 function init() { // initialization
   const board = document.getElementsByClassName("room-builder-board")[0];
@@ -65,7 +66,6 @@ function dragCorner(elem) { // sets properties for dragging corners
     document.onmousemove = null;
     elem.style.cursor = 'grab';
     cache();
-    saveBuild();
   }
 
   function removeElem(e) {
@@ -76,7 +76,6 @@ function dragCorner(elem) { // sets properties for dragging corners
       makeConnections();
     }
     cache();
-    saveBuild();
   }
 }
 
@@ -89,7 +88,6 @@ function makeConnections() {  // removes the lines and recalculates them wheneve
     connect(div1, div2, "black", "5");
   }
   cache();
-  saveBuild();
 
   function connect(div1, div2, color, thickness) { // creates a line between two divs
 
@@ -177,7 +175,6 @@ function dragFurniture(elem, n) { // sets properties for dragging furniture
   new ResizeObserver(cache).observe(elem);
 
   cache();
-  saveBuild();
 
   function dragMouseDown(e) {
     e = e || window.event;
@@ -225,7 +222,6 @@ function dragFurniture(elem, n) { // sets properties for dragging furniture
     document.onmousemove = null;
     elem.style.cursor = 'grab';
     cache();
-    saveBuild();
   }
 
   function removeElem(e) {
@@ -233,7 +229,6 @@ function dragFurniture(elem, n) { // sets properties for dragging furniture
     e.preventDefault();
     elem.remove();
     cache();
-    saveBuild();
   }
 }
 
@@ -307,19 +302,76 @@ function clearDesign() { // resets the design to the default and clears cache to
   init();
 }
 
-async function saveBuild() {
-  await fetch('http://localhost:3000/getBuild').then(data => data.json()).then (data => {
-    data['corners'] = window.localStorage.corners;
-    data['furniture'] = window.localStorage.furniture;
-    fetch('http://localhost:3000/saveBuild', {
-      method: 'POST',
-      headers: {
-          'Content-type': 'application/json'
-      },
-      body: JSON.stringify(data),
-    }); 
-  });
-}
+// FOR LOCAL USE/TESTING ONLY
 
-// make a function to save the build with a given name either in the database or the one in the room name field
-// this function should also clear local storage so that the current room build is only cached up until the room is saved 
+// async function saveDesign() { // saves the design to the database
+//   const room_name = document.getElementById("room-name").value;
+//   if (room_name.length > 0) {
+//     const room = {
+//       roomName: room_name.replaceAll(" ", "-"),
+//       corners: window.localStorage.getItem("corners"),
+//       furniture: window.localStorage.getItem("furniture")
+//     };
+//     await fetch('http://localhost:3000/getAccInfo/testhash').then(data => data.json()).then(async function(data) {
+      
+//       for (const r of data.rooms) {
+//         if (r.roomName.replaceAll("-", " ") === room_name) {
+//           alert("Please choose a unique room name that is not in use!");
+//           return;
+//         }
+//       }
+
+//       data.rooms.push(room);
+//       data.Rooms_Created = data.rooms.length;
+//       console.log(data);
+//       await fetch('http://localhost:3000/updateAcc/testhash', {
+//         method: 'POST',
+//         headers: {
+//             'Content-type': 'application/json'
+//         },
+//         body: JSON.stringify(data),
+//       }).then(res => {
+//         clearDesign();  // clear the cache after saving the current build
+//         window.open("/my-rooms.html", "_self");
+//       }); 
+//     });
+//   } else {
+//     alert("You need to enter a room name");
+//   }
+// }
+
+async function saveDesign() { // saves the design to the database
+  const room_name = document.getElementById("room-name").value;
+  if (room_name.length > 0) {
+    const room = {
+      roomName: room_name.replaceAll(" ", "-"),
+      corners: window.localStorage.getItem("corners"),
+      furniture: window.localStorage.getItem("furniture")
+    };
+    await fetch('https://roomio-room-builder.herokuapp.com/getAccInfo/testhash').then(data => data.json()).then(async function(data) {
+      
+      for (const r of data.rooms) {
+        if (r.roomName.replaceAll("-", " ") === room_name) {
+          alert("Please choose a unique room name that is not in use!");
+          return;
+        }
+      }
+
+      data.rooms.push(room);
+      data.Rooms_Created = data.rooms.length;
+      console.log(data);
+      await fetch('https://roomio-room-builder.herokuapp.com/updateAcc/testhash', {
+        method: 'POST',
+        headers: {
+            'Content-type': 'application/json'
+        },
+        body: JSON.stringify(data),
+      }).then(res => {
+        clearDesign();  // clear the cache after saving the current build
+        window.open("/my-rooms.html", "_self");
+      }); 
+    });
+  } else {
+    alert("You need to enter a room name");
+  }
+}

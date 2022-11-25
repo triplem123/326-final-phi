@@ -1,37 +1,22 @@
 const { MongoClient, ServerApiVersion } = require("mongodb");
-const connectionString = process.env.ATLAS_URI || "mongodb+srv://phiproject:phiProject@326-phi-project.l6dgjtn.mongodb.net/?retryWrites=true&w=majority";;
-
-// const client = MongoClient;
-// client.connect(connectionString, {
-//     useNewUrlParser: true,
-//     useUnifiedTopology: true,
-// });
+const connectionString = process.env.ATLAS_URI || "mongodb+srv://phiproject:phinewpassword@326-phi-project.l6dgjtn.mongodb.net/?retryWrites=true&w=majority";
 
 let dbConnection;
-async function start() {
-    const client = await MongoClient.connect(connectionString, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-        serverApi: ServerApiVersion.v1,
-    });
-    // let testDb = await client.db("TestDb").collection('testcollection');
-    // console.log(client);
-    // dbConnection = client;
-    // testDb.insertOne({'test': 'testvalue'});
-}
-
-start();
 
 module.exports = {
   connectToServer: async function (callback) {
-    const client = await MongoClient.connect(connectionString, {
+    try {
+      const client = await MongoClient.connect(connectionString, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
-    });
-    let testDb = await client.db("TestDb").collection('testcollection');
-    console.log(client);
-    dbConnection = client;
-    testDb.insertOne({'test': 'testvalue'});
+        serverApi: ServerApiVersion.v1,
+      });
+        dbConnection = client;
+        callback(false);
+    } catch (err) {
+        console.log("error");
+        console.log(err);
+    }
   },
 
   getDb: function () {
