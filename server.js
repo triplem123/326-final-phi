@@ -8,7 +8,6 @@ const mongoose = require('mongoose');
 const session = require('express-session');
 var passport = require('passport');
 var crypto = require('crypto');
-const connection = require('./database');
 const MongoStore = require('connect-mongo')(session);
 
 
@@ -26,7 +25,7 @@ app.use(router);
 require('dotenv').config();
 
 
-const sessionStore = new MongoStore({ mongooseConnection: connection, collection: 'sessions' });
+const sessionStore = new MongoStore({ mongooseConnection: dbo, collection: 'sessions' });
 
 app.use(session({
     secret: process.env.SECRET,
