@@ -9,7 +9,7 @@ async function validUser() {
     }
     if (window.localStorage.hash !== undefined) {
         const hash = window.localStorage.hash;
-        await fetch('http://localhost:3000/getAccInfo/' + hash).then(r => {
+        await fetch('https://roomio-room-builder.herokuapp.com/getAccInfo/' + hash).then(r => {
             if (r.status !== 200) {
                 window.open("/", "_self");
             }
@@ -23,13 +23,13 @@ validUser();
 let parsed_values = "";
 
 // creates a new test account 
-// await fetch('http://localhost:3000/createAcc/testhash', {
+// await fetch('https://roomio-room-builder.herokuapp.com/createAcc/testhash', {
 //     method: 'POST',
 // });
 
 // FOR LOCAL USE/TESTING ONLY
 
-await fetch('http://localhost:3000/getAccInfo/' + window.localStorage.hash).then(response => response.json()).then(v => {
+await fetch('https://roomio-room-builder.herokuapp.com/getAccInfo/' + window.localStorage.hash).then(response => response.json()).then(v => {
     parsed_values = v;
 }).then(r => build());
 
@@ -122,7 +122,7 @@ async function saveCurrentInfo() {
 
     const hash = getHash(parsed_values.Email + '' + parsed_values.Password) + '';
     
-    await fetch('http://localhost:3000/updateAcc/' + window.localStorage.hash, {
+    await fetch('https://roomio-room-builder.herokuapp.com/updateAcc/' + window.localStorage.hash, {
         method: 'POST',
         headers: {
             'Content-type': 'application/json'
@@ -140,7 +140,7 @@ async function saveCurrentInfo() {
     // });
 
     // DELETE
-    // await fetch('http://localhost:3000/deleteAcc/testhash', {
+    // await fetch('https://roomio-room-builder.herokuapp.com/deleteAcc/testhash', {
     //     method: 'DELETE',
     // });
 

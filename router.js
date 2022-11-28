@@ -5,12 +5,6 @@
 const express = require('express');
 const router = express.Router();
 const dbo = require('./conn.js');
-// const validUser = require('./pages/js/home-notloggedin.js');
-
-// router.get('/login', (req, res) => {
-//     console.log("called");
-//     validUser();
-// });
 
 router.get('/', (req, res) => {
     res.sendFile(__dirname + '/pages/html/home-notloggedin.html');

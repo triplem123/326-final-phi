@@ -312,7 +312,7 @@ async function saveDesign() { // saves the design to the database
       corners: window.localStorage.getItem("corners"),
       furniture: window.localStorage.getItem("furniture")
     };
-    await fetch('http://localhost:3000/getAccInfo/' + window.localStorage.hash).then(data => data.json()).then(async function(data) {
+    await fetch('https://roomio-room-builder.herokuapp.com/getAccInfo/' + window.localStorage.hash).then(data => data.json()).then(async function(data) {
       
       for (const r of data.rooms) {
         if (r.roomName.replaceAll("-", " ") === room_name) {
@@ -324,7 +324,7 @@ async function saveDesign() { // saves the design to the database
       data.rooms.push(room);
       data.Rooms_Created = data.rooms.length;
       console.log(data);
-      await fetch('http://localhost:3000/updateAcc/' + window.localStorage.hash, {
+      await fetch('https://roomio-room-builder.herokuapp.com/updateAcc/' + window.localStorage.hash, {
         method: 'POST',
         headers: {
             'Content-type': 'application/json'

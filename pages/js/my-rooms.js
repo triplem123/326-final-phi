@@ -9,7 +9,7 @@ async function validUser() {
     }
     if (window.localStorage.hash !== undefined) {
         const hash = window.localStorage.hash;
-        await fetch('http://localhost:3000/getAccInfo/' + hash).then(r => {
+        await fetch('https://roomio-room-builder.herokuapp.com/getAccInfo/' + hash).then(r => {
             if (r.status !== 200) {
                 window.open("/", "_self");
             }
@@ -32,7 +32,7 @@ let rooms = [];
 
 // FOR LOCAL USE/TESTING ONLY
 
-await fetch('http://localhost:3000/getAccInfo/' + window.localStorage.hash).then(response => response.json()).then(v => {
+await fetch('https://roomio-room-builder.herokuapp.com/getAccInfo/' + window.localStorage.hash).then(response => response.json()).then(v => {
     rooms = v.rooms;
 });
 
@@ -120,7 +120,7 @@ document.getElementsByClassName("delete-rooms")[0].addEventListener("click", asy
     
     // FOR LOCAL USE/TESTING ONLY
     
-    await fetch('http://localhost:3000/getAccInfo/' + window.localStorage.hash).then(response => response.json()).then(async (user) => {
+    await fetch('https://roomio-room-builder.herokuapp.com/getAccInfo/' + window.localStorage.hash).then(response => response.json()).then(async (user) => {
         // console.log(user);
         [...document.getElementsByClassName("selected")].forEach(elem => {
 
@@ -129,7 +129,7 @@ document.getElementsByClassName("delete-rooms")[0].addEventListener("click", asy
             elem.remove();
         });
 
-        await fetch('http://localhost:3000/updateAcc/' + window.localStorage.hash, {
+        await fetch('https://roomio-room-builder.herokuapp.com/updateAcc/' + window.localStorage.hash, {
             method: 'POST',
             headers: {
                 'Content-type': 'application/json'

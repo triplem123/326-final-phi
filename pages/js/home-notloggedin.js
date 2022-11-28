@@ -9,7 +9,7 @@ function getHash(str) {
 
 async function validUser() {
     const hash = getHash(document.getElementById("input-username").value + '' + document.getElementById("input-password").value);
-    await fetch('http://localhost:3000/getAccInfo/' + hash).then(r => {
+    await fetch('https://roomio-room-builder.herokuapp.com/getAccInfo/' + hash).then(r => {
         if (r.status === 200) {
             window.localStorage.setItem("hash", hash + '');
             window.open("/home-loggedin.html", "_self");
@@ -30,7 +30,7 @@ async function loggedIn() {
     }
     if (window.localStorage.hash !== undefined) {
         const hash = window.localStorage.hash;
-        await fetch('http://localhost:3000/getAccInfo/' + hash).then(r => {
+        await fetch('https://roomio-room-builder.herokuapp.com/getAccInfo/' + hash).then(r => {
             if (r.status === 200) {
                 window.open("/home-loggedin.html", "_self");
             }

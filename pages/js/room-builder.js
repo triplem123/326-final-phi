@@ -9,7 +9,7 @@ async function validUser() {
     }
     if (window.localStorage.hash !== undefined) {
         const hash = window.localStorage.hash;
-        await fetch('http://localhost:3000/getAccInfo/' + hash).then(r => {
+        await fetch('https://roomio-room-builder.herokuapp.com/getAccInfo/' + hash).then(r => {
             if (r.status !== 200) {
                 window.open("/", "_self");
             }
