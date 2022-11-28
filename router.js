@@ -90,7 +90,3 @@ router.delete('/deleteAcc/*', async (req, res) => {
 });
 
 module.exports = router;
-
-
-
-
