@@ -12,6 +12,7 @@ User_Data document: {
     } }
 }
 
+
 Home page for non logged-in users:
 ![image](homepage-notloggedin.png)
 
