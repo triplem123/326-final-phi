@@ -1,8 +1,16 @@
 'use strict';
 
+// import { validUser } from './pages/js/home-notloggedin.js';
+
 const express = require('express');
 const router = express.Router();
 const dbo = require('./conn.js');
+// const validUser = require('./pages/js/home-notloggedin.js');
+
+// router.get('/login', (req, res) => {
+//     console.log("called");
+//     validUser();
+// });
 
 router.get('/', (req, res) => {
     res.sendFile(__dirname + '/pages/html/home-notloggedin.html');
@@ -27,7 +35,7 @@ router.get('/assets/furniture-images/*', (req, res) => {
 router.get('/getAccInfo/*', async (req, res) => {
     const db = await dbo.getDb().db("Users").collection("User_Data");
     const data = await db.findOne({ userhash: req.url.split("/")[2] });
-    res.send(data);
+    data === null ? res.status(400).send('Not a valid user hash') : res.send(data);
 });
 
 // maybe change to post? idk yet, need to test
@@ -49,6 +57,9 @@ router.post('/updateAcc/*', async (req, res) => {
     }
     if (Object.keys(req.body).includes("rooms")) {
         db.updateOne({ userhash: req.url.split("/")[2] }, { $set: { rooms: req.body.rooms } }, errorfunc);
+    }
+    if (Object.keys(req.body).includes("userhash")) {
+        db.updateOne({ userhash: req.url.split("/")[2] }, { $set: { userhash: req.body.userhash } }, errorfunc);
     }
     res.sendStatus(200);
 });

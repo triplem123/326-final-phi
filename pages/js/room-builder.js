@@ -1,3 +1,32 @@
+async function validUser() {
+    function getHash(str) {
+        let hash = 0;
+        for (let i = 0; i < str.length; i++) {
+            hash = (hash << 5) - hash + str.charCodeAt(i);
+            hash = hash & hash; 
+        }
+        return hash & 0xffff;
+    }
+    if (window.localStorage.hash !== undefined) {
+        const hash = window.localStorage.hash;
+        await fetch('http://localhost:3000/getAccInfo/' + hash).then(r => {
+            if (r.status !== 200) {
+                window.open("/", "_self");
+            }
+        });
+    } else {
+        window.open("/", "_self");
+    }
+}
+validUser();
+
+function logout() {
+    delete window.localStorage["hash"];
+    window.open("/", "_self");
+}
+
+document.getElementById("logout").addEventListener("click", event => logout());
+
 import { setFurnitureProperty } from "./builder-components.js";
 
 const grid = document.getElementById("furniture-grid-container");
@@ -99,18 +128,18 @@ furniture_types.forEach(obj => {
 
     // event listener function for making ui items visible/invisible
     function changeVisibility(target) {
-    let classList = document.getElementsByClassName(target.classList[0] + " container-for-new-draggable-ui-items")[0].classList;
-    if (classList.contains("--inactive")) {
-        const documents = document.getElementsByClassName("container-for-new-draggable-ui-items");
-        for (let i = 0; i < documents.length; ++i) {
-            const doc = documents[i];
-            if (!doc.classList.contains("--inactive")) {
-                doc.classList.add("--inactive");
+        let classList = document.getElementsByClassName(target.classList[0] + " container-for-new-draggable-ui-items")[0].classList;
+        if (classList.contains("--inactive")) {
+            const documents = document.getElementsByClassName("container-for-new-draggable-ui-items");
+            for (let i = 0; i < documents.length; ++i) {
+                const doc = documents[i];
+                if (!doc.classList.contains("--inactive")) {
+                    doc.classList.add("--inactive");
+                }
             }
-        }
 
-        classList.remove("--inactive");
-    }
+            classList.remove("--inactive");
+        }
     }
 });
 

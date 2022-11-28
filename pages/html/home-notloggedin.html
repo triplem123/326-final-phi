@@ -5,8 +5,9 @@
         <title>Home - Roomio</title>
         <link rel="stylesheet" href="/home-notloggedin.css">
         <script src="signup-popup.js"></script>
+        <script src="home-notloggedin.js"></script>
     </head>
-    <body>
+    <body onload="loggedIn()">
         <h1 class="heading">
             <a href="/" id="header">
                 Welcome to Roomio!
@@ -24,15 +25,18 @@
             <input 
                 type="text" 
                 class="input-username"
+                id="input-username"
                 placeholder="Enter Email">
             <br>
             <input 
                 type="password" 
                 class="input-password"
+                id="input-password"
                 placeholder="Enter Password">
             <br>
             <br>
-            <a href="/home-loggedin.html" id="button-login-button">Login</a>
+            <button id="button-login-button" onclick="validUser()">Login</button>
+            <!-- <a href="/login" id="button-login-button">Login</a> -->
             <label class="or-guest">or</label>
             <a href="/guest-room-builder.html" id="button-guest-button">Proceed as Guest</a>
             <br><br><br>
@@ -100,7 +104,7 @@
                     Click on the pieces of furniture on the left to customize your room
                 </li>
                 <li>
-                    Resize by pulling from the bottom right or delete the piece by a right cl
+                    Resize by pulling from the bottom right or delete the piece by a right click
                 </li>
             </ul>
         </div>

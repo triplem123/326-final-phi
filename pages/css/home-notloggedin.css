@@ -43,16 +43,15 @@ button {
 
 #button-login-button{
     color: aliceblue;
-    color: aliceblue;
     border-radius: 5px;
     border: 0px;
-    height: 50px;
+    height: 42px;
     width: fit-content;
     font-size: 23px;
     font-family: Arial, Helvetica, sans-serif;
-    margin: 7px;
-    margin-top: 35px;
-    margin-bottom: 50px;
+    margin: 5px;
+    /* margin-top: 35px;
+    margin-bottom: 50px; */
     padding: 8px;
 }
 
@@ -99,8 +98,6 @@ button:hover{
 
 a:link{
     text-decoration: none;
-    /* color: black; */
-    
 }
 
 #myForm {
@@ -149,8 +146,6 @@ a:link{
 
 .about{
     text-align: center;
-    /* padding-left: 25%; */
-    /* padding-top: 50px; */
     font-size: 200%;
     font-family: 'Courier New', Courier, monospace;
     color: aliceblue;
@@ -164,8 +159,6 @@ a:link{
 
 .loading{
     text-align: center;
-    /* padding-left: 25%; */
-    /* padding-top: 50px; */
     font-size: 200%;
     font-family: 'Courier New', Courier, monospace;
     color: aliceblue;
@@ -179,8 +172,6 @@ a:link{
 
 .customize{
     text-align: center;
-    /* padding-left: 25%; */
-    /* padding-top: 50px; */
     font-size: 200%;
     font-family: 'Courier New', Courier, monospace;
     color: aliceblue;
