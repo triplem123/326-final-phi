@@ -304,42 +304,6 @@ function clearDesign() { // resets the design to the default and clears cache to
 
 // FOR LOCAL USE/TESTING ONLY
 
-// async function saveDesign() { // saves the design to the database
-//   const room_name = document.getElementById("room-name").value;
-//   if (room_name.length > 0) {
-//     const room = {
-//       roomName: room_name.replaceAll(" ", "-"),
-//       corners: window.localStorage.getItem("corners"),
-//       furniture: window.localStorage.getItem("furniture")
-//     };
-//     await fetch('http://localhost:3000/getAccInfo/testhash').then(data => data.json()).then(async function(data) {
-      
-//       for (const r of data.rooms) {
-//         if (r.roomName.replaceAll("-", " ") === room_name) {
-//           alert("Please choose a unique room name that is not in use!");
-//           return;
-//         }
-//       }
-
-//       data.rooms.push(room);
-//       data.Rooms_Created = data.rooms.length;
-//       console.log(data);
-//       await fetch('http://localhost:3000/updateAcc/testhash', {
-//         method: 'POST',
-//         headers: {
-//             'Content-type': 'application/json'
-//         },
-//         body: JSON.stringify(data),
-//       }).then(res => {
-//         clearDesign();  // clear the cache after saving the current build
-//         window.open("/my-rooms.html", "_self");
-//       }); 
-//     });
-//   } else {
-//     alert("You need to enter a room name");
-//   }
-// }
-
 async function saveDesign() { // saves the design to the database
   const room_name = document.getElementById("room-name").value;
   if (room_name.length > 0) {
@@ -348,7 +312,7 @@ async function saveDesign() { // saves the design to the database
       corners: window.localStorage.getItem("corners"),
       furniture: window.localStorage.getItem("furniture")
     };
-    await fetch('https://roomio-room-builder.herokuapp.com/getAccInfo/testhash').then(data => data.json()).then(async function(data) {
+    await fetch('https://roomio-room-builder.herokuapp.com/getAccInfo/' + window.localStorage.hash).then(data => data.json()).then(async function(data) {
       
       for (const r of data.rooms) {
         if (r.roomName.replaceAll("-", " ") === room_name) {
@@ -360,7 +324,7 @@ async function saveDesign() { // saves the design to the database
       data.rooms.push(room);
       data.Rooms_Created = data.rooms.length;
       console.log(data);
-      await fetch('https://roomio-room-builder.herokuapp.com/updateAcc/testhash', {
+      await fetch('https://roomio-room-builder.herokuapp.com/updateAcc/' + window.localStorage.hash, {
         method: 'POST',
         headers: {
             'Content-type': 'application/json'
@@ -375,3 +339,39 @@ async function saveDesign() { // saves the design to the database
     alert("You need to enter a room name");
   }
 }
+
+// async function saveDesign() { // saves the design to the database
+//   const room_name = document.getElementById("room-name").value;
+//   if (room_name.length > 0) {
+//     const room = {
+//       roomName: room_name.replaceAll(" ", "-"),
+//       corners: window.localStorage.getItem("corners"),
+//       furniture: window.localStorage.getItem("furniture")
+//     };
+//     await fetch('https://roomio-room-builder.herokuapp.com/getAccInfo/testhash').then(data => data.json()).then(async function(data) {
+      
+//       for (const r of data.rooms) {
+//         if (r.roomName.replaceAll("-", " ") === room_name) {
+//           alert("Please choose a unique room name that is not in use!");
+//           return;
+//         }
+//       }
+
+//       data.rooms.push(room);
+//       data.Rooms_Created = data.rooms.length;
+//       console.log(data);
+//       await fetch('https://roomio-room-builder.herokuapp.com/updateAcc/testhash', {
+//         method: 'POST',
+//         headers: {
+//             'Content-type': 'application/json'
+//         },
+//         body: JSON.stringify(data),
+//       }).then(res => {
+//         clearDesign();  // clear the cache after saving the current build
+//         window.open("/my-rooms.html", "_self");
+//       }); 
+//     });
+//   } else {
+//     alert("You need to enter a room name");
+//   }
+// }

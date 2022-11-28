@@ -1,15 +1,44 @@
+async function validUser() {
+    function getHash(str) {
+        let hash = 0;
+        for (let i = 0; i < str.length; i++) {
+            hash = (hash << 5) - hash + str.charCodeAt(i);
+            hash = hash & hash; 
+        }
+        return hash & 0xffff;
+    }
+    if (window.localStorage.hash !== undefined) {
+        const hash = window.localStorage.hash;
+        await fetch('https://roomio-room-builder.herokuapp.com/getAccInfo/' + hash).then(r => {
+            if (r.status !== 200) {
+                window.open("/", "_self");
+            }
+        });
+    } else {
+        window.open("/", "_self");
+    }
+}
+validUser();
+
+function logout() {
+    delete window.localStorage["hash"];
+    window.open("/", "_self");
+}
+
+document.getElementById("logout").addEventListener("click", event => logout());
+
 const grid = document.getElementById("room-layout-board");
 let rooms = [];
 
 // FOR LOCAL USE/TESTING ONLY
 
-// await fetch('http://localhost:3000/getAccInfo/testhash').then(response => response.json()).then(v => {
-//     rooms = v.rooms;
-// });
-
-await fetch('https://roomio-room-builder.herokuapp.com/getAccInfo/testhash').then(response => response.json()).then(v => {
+await fetch('https://roomio-room-builder.herokuapp.com/getAccInfo/' + window.localStorage.hash).then(response => response.json()).then(v => {
     rooms = v.rooms;
 });
+
+// await fetch('https://roomio-room-builder.herokuapp.com/getAccInfo/testhash').then(response => response.json()).then(v => {
+//     rooms = v.rooms;
+// });
 
 rooms.forEach((room_obj) => {
     const room = room_obj.roomName;
@@ -60,7 +89,11 @@ b.type = "button";
 b.classList.add("create-new-room");
 b.classList.add("folder-button");
 b.innerText = "Create New Room";
-b.onclick = window.localStorage.clear();
+b.onclick = () => {
+    delete window.localStorage['roomName'];
+    delete window.localStorage['corners'];
+    delete window.localStorage['furniture'];
+}
 
 const d = document.createElement('a');
 d.href = "/room-builder.html";
@@ -87,26 +120,7 @@ document.getElementsByClassName("delete-rooms")[0].addEventListener("click", asy
     
     // FOR LOCAL USE/TESTING ONLY
     
-    // await fetch('http://localhost:3000/getAccInfo/testhash').then(response => response.json()).then(async (user) => {
-    //     // console.log(user);
-    //     [...document.getElementsByClassName("selected")].forEach(elem => {
-
-    //         const name = elem.classList[0];
-    //         user.rooms = user.rooms.filter(r => r.roomName !== name);
-    //         elem.remove();
-    //     });
-
-    //     await fetch('http://localhost:3000/updateAcc/testhash', {
-    //         method: 'POST',
-    //         headers: {
-    //             'Content-type': 'application/json'
-    //         },
-    //         body: JSON.stringify({ 'rooms': user.rooms,
-    //                                 'Rooms_Created': user.rooms.length }),
-    //     });
-    // }); 
-
-    await fetch('https://roomio-room-builder.herokuapp.com/getAccInfo/testhash').then(response => response.json()).then(async (user) => {
+    await fetch('https://roomio-room-builder.herokuapp.com/getAccInfo/' + window.localStorage.hash).then(response => response.json()).then(async (user) => {
         // console.log(user);
         [...document.getElementsByClassName("selected")].forEach(elem => {
 
@@ -115,7 +129,7 @@ document.getElementsByClassName("delete-rooms")[0].addEventListener("click", asy
             elem.remove();
         });
 
-        await fetch('https://roomio-room-builder.herokuapp.com/updateAcc/testhash', {
+        await fetch('https://roomio-room-builder.herokuapp.com/updateAcc/' + window.localStorage.hash, {
             method: 'POST',
             headers: {
                 'Content-type': 'application/json'
@@ -123,5 +137,24 @@ document.getElementsByClassName("delete-rooms")[0].addEventListener("click", asy
             body: JSON.stringify({ 'rooms': user.rooms,
                                     'Rooms_Created': user.rooms.length }),
         });
-    });
+    }); 
+
+    // await fetch('https://roomio-room-builder.herokuapp.com/getAccInfo/testhash').then(response => response.json()).then(async (user) => {
+    //     // console.log(user);
+    //     [...document.getElementsByClassName("selected")].forEach(elem => {
+
+    //         const name = elem.classList[0];
+    //         user.rooms = user.rooms.filter(r => r.roomName !== name);
+    //         elem.remove();
+    //     });
+
+    //     await fetch('https://roomio-room-builder.herokuapp.com/updateAcc/testhash', {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-type': 'application/json'
+    //         },
+    //         body: JSON.stringify({ 'rooms': user.rooms,
+    //                                 'Rooms_Created': user.rooms.length }),
+    //     });
+    // });
 });
