@@ -167,7 +167,7 @@ export function setFurnitureProperty(div, type) {
 }
 
 function dragFurniture(elem, n) { // sets properties for dragging furniture
-  let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+  let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0, moved = false;
   elem.onmousedown = dragMouseDown;
   elem.oncontextmenu = removeElem; // right click
   elem = n;
@@ -191,6 +191,8 @@ function dragFurniture(elem, n) { // sets properties for dragging furniture
   function elementDrag(e) {
     e = e || window.event;
     e.preventDefault();
+
+    moved = true;
 
     pos1 = pos3 - e.pageX;
     pos2 = pos4 - e.pageY;
@@ -221,6 +223,15 @@ function dragFurniture(elem, n) { // sets properties for dragging furniture
     document.onmouseup = null;
     document.onmousemove = null;
     elem.style.cursor = 'grab';
+
+    if (!moved) {
+      let deg = elem.style.rotate.split("d")[0];
+      deg = deg.length === 0 ? 0 : +deg;
+      deg += 90;
+      elem.style.rotate = deg + "deg";
+    }
+    moved = false;
+
     cache();
   }
 
