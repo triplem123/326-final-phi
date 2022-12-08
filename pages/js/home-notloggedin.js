@@ -20,9 +20,6 @@ async function validUser() {
 }
 
 async function loggedIn() {
-    await fetch('https://roomio-room-builder.herokuapp.com/createAcc/34933', {
-        method: 'POST',
-    });
     function getHash(str) {
         let hash = 0;
         for (let i = 0; i < str.length; i++) {
