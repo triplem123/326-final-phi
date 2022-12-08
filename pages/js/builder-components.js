@@ -323,10 +323,13 @@ async function saveDesign() { // saves the design to the database
     };
     await fetch('https://roomio-room-builder.herokuapp.com/getAccInfo/' + window.localStorage.hash).then(data => data.json()).then(async function(data) {
       
-      for (const r of data.rooms) {
+      for (let i = 0; i < data.rooms.length; ++i) {
+        let r = data.rooms[i];
         if (r.roomName.replaceAll("-", " ") === room_name) {
-          if (!confirm("Please choose a unique room name that is not in use!")) {
+          if (!confirm("This name is already in use! Would you like to overwrite that layout with this new one?")) {
             return;
+          } else {
+            data.rooms = data.rooms.splice(i, 1);
           }
         }
       }
