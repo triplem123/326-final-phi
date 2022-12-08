@@ -333,7 +333,7 @@ async function saveDesign() { // saves the design to the database
           arr.push(r);
         }
       }
-      data.rooms = r;
+      data.rooms = arr;
 
       data.rooms.push(room);
       data.Rooms_Created = data.rooms.length;
