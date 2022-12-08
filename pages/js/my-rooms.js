@@ -158,3 +158,28 @@ document.getElementsByClassName("delete-rooms")[0].addEventListener("click", asy
     //     });
     // });
 });
+
+
+// share button
+// document.getElementsByClassName("share-rooms")[0].addEventListener("click", () =>{
+//     const post_url = encodeURI(document.getElementById("select-rooms").href);
+//     const post_title = encodeURI(document.getElementById("select-rooms").href);
+//     // document.getElementById("select-rooms")
+//     document.getElementsByClassName("select-rooms").setAttribute(
+//         "href", `https://www.twitter.com/share?url=${post_url}&text=${post_title}`
+//     );
+// });
+
+document.getElementsByClassName("share-rooms").addEventListener("click", () =>{
+    document.getElementById("select-rooms").classList.toggle("active");
+});
+
+// save image button
+function screenshot() {
+    html2canvas(document.getElementsByClassName("save-rooms").body).then((canvas) =>{
+        let a = document.createElement("a");
+        a.download = "room.png";
+        a.href = canvas.toDataURL("image/png");
+        a.click();
+    });
+}
