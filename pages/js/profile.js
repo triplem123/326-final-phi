@@ -23,9 +23,9 @@ validUser();
 let parsed_values = "";
 
 // creates a new test account 
-await fetch('https://roomio-room-builder.herokuapp.com/createAcc/34933', {
-    method: 'POST',
-});
+// await fetch('https://roomio-room-builder.herokuapp.com/createAcc/34933', {
+//     method: 'POST',
+// });
 
 // FOR LOCAL USE/TESTING ONLY
 
