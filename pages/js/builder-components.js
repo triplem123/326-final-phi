@@ -322,17 +322,18 @@ async function saveDesign() { // saves the design to the database
       furniture: window.localStorage.getItem("furniture")
     };
     await fetch('https://roomio-room-builder.herokuapp.com/getAccInfo/' + window.localStorage.hash).then(data => data.json()).then(async function(data) {
-      
+      let arr = [];
       for (let i = 0; i < data.rooms.length; ++i) {
         let r = data.rooms[i];
         if (r.roomName.replaceAll("-", " ") === room_name) {
           if (!confirm("This name is already in use! Would you like to overwrite that layout with this new one?")) {
             return;
-          } else {
-            data.rooms = data.rooms.splice(i, 1);
           }
+        } else {
+          arr.push(r);
         }
       }
+      data.rooms = r;
 
       data.rooms.push(room);
       data.Rooms_Created = data.rooms.length;
