@@ -29,7 +29,7 @@ const session = {
 
 const strategy = new LocalStrategy(
     async (username, password, done) => {
-        if (!findUser(username)) {
+        if (!findUser(username, password)) {
             // no such user
             await new Promise((r) => setTimeout(r, 2000)); // two second delay
             return done(null, false, { 'message': 'Wrong username' });
@@ -78,7 +78,8 @@ app.use(express.json()); // allow JSON inputs
 app.use(express.urlencoded({ 'extended': true })); // allow URLencoded data
 
 // Returns true iff the user's userhash exists.
-async function findUser(userhash) {
+async function findUser(username, password) {
+    const userhash = mc.hash(username + password)[1];
     const db = await dbo.getDb().db("Users").collection("User_Data");
     const data = await db.findOne({ userhash: userhash });
     return data === null ? false : true;
@@ -86,7 +87,7 @@ async function findUser(userhash) {
 
 // Returns true iff the password is the one we have stored.
 function validatePassword(name, pwd) {
-    if (!findUser(name)) {
+    if (!findUser(name, pwd)) {
         return false;
     }
     if (mc.check(pwd, users[name][0], users[name][1])) {
@@ -147,7 +148,7 @@ app.post('/login',
     passport.authenticate('local', {     // use username/password authentication
         'successRedirect': __dirname + '/pages/html/home-loggedin.html',   // when we login, go to /private 
         'failureRedirect': __dirname + '/pages/html/home-notloggedin.html'      // otherwise, back to login
-    }));
+    }), (req, res) => {  });
 
 // Handle the URL /login (just output the login.html file).
 app.get('/login',
@@ -167,8 +168,6 @@ app.get('/logout', (req, res) => {
 // Use res.redirect to change URLs.
 app.post('/register',
     (req, res) => {
-        console.log("made it to register post route");
-        console.log(req.body);
         const username = req.body['username'];
         const password = req.body['password'];
         if (addUser(username, password)) {
@@ -178,7 +177,7 @@ app.post('/register',
         }
     });
 
-// // Register URL
+// Register URL
 app.get('/register',
     (req, res) => res.sendFile('/pages/html/home-notloggedin.html',
         { 'root': __dirname }));
