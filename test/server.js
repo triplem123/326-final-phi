@@ -1,4 +1,3 @@
-/*
 'use strict';
 
 
@@ -8,12 +7,12 @@ import fs from "fs";
 import { default as mongodb } from "mongodb";
 import dotenv from "dotenv";
 let ObjectId = require("mongodb");
-const router = require('./router');
+const router = require('../router');
 
 
 app.use('/', router);
 
-const dbo = require('./conn.js');
+const dbo = require('../conn.js');
 const { MongoClient, ServerApiVersion } = require("mongodb");
 const connectionString = process.env.ATLAS_URI || "mongodb+srv://phiproject:phinewpassword@326-phi-project.l6dgjtn.mongodb.net/?retryWrites=true&w=majority";
 
@@ -32,7 +31,7 @@ dbo.connectToServer(function (err) {
 
     const MongoClient = mongodb.MongoClient;
 
-    const minicrypt = require('./miniCrypt');
+    const minicrypt = require('../miniCrypt');
     const mc = new minicrypt();
 
     const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -291,4 +290,3 @@ dbo.connectToServer(function (err) {
         console.log(`App now listening at http://localhost:${port}`);
     });
 }); 
-*/

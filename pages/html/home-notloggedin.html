@@ -5,9 +5,8 @@
         <title>Home - Roomio</title>
         <link rel="stylesheet" href="/home-notloggedin.css">
         <script src="signup-popup.js"></script>
-        <script src="home-notloggedin.js"></script>
     </head>
-    <body onload="loggedIn()">
+    <body>
         <h1 class="heading">
             <a href="/" id="header">
                 Welcome to Roomio!
@@ -61,7 +60,7 @@
                     <label><b>Password</b></label>
                     <input type="password" placeholder="Enter Password" id="signup-password" required>
             
-                    <button type="submit" class="login-button">Sign up</button>
+                    <button type="submit" class="login-button" onclick="signUp()">Sign up</button>
                     <button type="button" class="cancel-button" onclick="closeForm()">Close</button>
                 </form>
             </div>

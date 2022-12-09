@@ -10,14 +10,14 @@
 ​
   If you'd like to learn more about the theory and maths behind cryptography, then take 466 next semester. Great professor.
 */
-​
-import * as c from 'crypto';
-//const c = require('crypto');
+
+// import * as c from 'crypto';
+const c = require('crypto');
 /**
   @module miniCrypt
   @desc A tiny crypto lib for the 326 kids.
 */
-​
+
 class MiniCrypt {
   /**
     @constructor
@@ -33,7 +33,7 @@ class MiniCrypt {
     this.saltL = saltL;
     this.digest = digest;
   }
-​
+
   /**
     @public
     @memberof MiniCrypt
@@ -46,7 +46,7 @@ class MiniCrypt {
         hash = c.pbkdf2Sync(pw, salt, this.its, this.keyL, this.digest).toString('hex'); // hash the pw
 	return [salt, hash]; // return the pair for safe storage
   };
-​
+
   /**
     @public
     @memberof MiniCrypt
@@ -60,5 +60,5 @@ class MiniCrypt {
     return c.timingSafeEqual(c.pbkdf2Sync(pw, salt, this.its, this.keyL, this.digest), Buffer.from(hash, 'hex'));
   };
 }
-​
-export { MiniCrypt };
+
+module.exports = MiniCrypt;
