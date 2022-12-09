@@ -32,9 +32,9 @@ Account info for sample account:
 - Password: pass
 
 Workload breakdown:
-Mac: Added routing, polishing server.js, connection between the app and database, user schema
-Aryun: Set up mongodb, connecting to database, testing database, user schema and cleanup
-Afsaana: login authentication and related bug fixing
+- Mac: Added routing, polishing server.js, connection between the app and database, user schema
+- Aryun: Set up mongodb, connecting to database, testing database, user schema and cleanup
+- Afsaana: login authentication and related bug fixing
 
 Notes:
 - We had issues with hiding the DB URI, and we're still trying to get that to work (will likely be coming into office hours)
