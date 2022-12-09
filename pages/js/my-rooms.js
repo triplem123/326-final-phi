@@ -159,7 +159,6 @@ document.getElementsByClassName("delete-rooms")[0].addEventListener("click", asy
     // });
 });
 
-
 // share button
 // document.getElementsByClassName("share-rooms")[0].addEventListener("click", () =>{
 //     const post_url = encodeURI(document.getElementById("select-rooms").href);

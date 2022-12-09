@@ -167,7 +167,7 @@ export function setFurnitureProperty(div, type) {
 }
 
 function dragFurniture(elem, n) { // sets properties for dragging furniture
-  let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+  let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0, moved = false;
   elem.onmousedown = dragMouseDown;
   elem.oncontextmenu = removeElem; // right click
   elem = n;
@@ -191,6 +191,8 @@ function dragFurniture(elem, n) { // sets properties for dragging furniture
   function elementDrag(e) {
     e = e || window.event;
     e.preventDefault();
+
+    moved = true;
 
     pos1 = pos3 - e.pageX;
     pos2 = pos4 - e.pageY;
@@ -221,6 +223,15 @@ function dragFurniture(elem, n) { // sets properties for dragging furniture
     document.onmouseup = null;
     document.onmousemove = null;
     elem.style.cursor = 'grab';
+
+    if (!moved) {
+      let deg = elem.style.rotate.split("d")[0];
+      deg = (deg.length === 0 || deg === '360') ? 0 : +deg;
+      deg += 90;
+      elem.style.rotate = deg + "deg";
+    }
+    moved = false;
+
     cache();
   }
 
@@ -302,8 +313,6 @@ function clearDesign() { // resets the design to the default and clears cache to
   init();
 }
 
-// FOR LOCAL USE/TESTING ONLY
-
 async function saveDesign() { // saves the design to the database
   const room_name = document.getElementById("room-name").value;
   if (room_name.length > 0) {
@@ -313,13 +322,18 @@ async function saveDesign() { // saves the design to the database
       furniture: window.localStorage.getItem("furniture")
     };
     await fetch('https://roomio-room-builder.herokuapp.com/getAccInfo/' + window.localStorage.hash).then(data => data.json()).then(async function(data) {
-      
-      for (const r of data.rooms) {
+      let arr = [];
+      for (let i = 0; i < data.rooms.length; ++i) {
+        let r = data.rooms[i];
         if (r.roomName.replaceAll("-", " ") === room_name) {
-          alert("Please choose a unique room name that is not in use!");
-          return;
+          if (!confirm("This name is already in use! Would you like to overwrite that layout with this new one?")) {
+            return;
+          }
+        } else {
+          arr.push(r);
         }
       }
+      data.rooms = arr;
 
       data.rooms.push(room);
       data.Rooms_Created = data.rooms.length;
@@ -339,39 +353,3 @@ async function saveDesign() { // saves the design to the database
     alert("You need to enter a room name");
   }
 }
-
-// async function saveDesign() { // saves the design to the database
-//   const room_name = document.getElementById("room-name").value;
-//   if (room_name.length > 0) {
-//     const room = {
-//       roomName: room_name.replaceAll(" ", "-"),
-//       corners: window.localStorage.getItem("corners"),
-//       furniture: window.localStorage.getItem("furniture")
-//     };
-//     await fetch('https://roomio-room-builder.herokuapp.com/getAccInfo/testhash').then(data => data.json()).then(async function(data) {
-      
-//       for (const r of data.rooms) {
-//         if (r.roomName.replaceAll("-", " ") === room_name) {
-//           alert("Please choose a unique room name that is not in use!");
-//           return;
-//         }
-//       }
-
-//       data.rooms.push(room);
-//       data.Rooms_Created = data.rooms.length;
-//       console.log(data);
-//       await fetch('https://roomio-room-builder.herokuapp.com/updateAcc/testhash', {
-//         method: 'POST',
-//         headers: {
-//             'Content-type': 'application/json'
-//         },
-//         body: JSON.stringify(data),
-//       }).then(res => {
-//         clearDesign();  // clear the cache after saving the current build
-//         window.open("/my-rooms.html", "_self");
-//       }); 
-//     });
-//   } else {
-//     alert("You need to enter a room name");
-//   }
-// }
