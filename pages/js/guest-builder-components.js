@@ -160,8 +160,6 @@ export function setFurnitureProperty(div, type) {
     n.classList.add("draggable-furniture-container");
     n.appendChild(f);
 
-
-
     document.getElementsByClassName("room-builder-board")[0].appendChild(n);
     dragFurniture(f, n);
   }
@@ -223,7 +221,7 @@ function dragFurniture(elem, n) { // sets properties for dragging furniture
     elem.style.cursor = 'grab';
     if (!moved) {
       let deg = elem.style.rotate.split("d")[0];
-      deg = deg.length === 0 ? 0 : +deg;
+      deg = (deg.length === 0 || deg === '360') ? 0 : +deg;
       deg += 90;
       elem.style.rotate = deg + "deg";
     }
