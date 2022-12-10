@@ -169,9 +169,16 @@ document.getElementsByClassName("delete-rooms")[0].addEventListener("click", asy
 //     );
 // });
 
-document.getElementsByClassName("share-rooms").addEventListener("click", () =>{
-    document.getElementById("select-rooms").classList.toggle("active");
+document.getElementsByClassName("share-rooms")[0].addEventListener("click", () =>{
+    let url = encodeURIComponent(window.Location.href);
+    let title = encodeURIComponent(window.title);
+    let twitterURL = "https://twitter.com/intent/tweet?url=" + url + "&text=" + title;
+    window.open(twitterURL, "twitter-share-dialog");
 });
+
+// document.getElementsByClassName("share-rooms").addEventListener("click", () =>{
+//     document.getElementById("select-rooms").classList.toggle("active");
+// });
 
 // save image button
 function screenshot() {
