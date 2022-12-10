@@ -159,16 +159,6 @@ document.getElementsByClassName("delete-rooms")[0].addEventListener("click", asy
     // });
 });
 
-// share button
-// document.getElementsByClassName("share-rooms")[0].addEventListener("click", () =>{
-//     const post_url = encodeURI(document.getElementById("select-rooms").href);
-//     const post_title = encodeURI(document.getElementById("select-rooms").href);
-//     // document.getElementById("select-rooms")
-//     document.getElementsByClassName("select-rooms").setAttribute(
-//         "href", `https://www.twitter.com/share?url=${post_url}&text=${post_title}`
-//     );
-// });
-
 document.getElementsByClassName("share-rooms")[0].addEventListener("click", () =>{
     let url = encodeURIComponent(window.Location.href);
     let title = encodeURIComponent(window.title);
@@ -176,16 +166,24 @@ document.getElementsByClassName("share-rooms")[0].addEventListener("click", () =
     window.open(twitterURL, "twitter-share-dialog");
 });
 
-// document.getElementsByClassName("share-rooms").addEventListener("click", () =>{
-//     document.getElementById("select-rooms").classList.toggle("active");
-// });
-
 // save image button
-function screenshot() {
-    html2canvas(document.getElementsByClassName("save-rooms").body).then((canvas) =>{
-        let a = document.createElement("a");
-        a.download = "room.png";
-        a.href = canvas.toDataURL("image/png");
-        a.click();
-    });
-}
+// function screenshot() {
+//     html2canvas(document.getElementsByClassName("save-rooms").body).then((canvas) =>{
+//         let a = document.createElement("a");
+//         a.download = "room.png";
+//         a.href = canvas.toDataURL("image/png");
+//         a.click();
+//     });
+// }
+
+document.getElementsByClassName("save-rooms")[0].addEventListener("click", () =>{
+    let canvas = document.createElement("canvas");
+    let context = canvas.getContext("2d");
+    context.drawWindow(window, 0, 0);
+
+    let image_data = canvas.toDataURL();
+    let image = document.createElement("image");
+    image.src = image_data;
+
+    document.body.appendChild(image);
+});
