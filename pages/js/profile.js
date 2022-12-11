@@ -1,6 +1,6 @@
 let parsed_values = "";
 
-await fetch('https://roomio-room-builder.herokuapp.com/getAccInfo/' + window.localStorage.hash).then(response => response.json()).then(v => {
+await fetch('https://roomio-room-builder.herokuapp.com/getAccInfo').then(response => response.json()).then(v => {
     parsed_values = v;
 }).then(r => build());
 
@@ -85,7 +85,7 @@ async function saveCurrentInfo() {
         return hash & 0xffff;
     }
     
-    await fetch('https://roomio-room-builder.herokuapp.com/updateAcc/' + parsed_values.userhash, {
+    await fetch('https://roomio-room-builder.herokuapp.com/updateAcc', {
         method: 'POST',
         headers: {
             'Content-type': 'application/json'

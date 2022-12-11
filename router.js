@@ -20,13 +20,15 @@ router.get('/assets/furniture-images/*', (req, res) => {
     res.sendFile(__dirname + req.url);
 });
 
-router.get('/getAccInfo/*', async (req, res) => {
+router.get('/getAccInfo', async (req, res) => {
     const db = await dbo.getDb().db("Users").collection("User_Data");
-    const data = await db.findOne({ userhash: req.url.split("/")[2] });
+    const data = await db.findOne({ userhash: req.user.userhash });
+    console.log(req.user);
+    console.log("getaccinfo");
     data === null ? res.status(400).send('Not a valid user hash') : res.send(data);
 });
 
-router.post('/updateAcc/*', async (req, res) => {
+router.post('/updateAcc', async (req, res) => {
     // save req.body to mongodb for the given user hash in req.body
     const db = await dbo.getDb().db("Users").collection("User_Data");
     function errorfunc (err, result) {
@@ -36,17 +38,18 @@ router.post('/updateAcc/*', async (req, res) => {
             console.log("Succesfully updated an entry");
         }
     }
+
     if (Object.keys(req.body).includes("password")) {
-        db.updateOne({ userhash: req.url.split("/")[2] }, { $set: { Password: req.body.password } }, errorfunc);
+        db.updateOne({ userhash: req.user.userhash }, { $set: { Password: req.body.password } }, errorfunc);
     }
     if (Object.keys(req.body).includes("Rooms_Created")) { // this isn't changing the value for some reason
-        db.updateOne({ userhash: req.url.split("/")[2] }, { $set: { Rooms_Created: req.body.Rooms_Created } }, errorfunc);
+        db.updateOne({ userhash: req.user.userhash }, { $set: { Rooms_Created: req.body.Rooms_Created } }, errorfunc);
     }
     if (Object.keys(req.body).includes("rooms")) {
-        db.updateOne({ userhash: req.url.split("/")[2] }, { $set: { rooms: req.body.rooms } }, errorfunc);
+        db.updateOne({ userhash: req.user.userhash }, { $set: { rooms: req.body.rooms } }, errorfunc);
     }
     if (Object.keys(req.body).includes("userhash")) {
-        db.updateOne({ userhash: req.url.split("/")[2] }, { $set: { userhash: req.body.userhash } }, errorfunc);
+        db.updateOne({ userhash: req.user.userhash }, { $set: { userhash: req.body.userhash } }, errorfunc);
     }
     res.sendStatus(200);
 });

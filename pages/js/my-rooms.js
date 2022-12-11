@@ -3,7 +3,7 @@ let rooms = [];
 
 // FOR LOCAL USE/TESTING ONLY
 
-await fetch('https://roomio-room-builder.herokuapp.com/getAccInfo/' + window.localStorage.hash).then(response => response.json()).then(v => {
+await fetch('https://roomio-room-builder.herokuapp.com/getAccInfo').then(response => response.json()).then(v => {
     rooms = v.rooms;
 });
 
@@ -79,7 +79,7 @@ document.getElementById("select-rooms").addEventListener("click", () => {
 document.getElementsByClassName("delete-rooms")[0].addEventListener("click", async () =>{
     document.getElementById("select-rooms").classList.remove("selector-selected");
     
-    await fetch('https://roomio-room-builder.herokuapp.com/getAccInfo/' + window.localStorage.hash).then(response => response.json()).then(async (user) => {
+    await fetch('https://roomio-room-builder.herokuapp.com/getAccInfo').then(response => response.json()).then(async (user) => {
         [...document.getElementsByClassName("selected")].forEach(elem => {
 
             const name = elem.classList[0];
@@ -87,7 +87,7 @@ document.getElementsByClassName("delete-rooms")[0].addEventListener("click", asy
             elem.remove();
         });
 
-        await fetch('https://roomio-room-builder.herokuapp.com/updateAcc/' + window.localStorage.hash, {
+        await fetch('https://roomio-room-builder.herokuapp.com/updateAcc', {
             method: 'POST',
             headers: {
                 'Content-type': 'application/json'

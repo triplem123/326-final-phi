@@ -66,7 +66,6 @@ app.use(passport.session());
 
 // Convert user object to a unique identifier.
 passport.serializeUser((user, done) => {
-    window.localStorage.setItem("hash", user.userhash);
     done(null, user.userhash);
 });
 // Convert a unique identifier to a user object.
@@ -138,8 +137,7 @@ function checkLoggedIn(req, res, next) {
         console.log("next()");
         next();
     } else {
-        // Otherwise, redirect to the login page.
-
+        // Otherwise, redirect to the login or guest room builder page.
         const page = req.url.split(".")[0];;
         if (page === '/guest-room-builder') {
             console.log("redirecting to guest");
@@ -197,6 +195,8 @@ app.use(express.static('html'));
 
 app.get('/home', (req, res) => {
     console.log('/home redirecting');
+    // console.log(req);
+    // console.log(req.user);
     setTimeout(() => {
         if (req.isAuthenticated()) {
             res.redirect('/loggedin');
