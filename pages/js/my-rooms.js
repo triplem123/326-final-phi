@@ -1,3 +1,5 @@
+const html2canvas = require("html2canvas");
+
 async function validUser() {
     function getHash(str) {
         let hash = 0;
@@ -159,6 +161,7 @@ document.getElementsByClassName("delete-rooms")[0].addEventListener("click", asy
     // });
 });
 
+// share button
 document.getElementsByClassName("share-rooms")[0].addEventListener("click", () =>{
     let url = encodeURIComponent(window.Location.href);
     let title = encodeURIComponent(window.title);
@@ -166,24 +169,13 @@ document.getElementsByClassName("share-rooms")[0].addEventListener("click", () =
     window.open(twitterURL, "twitter-share-dialog");
 });
 
-// save image button
-// function screenshot() {
-//     html2canvas(document.getElementsByClassName("save-rooms").body).then((canvas) =>{
-//         let a = document.createElement("a");
-//         a.download = "room.png";
-//         a.href = canvas.toDataURL("image/png");
-//         a.click();
-//     });
-// }
-
 document.getElementsByClassName("save-rooms")[0].addEventListener("click", () =>{
-    let canvas = document.createElement("canvas");
-    let context = canvas.getContext("2d");
-    context.drawWindow(window, 0, 0);
 
-    let image_data = canvas.toDataURL();
-    let image = document.createElement("image");
-    image.src = image_data;
-
-    document.body.appendChild(image);
+    html2canvas(document.body).then((canvas) =>{
+        const ss_link = canvas.toDataURL("image/jpeg");
+        const link = document.createElement("a");
+        link.download = "room.jpeg";
+        link.href = ss_link;
+        link.click();
+    });
 });
