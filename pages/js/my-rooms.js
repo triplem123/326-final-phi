@@ -1,4 +1,4 @@
-import html2canvas from "html2canvas";
+// import html2canvas from "html2canvas";
 
 const grid = document.getElementById("room-layout-board");
 let rooms = [];
