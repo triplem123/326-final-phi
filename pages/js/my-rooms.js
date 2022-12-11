@@ -1,46 +1,11 @@
 import html2canvas from "html2canvas";
 
-async function validUser() {
-    function getHash(str) {
-        let hash = 0;
-        for (let i = 0; i < str.length; i++) {
-            hash = (hash << 5) - hash + str.charCodeAt(i);
-            hash = hash & hash; 
-        }
-        return hash & 0xffff;
-    }
-    if (window.localStorage.hash !== undefined) {
-        const hash = window.localStorage.hash;
-        await fetch('https://roomio-room-builder.herokuapp.com/getAccInfo/' + hash).then(r => {
-            if (r.status !== 200) {
-                window.open("/", "_self");
-            }
-        });
-    } else {
-        window.open("/", "_self");
-    }
-}
-validUser();
-
-function logout() {
-    delete window.localStorage["hash"];
-    window.open("/", "_self");
-}
-
-document.getElementById("logout").addEventListener("click", event => logout());
-
 const grid = document.getElementById("room-layout-board");
 let rooms = [];
 
-// FOR LOCAL USE/TESTING ONLY
-
-await fetch('https://roomio-room-builder.herokuapp.com/getAccInfo/' + window.localStorage.hash).then(response => response.json()).then(v => {
+await fetch('https://roomio-room-builder.herokuapp.com/getAccInfo').then(response => response.json()).then(v => {
     rooms = v.rooms;
 });
-
-// await fetch('https://roomio-room-builder.herokuapp.com/getAccInfo/testhash').then(response => response.json()).then(v => {
-//     rooms = v.rooms;
-// });
 
 rooms.forEach((room_obj) => {
     const room = room_obj.roomName;
@@ -78,12 +43,6 @@ rooms.forEach((room_obj) => {
     grid.appendChild(c);
 });
 
-
-
-// add a function that will delete rooms from the user's database entry when they're deleted on the my rooms page
-
-
-
 const c = document.createElement("div");
 c.classList.add("room-type-grid-item");
 const b = document.createElement("button");
@@ -120,10 +79,7 @@ document.getElementById("select-rooms").addEventListener("click", () => {
 document.getElementsByClassName("delete-rooms")[0].addEventListener("click", async () =>{
     document.getElementById("select-rooms").classList.remove("selector-selected");
     
-    // FOR LOCAL USE/TESTING ONLY
-    
-    await fetch('https://roomio-room-builder.herokuapp.com/getAccInfo/' + window.localStorage.hash).then(response => response.json()).then(async (user) => {
-        // console.log(user);
+    await fetch('https://roomio-room-builder.herokuapp.com/getAccInfo').then(response => response.json()).then(async (user) => {
         [...document.getElementsByClassName("selected")].forEach(elem => {
 
             const name = elem.classList[0];
@@ -131,7 +87,7 @@ document.getElementsByClassName("delete-rooms")[0].addEventListener("click", asy
             elem.remove();
         });
 
-        await fetch('https://roomio-room-builder.herokuapp.com/updateAcc/' + window.localStorage.hash, {
+        await fetch('https://roomio-room-builder.herokuapp.com/updateAcc', {
             method: 'POST',
             headers: {
                 'Content-type': 'application/json'
@@ -140,7 +96,6 @@ document.getElementsByClassName("delete-rooms")[0].addEventListener("click", asy
                                     'Rooms_Created': user.rooms.length }),
         });
     }); 
-
 });
 
 // share button
