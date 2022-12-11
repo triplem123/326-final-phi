@@ -141,24 +141,6 @@ document.getElementsByClassName("delete-rooms")[0].addEventListener("click", asy
         });
     }); 
 
-    // await fetch('https://roomio-room-builder.herokuapp.com/getAccInfo/testhash').then(response => response.json()).then(async (user) => {
-    //     // console.log(user);
-    //     [...document.getElementsByClassName("selected")].forEach(elem => {
-
-    //         const name = elem.classList[0];
-    //         user.rooms = user.rooms.filter(r => r.roomName !== name);
-    //         elem.remove();
-    //     });
-
-    //     await fetch('https://roomio-room-builder.herokuapp.com/updateAcc/testhash', {
-    //         method: 'POST',
-    //         headers: {
-    //             'Content-type': 'application/json'
-    //         },
-    //         body: JSON.stringify({ 'rooms': user.rooms,
-    //                                 'Rooms_Created': user.rooms.length }),
-    //     });
-    // });
 });
 
 // share button
@@ -167,15 +149,4 @@ document.getElementsByClassName("share-rooms")[0].addEventListener("click", () =
     let title = encodeURIComponent(window.title);
     let twitterURL = "https://twitter.com/intent/tweet?url=" + url + "&text=" + title;
     window.open(twitterURL, "twitter-share-dialog");
-});
-
-document.getElementsByClassName("save-rooms")[0].addEventListener("click", () =>{
-
-    html2canvas(document.body).then((canvas) =>{
-        const ss_link = canvas.toDataURL("image/jpeg");
-        const link = document.createElement("a");
-        link.download = "room.jpeg";
-        link.href = ss_link;
-        link.click();
-    });
 });
