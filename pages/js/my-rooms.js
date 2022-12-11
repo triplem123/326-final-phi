@@ -1,4 +1,4 @@
-const html2canvas = require("html2canvas");
+import html2canvas from "html2canvas";
 
 async function validUser() {
     function getHash(str) {
