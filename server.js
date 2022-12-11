@@ -38,16 +38,12 @@ const strategy = new LocalStrategy(
             // delay return to rate-limit brute-force attacks
             await new Promise((r) => setTimeout(r, 2000)); // two second delay
             return done(null, false, { 'message': 'Wrong password' });
-        }
-        // success!
-        // should create a user object here, associated with a unique identifier
-        const db = await dbo.getDb().db("Users").collection("User_Data");
-        const data = await db.findOne({ Email: username });
-        const delay = setTimeout(() => {
-            console.log("delay done");
+        } else {
+            const db = await dbo.getDb().db("Users").collection("User_Data");
+            const data = await db.findOne({ Email: username });
             done(null, data);
-        }, 1000);
-        console.log("done with local strategy");
+        }
+
     });
 
 // App configuration and database connection
@@ -74,8 +70,6 @@ passport.serializeUser((user, done) => {
 });
 // Convert a unique identifier to a user object.
 passport.deserializeUser((uid, done) => {
-    console.log("uid: ");
-    console.log(uid);
     dbo.getDb().db("Users").collection("User_Data").findOne({ userhash: uid }).then(user => {
         done(null, user);
     });
@@ -156,51 +150,29 @@ function checkLoggedIn(req, res, next) {
     }
 }
 
-// app.get('/',
-//     checkLoggedIn,
-//     (req, res) => {
-//         console.log("hello world");
-//         res.send("hello world");
-//     });
-
 // Handle post data from the login.html form.
-// app.post('/login',
-//     passport.authenticate('local', {     // use username/password authentication
-//         'successRedirect': '/home-loggedin.html',   // when we login, go to /private 
-//         'failureRedirect': '/home-notloggedin.html'      // otherwise, back to login
-//     }), (req, res) => res.redirect('/home-loggedin.html'));
-
 app.post('/login',
-    passport.authenticate('local', { 
-        'failureRedirect': '/home-notloggedin.html',
-        'failureFlash': true 
-    }), (req, res) => {
-        console.log("redirecting after authentication");
-        // console.log(req.user);
-        res.redirect('/home-loggedin.html');
-        console.log("after redirect");
-        // res.sendFile(__dirname + '/pages/html/home-loggedin.html');
-    });
+    passport.authenticate('local', {     // use username/password authentication
+        'failureRedirect': '/home-notloggedin.html'      // otherwise, back to login
+    }), (req, res) => res.redirect('/home'));
 
 // Handle the URL /login (just output the login.html file).
 app.get('/login',
     (req, res) => {
         console.log("login get route");
-        res.sendFile('pages/html/home-notloggedin.html',
-            { 'root': __dirname });
+        res.redirect('/home');
     });
 
 // Handle logging out (takes us back to the login page).
 app.get('/logout', (req, res) => {
-    req.logout(); // Logs us out!
-    res.redirect('/login'); // back to login
+    req.logout(err => {
+        if (err) {
+            return next(err);
+        }
+        res.redirect('/home');
+    });
 });
 
-
-// Like login, but add a new user and password IFF one doesn't exist already.
-// If we successfully add a new user, go to /login, else, back to /register.
-// Use req.body to access data (as in, req.body['username']).
-// Use res.redirect to change URLs.
 app.post('/register',
     (req, res) => {
         const username = req.body['username'];
@@ -215,36 +187,25 @@ app.post('/register',
         }
     });
 
-// Register URL
 app.get('/register',
-    (req, res) => res.sendFile(__dirname + '/pages/html/home-notloggedin.html'));
-
-// // Private data
-// app.get('/private',
-//     checkLoggedIn, // If we are logged in (notice the comma!)...
-//     (req, res) => {             // Go to the user's page.
-//         res.redirect('/private/' + req.user);
-//     });
-
-// // A dummy page for the user.
-// app.get('/private/:userID/',
-//     checkLoggedIn, // We also protect this route: authenticated...
-//     (req, res) => {
-//         // Verify this is the right user.
-//         // if (req.params.userID === req.user) {
-//         //     res.writeHead(200, { "Content-Type": "text/html" });
-//         //     res.write('<H1>HELLO ' + req.params.userID + "</H1>");
-//         //     res.write('<br/><a href="/logout">click here to logout</a>');
-//         //     res.end();
-//         // } else {
-//         //     res.redirect('/private/');
-//         // }
-//     });
+    (req, res) => res.redirect('/home'));
 
 app.use(express.static('html'));
 
-app.get('/home-notloggedin.html', (req, res) => {
-    res.sendFile(__dirname + '/pages/html/home-notloggedin.html');
+app.get('/home', (req, res) => {
+    console.log('/home redirecting');
+    setTimeout(() => {
+        if (req.isAuthenticated()) {
+            res.redirect('/loggedin');
+        } else {
+            res.sendFile(__dirname + '/pages/html/home-notloggedin.html');
+        }
+    }, 500);
+});
+
+app.get('/loggedin', checkLoggedIn, (req, res) => {
+    console.log("should be redirecting to the logged in homepage");
+    res.sendFile(__dirname + '/pages/html/home-loggedin.html');
 });
 
 app.get('/*.html', checkLoggedIn, (req, res) => {
@@ -253,15 +214,16 @@ app.get('/*.html', checkLoggedIn, (req, res) => {
     if (page === '/home-loggedin' || page === '/profile' || page === '/room-builder' || page === '/my-rooms') {
         res.sendFile(__dirname + '/pages/html' + req.url);
     } else {
-        res.redirect('/home-notloggedin.html');
+        res.redirect('/home');
     }
 });
 
-// app.get('*', (req, res) => {
-//     res.send('Error');
-// });
-
 app.use('/', router);
+
+app.get('/*', (req, res) => {
+    console.log("i'm calling login2");
+    res.redirect('/home');
+});
 
 app.listen(port, () => {
     console.log(`App now listening at http://localhost:${port}`);

@@ -5,7 +5,7 @@ const router = express.Router();
 const dbo = require('./conn.js');
 
 router.get('/', (req, res) => {
-    res.sendFile(__dirname + '/pages/html/home-notloggedin.html');
+    res.redirect('/home');
 });
 
 router.get('/*.css', (req, res) => {
