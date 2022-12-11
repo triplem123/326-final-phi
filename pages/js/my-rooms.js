@@ -1,7 +1,7 @@
+import html2canvas from "html2canvas";
+
 const grid = document.getElementById("room-layout-board");
 let rooms = [];
-
-// FOR LOCAL USE/TESTING ONLY
 
 await fetch('https://roomio-room-builder.herokuapp.com/getAccInfo').then(response => response.json()).then(v => {
     rooms = v.rooms;
@@ -99,25 +99,9 @@ document.getElementsByClassName("delete-rooms")[0].addEventListener("click", asy
 });
 
 // share button
-// document.getElementsByClassName("share-rooms")[0].addEventListener("click", () =>{
-//     const post_url = encodeURI(document.getElementById("select-rooms").href);
-//     const post_title = encodeURI(document.getElementById("select-rooms").href);
-//     // document.getElementById("select-rooms")
-//     document.getElementsByClassName("select-rooms").setAttribute(
-//         "href", `https://www.twitter.com/share?url=${post_url}&text=${post_title}`
-//     );
-// });
-
-document.getElementsByClassName("share-rooms").addEventListener("click", () =>{
-    document.getElementById("select-rooms").classList.toggle("active");
+document.getElementsByClassName("share-rooms")[0].addEventListener("click", () =>{
+    let url = encodeURIComponent(window.Location.href);
+    let title = encodeURIComponent(window.title);
+    let twitterURL = "https://twitter.com/intent/tweet?url=" + url + "&text=" + title;
+    window.open(twitterURL, "twitter-share-dialog");
 });
-
-// save image button
-function screenshot() {
-    html2canvas(document.getElementsByClassName("save-rooms").body).then((canvas) =>{
-        let a = document.createElement("a");
-        a.download = "room.png";
-        a.href = canvas.toDataURL("image/png");
-        a.click();
-    });
-}
