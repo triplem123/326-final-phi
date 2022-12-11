@@ -66,6 +66,7 @@ app.use(passport.session());
 
 // Convert user object to a unique identifier.
 passport.serializeUser((user, done) => {
+    window.localStorage.setItem("hash", user.userhash);
     done(null, user.userhash);
 });
 // Convert a unique identifier to a user object.
@@ -154,7 +155,9 @@ function checkLoggedIn(req, res, next) {
 app.post('/login',
     passport.authenticate('local', {     // use username/password authentication
         'failureRedirect': '/home-notloggedin.html'      // otherwise, back to login
-    }), (req, res) => res.redirect('/home'));
+    }), (req, res) => {
+        res.redirect('/home');
+    });
 
 // Handle the URL /login (just output the login.html file).
 app.get('/login',
