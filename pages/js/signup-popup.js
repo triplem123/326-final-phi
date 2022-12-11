@@ -40,7 +40,7 @@ async function validUser() {
     if (username.length <= 1 || password.length <= 1) {
         return false;
     } else {
-        await fetch('http://localhost:3000/login', {
+        await fetch('https://roomio-room-builder.herokuapp.com/login', {
             method: 'POST',
             headers: {
                 'Content-type': 'application/json'
