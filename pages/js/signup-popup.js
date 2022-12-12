@@ -30,6 +30,10 @@ async function signUp() {
                 'username': username,
                 'password': password
             }),
+        }).then(r => {
+            if (r.status === 200) {
+                window.location.assign('/home-notloggedin.html');
+            }
         });
     }
 }

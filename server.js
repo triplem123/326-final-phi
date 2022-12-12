@@ -72,7 +72,6 @@ passport.serializeUser((user, done) => {
 // Convert a unique identifier to a user object.
 passport.deserializeUser(async (uid, done) => {
     db.findOne({ userhash: uid }).then(user => {
-        console.log(user.Email);
         done(null, user);
     });
 });
@@ -129,24 +128,18 @@ async function addUser(name, pwd) {
 // Routes
 
 function checkLoggedIn(req, res, next) {
-    console.log("checking");
-    console.log(req.isAuthenticated());
     if (req.isAuthenticated()) {
         // If we are authenticated, run the next route.
-        console.log("next()");
         next();
     } else {
         // Otherwise, redirect to the login or guest room builder page.
         const page = req.url.split(".")[0];;
         if (page === '/guest-room-builder') {
-            console.log("redirecting to guest");
             res.sendFile(__dirname + '/pages/html/guest-room-builder.html');
         } else {
-            console.log("redirecting to login");
             res.sendFile(__dirname + '/pages/html/home-notloggedin.html');
         }
     }
-
     return;
 }
 
@@ -156,21 +149,15 @@ app.post('/login',
         'successRedirect': '/home',
         'failureRedirect': '/home-notloggedin.html'     
     }));
-    // , (req, res) => {
-    //     console.log("authenticated and routing");
-    //     res.redirect('/home');
-    // });
 
 // Handle the URL /login (just output the login.html file).
 app.get('/login',
     (req, res) => {
-        console.log("here5");
         res.redirect('/home');
     });
 
 // Handle logging out (takes us back to the login page).
 app.get('/logout', (req, res) => {
-    console.log("here4");
     req.logout(err => {
         if (err) {
             return next(err);
@@ -195,24 +182,20 @@ app.post('/register',
 
 app.get('/register',
     (req, res) => {
-        console.log("here3");
         res.redirect('/home');
     });
 
 // app.use(express.static('html'));
 
 app.get('/home', checkLoggedIn, (req, res) => {
-    console.log("should be redirecting to the logged in homepage");
     res.sendFile(__dirname + '/pages/html/home-loggedin.html');
 });
 
 app.get('/*.html', checkLoggedIn, (req, res) => {
     const page = req.url.split(".")[0];
-    console.log("using new route");
     if (page === '/home-notloggedin' || page === '/home-loggedin' || page === '/profile' || page === '/room-builder' || page === '/my-rooms') {
         res.sendFile(__dirname + '/pages/html' + req.url);
     } else {
-        console.log("here2");
         res.redirect('/home');
     }
 });
@@ -220,7 +203,6 @@ app.get('/*.html', checkLoggedIn, (req, res) => {
 app.use('/', router);
 
 app.get('/*', (req, res) => {
-    console.log("here1");
     res.redirect('/home');
 });
 
