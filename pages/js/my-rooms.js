@@ -28,7 +28,7 @@ rooms.forEach((room_obj) => {
 
     c.addEventListener("click", () => {
         if (document.getElementById("select-rooms").classList.contains("selector-selected")) {
-            c.classList.includes("selected") ? c.classList.add("selected") : c.classList.remove("selected");
+            c.classList.contains("selected") ? c.classList.remove("selected") : c.classList.add("selected");
         } else {
             const storage = window.localStorage;
             storage.setItem('roomName', room);
