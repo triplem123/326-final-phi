@@ -39,16 +39,15 @@ const strategy = new LocalStrategy(
             await new Promise((r) => setTimeout(r, 2000)); // two second delay
             return done(null, false, { 'message': 'Wrong password' });
         } else {
-            const db = await dbo.getDb().db("Users").collection("User_Data");
             const data = await db.findOne({ Email: username });
             done(null, data);
         }
-
     });
 
 // App configuration and database connection
 
 const dbo = require('./conn.js');
+let db;
 dbo.connectToServer(function (err) {
     if (err) {
         console.error(err);
@@ -57,6 +56,8 @@ dbo.connectToServer(function (err) {
     } else {
         console.log("DB Connection Successful!");
     }
+}).then(r => {
+    db = dbo.getDb().db("Users").collection("User_Data");
 });
 
 app.use(expressSession(session));
@@ -69,8 +70,9 @@ passport.serializeUser((user, done) => {
     done(null, user.userhash);
 });
 // Convert a unique identifier to a user object.
-passport.deserializeUser((uid, done) => {
-    dbo.getDb().db("Users").collection("User_Data").findOne({ userhash: uid }).then(user => {
+passport.deserializeUser(async (uid, done) => {
+    db.findOne({ userhash: uid }).then(user => {
+        console.log(user.Email);
         done(null, user);
     });
 });
@@ -80,7 +82,6 @@ app.use(express.urlencoded({ 'extended': true })); // allow URLencoded data
 
 // Returns true iff the user's userhash exists.
 async function findUser(username, password) {
-    const db = await dbo.getDb().db("Users").collection("User_Data");
     const data = await db.findOne({ Email: username });
     return data === null ? false : true;
 }
@@ -90,7 +91,6 @@ async function validatePassword(name, pwd) {
     if (!await findUser(name, pwd)) {
         return false;
     }
-    const db = await dbo.getDb().db("Users").collection("User_Data");
     const data = await db.findOne({ Email: name });
     if (mc.check(pwd, data.Password[0], data.Password[1])) {
         return true;
@@ -103,7 +103,6 @@ async function addUser(name, pwd) {
 
     const userhash = mc.hash(name + pwd)[1];
 
-    const db = await dbo.getDb().db("Users").collection("User_Data");
     const user = {
         userhash: userhash,
         Email: name,
@@ -130,7 +129,7 @@ async function addUser(name, pwd) {
 // Routes
 
 function checkLoggedIn(req, res, next) {
-    // console.log("checking");
+    console.log("checking");
     console.log(req.isAuthenticated());
     if (req.isAuthenticated()) {
         // If we are authenticated, run the next route.
@@ -144,28 +143,34 @@ function checkLoggedIn(req, res, next) {
             res.sendFile(__dirname + '/pages/html/guest-room-builder.html');
         } else {
             console.log("redirecting to login");
-            res.redirect('/');
+            res.sendFile(__dirname + '/pages/html/home-notloggedin.html');
         }
     }
+
+    return;
 }
 
 // Handle post data from the login.html form.
 app.post('/login',
     passport.authenticate('local', {     // use username/password authentication
-        'failureRedirect': '/home-notloggedin.html'      // otherwise, back to login
-    }), (req, res) => {
-        res.redirect('/home');
-    });
+        'successRedirect': '/home',
+        'failureRedirect': '/home-notloggedin.html'     
+    }));
+    // , (req, res) => {
+    //     console.log("authenticated and routing");
+    //     res.redirect('/home');
+    // });
 
 // Handle the URL /login (just output the login.html file).
 app.get('/login',
     (req, res) => {
-        console.log("login get route");
+        console.log("here5");
         res.redirect('/home');
     });
 
 // Handle logging out (takes us back to the login page).
 app.get('/logout', (req, res) => {
+    console.log("here4");
     req.logout(err => {
         if (err) {
             return next(err);
@@ -189,24 +194,14 @@ app.post('/register',
     });
 
 app.get('/register',
-    (req, res) => res.redirect('/home'));
+    (req, res) => {
+        console.log("here3");
+        res.redirect('/home');
+    });
 
-app.use(express.static('html'));
+// app.use(express.static('html'));
 
-app.get('/home', (req, res) => {
-    console.log('/home redirecting');
-    // console.log(req);
-    // console.log(req.user);
-    setTimeout(() => {
-        if (req.isAuthenticated()) {
-            res.redirect('/loggedin');
-        } else {
-            res.sendFile(__dirname + '/pages/html/home-notloggedin.html');
-        }
-    }, 500);
-});
-
-app.get('/loggedin', checkLoggedIn, (req, res) => {
+app.get('/home', checkLoggedIn, (req, res) => {
     console.log("should be redirecting to the logged in homepage");
     res.sendFile(__dirname + '/pages/html/home-loggedin.html');
 });
@@ -214,9 +209,10 @@ app.get('/loggedin', checkLoggedIn, (req, res) => {
 app.get('/*.html', checkLoggedIn, (req, res) => {
     const page = req.url.split(".")[0];
     console.log("using new route");
-    if (page === '/home-loggedin' || page === '/profile' || page === '/room-builder' || page === '/my-rooms') {
+    if (page === '/home-notloggedin' || page === '/home-loggedin' || page === '/profile' || page === '/room-builder' || page === '/my-rooms') {
         res.sendFile(__dirname + '/pages/html' + req.url);
     } else {
+        console.log("here2");
         res.redirect('/home');
     }
 });
@@ -224,7 +220,7 @@ app.get('/*.html', checkLoggedIn, (req, res) => {
 app.use('/', router);
 
 app.get('/*', (req, res) => {
-    console.log("i'm calling login2");
+    console.log("here1");
     res.redirect('/home');
 });
 

@@ -14,7 +14,11 @@ async function signUp() {
     const username = document.getElementById("signup-username").value;
     const password = document.getElementById("signup-password").value;
 
-    if (username.length <= 1 || password.length <= 1) {
+    if (password.length <= 5) {
+        alert("Password is not long enough.")
+        return false;
+    } else if (!username.includes("@") || !username.includes(".")) {
+        alert("Invalid email address.")
         return false;
     } else {
         await fetch('https://roomio-room-builder.herokuapp.com/register', {
@@ -30,14 +34,18 @@ async function signUp() {
     }
 }
 
-async function validUser() {
+async function login() {
     document.getElementById("signup-username").required = false;
     document.getElementById("signup-password").required = false;
     
     const username = document.getElementById("input-username").value;
     const password = document.getElementById("input-password").value;
 
-    if (username.length <= 1 || password.length <= 1) {
+    if (password.length <= 5) {
+        alert("Password is not long enough.")
+        return false;
+    } else if (!username.includes("@") || !username.includes(".")) {
+        alert("Invalid email address.")
         return false;
     } else {
         await fetch('https://roomio-room-builder.herokuapp.com/login', {
@@ -49,6 +57,10 @@ async function validUser() {
                 'username': username,
                 'password': password
             }),
+        }).then(r => {
+            if (r.status === 200) {
+                window.location.assign('/home-loggedin.html');
+            }
         });
     }
 }

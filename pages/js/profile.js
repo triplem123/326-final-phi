@@ -23,7 +23,7 @@ function build() {
                 field_info.readOnly = true;
                 field_info.classList.add(field + "-display");
                 field_info.classList.add("account-text-item");
-                field_info.value = value;
+                field_info.value = "";
             } else {
                 field_info = document.createElement("div");
                 field_info.classList.add(field + "-display");
@@ -58,12 +58,14 @@ function build() {
                         icon.classList.add("glyphicon");
                         icon.classList.add("glyphicon-floppy-disk");
                     } else {
-                        fieldToEdit.readOnly = true;
-                        icon.classList = "";
-                        icon.classList.add("glyphicon");
-                        icon.classList.add("glyphicon-pencil");
-                        parsed_values[fieldToEdit.classList[0].split("-")[0]] = fieldToEdit.value;
-                        saveCurrentInfo();
+                        if (fieldToEdit.length > 5) {
+                            fieldToEdit.readOnly = true;
+                            icon.classList = "";
+                            icon.classList.add("glyphicon");
+                            icon.classList.add("glyphicon-pencil");
+                            parsed_values[fieldToEdit.classList[0].split("-")[0]] = fieldToEdit.value;
+                            saveCurrentInfo();
+                        }
                     }
                 });
             } else {
@@ -75,15 +77,6 @@ function build() {
 }
 
 async function saveCurrentInfo() {
-
-    function getHash(str) {
-        let hash = 0;
-        for (let i = 0; i < str.length; i++) {
-            hash = (hash << 5) - hash + str.charCodeAt(i);
-            hash = hash & hash; 
-        }
-        return hash & 0xffff;
-    }
     
     await fetch('https://roomio-room-builder.herokuapp.com/updateAcc', {
         method: 'POST',

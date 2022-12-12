@@ -23,8 +23,6 @@ router.get('/assets/furniture-images/*', (req, res) => {
 router.get('/getAccInfo', async (req, res) => {
     const db = await dbo.getDb().db("Users").collection("User_Data");
     const data = await db.findOne({ userhash: req.user.userhash });
-    console.log(req.user);
-    console.log("getaccinfo");
     data === null ? res.status(400).send('Not a valid user hash') : res.send(data);
 });
 
@@ -54,16 +52,16 @@ router.post('/updateAcc', async (req, res) => {
     res.sendStatus(200);
 });
 
-router.delete('/deleteAcc/*', async (req, res) => {
-    // delete the entry in mongodb with the given user hash
-    const db = await dbo.getDb().db("Users").collection("User_Data");
-    db.deleteOne({ userhash: req.url.split("/")[2] }, function (err, result) {
-        if (err) {
-            res.status(400).send('Error inserting entry');
-        } else {
-            console.log("Succesfully deleted an account");
-        }
-    });
-});
+// router.delete('/deleteAcc/*', async (req, res) => {
+//     // delete the entry in mongodb with the given user hash
+//     const db = await dbo.getDb().db("Users").collection("User_Data");
+//     db.deleteOne({ userhash: req.url.split("/")[2] }, function (err, result) {
+//         if (err) {
+//             res.status(400).send('Error inserting entry');
+//         } else {
+//             console.log("Succesfully deleted an account");
+//         }
+//     });
+// });
 
 module.exports = router;
