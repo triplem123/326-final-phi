@@ -174,7 +174,7 @@ app.post('/register',
         addUser(username, password).then(r => bool = r);
         if (bool) {
             console.log("successfully registered!");
-            res.redirect('/login');
+            res.redirect('/home');
         } else {
             console.log("failed to register");
         }
